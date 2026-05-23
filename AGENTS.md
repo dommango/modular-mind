@@ -59,7 +59,7 @@ apt install libzstd1
 | `10_build_knowledge_base.py` | Generate synthesis fundamentals, patch-building guide, and module quick-reference docs |
 | `generate_patches.py` | Standalone generator producing 4 hand-designed `.vcv` patches using verified port maps |
 | `generate_batch.py` | Standalone batch generator (batch3) replicating proven wiring templates with randomized params |
-| `validate_patch.py` | Structural validator for `.vcv` files: checks gate sources, audio routing, port ranges, frequencies |
+| `validate_patch.py` | Structural + signal-flow validator for `.vcv` files: traces audio from oscillator → output, checks gate sources, envelope modulation, port ranges, frequencies |
 
 ### Data Directory Layout
 
@@ -194,9 +194,8 @@ When adding a new module to the generators, verify port IDs against the C++ enum
 
 There is no formal test suite (no `pytest`, `unittest`, or CI configuration). Quality assurance is performed as follows:
 
-1. **Structural validation:** Run `python3 validate_patch.py <file.vcv>` or `python3 validate_patch.py data/generated/` on generated patches.
-2. **Manual listening test:** Open generated `.vcv` files in VCV Rack via `\\wsl$\Ubuntu<absolute-path>`. AudioInterface modules require manual driver selection on first open.
-3. **Stage re-runnability:** Each stage should be idempotent — re-running it should produce the same output given the same inputs.
+1. **Signal-flow validation:** Run `python3 validate_patch.py <file.vcv>` or `python3 validate_patch.py data/generated/` on generated patches. This traces the audio path from VCO/Noise sources through mixers/VCAs/filters to the AudioInterface. It also verifies that ADSR envelopes actually connect to VCA or mixer CV inputs (not just audio inputs).
+2. **Stage re-runnability:** Each stage should be idempotent — re-running it should produce the same output given the same inputs.
 
 When modifying a stage, verify it still runs to completion and produces valid JSON/CSV output. Check downstream consumers if the schema changes.
 
