@@ -1,0 +1,22 @@
+.env
+
+# Generated data artifacts
+data/
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Zone identifier files from WSL/Windows
+*:Zone.Identifier
