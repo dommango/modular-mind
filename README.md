@@ -1,3 +1,5 @@
+![modular-mind](docs/banner.png)
+
 # modular-mind
 
 A multi-stage Python pipeline that builds a corpus of VCV Rack (modular synthesizer) patches and module knowledge, then generates new `.vcv` patch files from learned patterns.
