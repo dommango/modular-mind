@@ -25,7 +25,7 @@ from config import OUTPUT_DIR, METADATA_DIR, WHITELIST_DIR, RATE_LIMIT_DELAY
 
 REPOS_DIR = OUTPUT_DIR.parent / "repos"
 MANIFESTS_DIR = WHITELIST_DIR / "raw_manifests"
-HEADERS = {"User-Agent": "vcv-corpus/1.0"}
+HEADERS = {"User-Agent": "modular-mind/1.0"}
 DETAIL_URL = "https://patchstorage.com/api/alpha/patches/{id}"
 
 

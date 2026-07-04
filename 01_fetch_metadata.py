@@ -17,7 +17,7 @@ from config import METADATA_PAGES_DIR, METADATA_DIR, RATE_LIMIT_DELAY, MIN_LIKES
 API_URL = "https://patchstorage.com/api/alpha/patches/"
 PLATFORM_ID = 745  # VCV Rack
 PARAMS_BASE = {"platform": PLATFORM_ID, "per_page": 100}
-HEADERS = {"User-Agent": "vcv-corpus/1.0"}
+HEADERS = {"User-Agent": "modular-mind/1.0"}
 
 
 def extract_listing_fields(raw):
