@@ -156,8 +156,9 @@ def drone(variant=0):
         cab(3, NOISE, 1, MIX, 3),         # pink noise → mixer ch3
         cab(4, MIX, 0, AUDIO, 0),         # mixer → audio L
         cab(5, MIX, 0, AUDIO, 1),         # mixer → audio R
-        cab(6, MIX, 0, SCOPE, 0),         # mixer → scope
+        cab(6, MIX, 0, SCOPE, 0),         # mixer → scope ch1
         cab(7, LFO1, 0, V2, 1),           # LFO → VCO2 FM (subtle wobble)
+        cab(8, LFO1, 0, SCOPE, 1),        # LFO → scope ch2 (visual reference)
     ]
 
     return modules, cables, "drone"
@@ -204,7 +205,8 @@ def generative(variant=0):
         cab(6, MIX, 0, DLY, 4),            # mixer → delay audio in
         cab(7, DLY, 0, AUDIO, 0),          # delay → audio L
         cab(8, DLY, 0, AUDIO, 1),          # delay → audio R
-        cab(9, DLY, 0, SCOPE, 0),          # delay → scope
+        cab(9, DLY, 0, SCOPE, 0),          # delay → scope ch1
+        cab(10, ADSR, 0, SCOPE, 1),        # envelope → scope ch2
     ]
 
     return modules, cables, "generative"
@@ -243,8 +245,9 @@ def subtractive(variant=0):
         cab(3, ADSR, 0, MIX, 5),           # ADSR Env → mixer ch1 CV
         cab(4, MIX, 0, AUDIO, 0),          # mixer → audio L
         cab(5, MIX, 0, AUDIO, 1),          # mixer → audio R
-        cab(6, MIX, 0, SCOPE, 0),          # mixer → scope
+        cab(6, MIX, 0, SCOPE, 0),          # mixer → scope ch1
         cab(7, MLFO, 1, VCO, 1),           # slow LFO tri → VCO FM (vibrato)
+        cab(8, CLK, 3, SCOPE, 1),          # gate clock → scope ch2
     ]
 
     return modules, cables, "subtractive"
@@ -287,7 +290,8 @@ def dual_voice(variant=0):
         cab(6, E2, 0, MIX, 6),            # env2 → mixer ch2 CV
         cab(7, MIX, 0, AUDIO, 0),         # mixer → audio L
         cab(8, MIX, 0, AUDIO, 1),         # mixer → audio R
-        cab(9, MIX, 0, SCOPE, 0),         # scope
+        cab(9, MIX, 0, SCOPE, 0),         # audio → scope ch1
+        cab(10, CLK, 3, SCOPE, 1),        # gate clock → scope ch2
     ]
 
     return modules, cables, "dual-voice"
