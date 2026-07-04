@@ -98,10 +98,10 @@ def omri_sequenced(variant=0):
         mod(SEQ, "Fundamental", "SEQ3", 0, 0, seq_params,
             data={"running": True, "gates": gate_pattern}),
         mod(VCO, "Fundamental", "VCO", 25, 0,
-            [p(0, 1.0), p(1, 1.0), p(2, random.choice([0.0, -12.0]))]),
+            [p(2, random.choice([0.0, -12.0]))]),
         mod(SCOPE, "Fundamental", "Scope", 43, 0),
         mod(MIX, "Fundamental", "VCMixer", 57, 0,
-            [p(0, 1.0), p(1, 1.0), p(2, 1.0), p(3, 1.0)]),
+            [p(0, 1.0), p(1, 1.0), p(2, 1.0), p(3, 1.0), p(4, 1.0)]),
         mod(QUANT, "Fundamental", "Quantizer", 22, 0),
         mod(ADSR, "Fundamental", "ADSR", 35, 0,
             [p(0, adsr_a), p(1, adsr_d), p(2, adsr_s), p(3, adsr_r)]),
@@ -142,7 +142,7 @@ def drone(variant=0):
         mod(V2, "Fundamental", "VCO", 15, 0, [p(2, base + detune)]),
         mod(NOISE, "Fundamental", "Noise", 30, 0),
         mod(MIX, "Fundamental", "VCMixer", 38, 0,
-            [p(0, 1.0), p(1, 0.8), p(2, 0.8), p(3, 0.15), p(4, 0.3)]),
+            [p(0, 1.0), p(1, 1.0), p(2, 1.0), p(3, 0.5), p(4, 0.3)]),
         mod(LFO1, "Fundamental", "LFO", 0, 1,
             [p(0, random.uniform(-5.0, -3.0))]),
         mod(AUDIO, "Core", "AudioInterface", 55, 0),
@@ -156,8 +156,9 @@ def drone(variant=0):
         cab(3, NOISE, 1, MIX, 3),         # pink noise → mixer ch3
         cab(4, MIX, 0, AUDIO, 0),         # mixer → audio L
         cab(5, MIX, 0, AUDIO, 1),         # mixer → audio R
-        cab(6, MIX, 0, SCOPE, 0),         # mixer → scope
+        cab(6, MIX, 0, SCOPE, 0),         # mixer → scope ch1
         cab(7, LFO1, 0, V2, 1),           # LFO → VCO2 FM (subtle wobble)
+        cab(8, LFO1, 0, SCOPE, 1),        # LFO → scope ch2 (visual reference)
     ]
 
     return modules, cables, "drone"
@@ -183,7 +184,7 @@ def generative(variant=0):
         mod(VCO, "Fundamental", "VCO", 18, 0,
             [p(2, random.choice([0.0, -12.0, 12.0]))]),
         mod(MIX, "Fundamental", "VCMixer", 33, 0,
-            [p(0, 1.0), p(1, 1.0), p(2, 1.0), p(3, 1.0)]),
+            [p(0, 1.0), p(1, 1.0), p(2, 1.0), p(3, 1.0), p(4, 1.0)]),
         mod(ADSR, "Fundamental", "ADSR", 0, 1,
             [p(0, adsr_a), p(1, 0.4), p(2, 0.5), p(3, adsr_r)]),
         mod(LFO, "Fundamental", "LFO", 15, 1,
@@ -204,7 +205,8 @@ def generative(variant=0):
         cab(6, MIX, 0, DLY, 4),            # mixer → delay audio in
         cab(7, DLY, 0, AUDIO, 0),          # delay → audio L
         cab(8, DLY, 0, AUDIO, 1),          # delay → audio R
-        cab(9, DLY, 0, SCOPE, 0),          # delay → scope
+        cab(9, DLY, 0, SCOPE, 0),          # delay → scope ch1
+        cab(10, ADSR, 0, SCOPE, 1),        # envelope → scope ch2
     ]
 
     return modules, cables, "generative"
@@ -227,7 +229,7 @@ def subtractive(variant=0):
         mod(MLFO, "Fundamental", "LFO", 0, 1,
             [p(0, random.uniform(-4.0, -2.0))]),
         mod(MIX, "Fundamental", "VCMixer", 30, 0,
-            [p(0, 1.0), p(1, 1.0)]),
+            [p(0, 1.0), p(1, 1.0), p(2, 1.0)]),
         mod(ADSR, "Fundamental", "ADSR", 42, 0,
             [p(0, random.uniform(0.01, 0.15)),
              p(1, random.uniform(0.2, 0.5)),
@@ -243,8 +245,9 @@ def subtractive(variant=0):
         cab(3, ADSR, 0, MIX, 5),           # ADSR Env → mixer ch1 CV
         cab(4, MIX, 0, AUDIO, 0),          # mixer → audio L
         cab(5, MIX, 0, AUDIO, 1),          # mixer → audio R
-        cab(6, MIX, 0, SCOPE, 0),          # mixer → scope
+        cab(6, MIX, 0, SCOPE, 0),          # mixer → scope ch1
         cab(7, MLFO, 1, VCO, 1),           # slow LFO tri → VCO FM (vibrato)
+        cab(8, CLK, 3, SCOPE, 1),          # gate clock → scope ch2
     ]
 
     return modules, cables, "subtractive"
@@ -266,7 +269,7 @@ def dual_voice(variant=0):
         mod(V1, "Fundamental", "VCO", 10, 0, [p(2, freq1)]),
         mod(V2, "Fundamental", "VCO", 25, 0, [p(2, freq2)]),
         mod(MIX, "Fundamental", "VCMixer", 40, 0,
-            [p(0, 1.0), p(1, 0.8), p(2, 0.8)]),
+            [p(0, 1.0), p(1, 1.0), p(2, 1.0), p(3, 1.0), p(4, 1.0)]),
         mod(E1, "Fundamental", "ADSR", 10, 1,
             [p(0, random.uniform(0.01, 0.1)), p(1, 0.4), p(2, 0.5), p(3, 0.3)]),
         mod(E2, "Fundamental", "ADSR", 25, 1,
@@ -287,7 +290,8 @@ def dual_voice(variant=0):
         cab(6, E2, 0, MIX, 6),            # env2 → mixer ch2 CV
         cab(7, MIX, 0, AUDIO, 0),         # mixer → audio L
         cab(8, MIX, 0, AUDIO, 1),         # mixer → audio R
-        cab(9, MIX, 0, SCOPE, 0),         # scope
+        cab(9, MIX, 0, SCOPE, 0),         # audio → scope ch1
+        cab(10, CLK, 3, SCOPE, 1),        # gate clock → scope ch2
     ]
 
     return modules, cables, "dual-voice"

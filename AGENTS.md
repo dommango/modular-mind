@@ -203,7 +203,7 @@ When modifying a stage, verify it still runs to completion and produces valid JS
 
 - `.env` is listed in `.gitignore` and must never be committed. It contains `GITHUB_TOKEN`.
 - The GitHub token needs no scopes — it is used only for unauthenticated-rate-limit headroom.
-- Network requests use a hardcoded `User-Agent: vcv-corpus/1.0` and `RATE_LIMIT_DELAY` to be polite to APIs.
+- Network requests use a hardcoded `User-Agent: modular-mind/1.0` and `RATE_LIMIT_DELAY` to be polite to APIs.
 - No user input is executed, shell-injected, or dynamically evaluated beyond parsing JSON and CSV.
 - `subprocess` is used only for `git clone` with hardcoded arguments.
 

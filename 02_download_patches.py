@@ -16,7 +16,7 @@ from config import METADATA_DIR, RAW_DIR, RATE_LIMIT_DELAY
 
 
 DETAIL_URL = "https://patchstorage.com/api/alpha/patches/{id}"
-HEADERS = {"User-Agent": "vcv-corpus/1.0"}
+HEADERS = {"User-Agent": "modular-mind/1.0"}
 MANIFEST_PATH = RAW_DIR / "manifest.json"
 
 

@@ -221,6 +221,7 @@ class PatchValidator:
         self._check_signal_flow()
         self._check_envelopes_have_gates()
         self._check_vcas_have_cv()
+        self._check_vcmixer_port_usage()
         self._check_cable_references()
         self._check_port_ranges()
         self._check_audible_frequencies()
@@ -287,6 +288,14 @@ class PatchValidator:
             for dest_mid, dest_model, dest_port in adsr_destinations:
                 if dest_model == "VCA-1" and dest_port == 0:
                     modulates_audio = True
+                    # Exponential response on a VCA makes envelopes very quiet
+                    vca = self.modules.get(dest_mid, {})
+                    vca_params = {p.get("id"): p.get("value", 0) for p in vca.get("params", []) if isinstance(p, dict)}
+                    if vca_params.get(1, 1.0) < 0.5:
+                        self.warn(
+                            f"ADSR (id={mid}) controls VCA-1 (id={dest_mid}) with exponential "
+                            f"response — sustain levels will be much quieter than expected"
+                        )
                 elif dest_model == "VCMixer" and dest_port in {5, 6, 7, 8}:
                     # VCMixer CV inputs: 5=ch1 CV, 6=ch2 CV, 7=ch3 CV, 8=ch4 CV
                     modulates_audio = True
@@ -296,6 +305,25 @@ class PatchValidator:
                     f"ADSR (id={mid}) is triggered but its envelope output never "
                     f"modulates a VCA or mixer channel CV — amplitude is static"
                 )
+
+    def _check_vcmixer_port_usage(self):
+        """Warn if audio signals are patched into VCMixer CV inputs (common port-map mistake)."""
+        vcmixer_ids = {mid for mid, m in self.modules.items() if m.get("model") == "VCMixer"}
+        if not vcmixer_ids:
+            return
+
+        for c in self.cables:
+            in_mod = c.get("inputModuleId")
+            in_port = c.get("inputId")
+            if in_mod in vcmixer_ids and in_port in {5, 6, 7, 8}:
+                out_mod = c.get("outputModuleId")
+                out_m = self.modules.get(out_mod, {})
+                out_model = out_m.get("model", "?")
+                if out_model in AUDIO_SOURCES or out_model in ("Noise",):
+                    self.warn(
+                        f"Audio source {out_model} (id={out_mod}) patched to VCMixer "
+                        f"CV input {in_port - 4} — should be a channel audio input (1-4)"
+                    )
 
     def _check_envelopes_have_gates(self):
         for mid, m in self.modules.items():
