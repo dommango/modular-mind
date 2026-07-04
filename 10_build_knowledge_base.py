@@ -41,7 +41,7 @@ PORT_MAPS = {
     },
     "Fundamental:SEQ3": {
         "inputs": {0: "Tempo CV", 1: "Clock", 2: "Reset", 3: "Steps CV", 4: "Run"},
-        "outputs": {0: "Row 1", 1: "Row 2", 2: "Row 3", 3: "Gate row 1", 4: "Gate row 2", 5: "Gate row 3"},
+        "outputs": {0: "Trigger", 1: "Row 1", 2: "Row 2", 3: "Row 3", 4: "Step gate 1", 5: "Step gate 2", 6: "Step gate 3", 7: "Step gate 4", 8: "Step gate 5", 9: "Step gate 6", 10: "Step gate 7", 11: "Step gate 8"},
         "params": {0: "Tempo", 3: "Steps"},
     },
     "Fundamental:Quantizer": {
@@ -50,7 +50,8 @@ PORT_MAPS = {
         "params": {1: "Pre-offset"},
     },
     "Fundamental:VCMixer": {
-        "inputs": {0: "Mix CV", 1: "Ch1 in", 2: "Ch1 CV", 3: "Ch2 in", 4: "Ch2 CV", 5: "Ch3 in", 6: "Ch3 CV", 7: "Ch4 in", 8: "Ch4 CV"},
+        "inputs": {0: "Mix CV", 1: "Ch1 in", 2: "Ch2 in", 3: "Ch3 in", 4: "Ch4 in",
+                   5: "Ch1 CV", 6: "Ch2 CV", 7: "Ch3 CV", 8: "Ch4 CV"},
         "outputs": {0: "Mix out", 1: "Ch1 out", 2: "Ch2 out", 3: "Ch3 out", 4: "Ch4 out"},
         "params": {0: "Mix level", 1: "Ch1 level", 2: "Ch2 level", 3: "Ch3 level", 4: "Ch4 level"},
     },
