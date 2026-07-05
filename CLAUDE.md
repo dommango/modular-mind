@@ -49,6 +49,47 @@ python3 validate_patch.py data/generated/    # batch validate directory
 
 Generated patches open in VCV Rack via `\\wsl$\Ubuntu<absolute-path>`. AudioInterface modules require manual driver selection on first open.
 
+## Audio Listening Loop
+
+Renders patches to WAV and scores what they sound like — the acoustic complement
+to `validate_patch.py`'s structural checks. Requires the project venv
+(`python3 -m venv .venv && .venv/bin/pip install -r requirements.txt`):
+
+```bash
+.venv/bin/python render_patch.py <file.vcv | dir>   # → data/audio/<name>.wav
+.venv/bin/python analyze_audio.py data/audio/       # → data/output/audio_analysis.json
+.venv/bin/python audition.py                        # validate→render→analyze data/generated/,
+                                                    #   updates batch3 manifest + summary table
+.venv/bin/python -m pytest tests/                   # unit tests (injection, metrics, merge)
+```
+
+**Do not use librosa/numba here** — their JIT kernels crash LLVM on this ARM CPU
+(WSL2 aarch64), even at import time. `analyze_audio.py` is pure numpy by design.
+
+### Headless render recipe (verified 2026-07, Rack 2.6.6)
+
+There is no Linux ARM64 Rack build; rendering drives the **Windows** Rack install
+(`/mnt/c/Program Files/VCV/Rack2Free/Rack.exe`) through WSL interop:
+
+- `render_patch.py` injects a **VCV Recorder** (output path/format pre-set in its
+  module JSON, teed off the cables feeding `Core:AudioInterface`) plus a
+  **Fundamental LFO** whose square output gates the Recorder — exactly
+  `RENDER_SECONDS` of engine time, WAV finalized mid-run when the gate falls.
+- Headless Rack blocks on stdin ("Press enter to exit."); the renderer holds
+  stdin open, polls for the finished WAV, then closes stdin → clean shutdown.
+  With no audio device the engine free-runs in real time on its fallback thread.
+  (`masterModuleId` is useless here: Recorder 2.0.3's primary-module code is
+  commented out in its source — renders are real-time, ~`RENDER_SECONDS` + 2s each.)
+- Scratch user dir `C:\Users\domma\AppData\Local\Temp\rack-headless` (constants in
+  `config.py`) isolates settings/autosave from the real install. Its
+  `plugins-win-x64\` holds NTFS junctions to just Fundamental + VCV-Recorder —
+  startup 0.04s vs ~30s with the full plugin set. If the Temp dir gets wiped,
+  recreate with:
+  `cmd.exe /c "mklink /J <scratch>\plugins-win-x64\<P> C:\Users\domma\AppData\Local\Rack2\plugins-win-x64\<P>"`
+  for each of `Fundamental`, `VCV-Recorder`.
+- Recorder port IDs (from source, cached at `data/repos/VCV-Recorder`):
+  params 0=Gain 1=Rec; inputs 0=Gate 1=Trig 2=Left 3=Right; gate threshold ≥2V.
+
 ## Pipeline Architecture
 
 **File-based stage graph.** No database, no orchestrator. Each stage reads previous stage outputs from `data/output/` (or `data/whitelist/`, `data/metadata/`, `data/raw/`) and writes new artifacts. Stages are idempotent — safe to re-run.
