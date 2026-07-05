@@ -1,0 +1,7 @@
+data/
+.venv/
+.git/
+.claude/
+__pycache__/
+*.pyc
+*.wav
