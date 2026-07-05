@@ -45,3 +45,10 @@ RENDER_SECONDS = 10
 RENDER_SAMPLE_RATE = 44100
 RENDER_STARTUP_TIMEOUT = 90  # slack for Rack startup + WAV finalization
 
+# Remote render backend (render-service/ on Railway). Unset RACK_RENDER_URL
+# keeps rendering local via render_patch.render() (Windows/WSL interop).
+RACK_RENDER_URL = os.environ.get("RACK_RENDER_URL", "").rstrip("/")
+RENDER_TOKEN = os.environ.get("RENDER_TOKEN", "")
+RENDER_MAX_SECONDS = 60
+RENDER_MAX_PATCH_BYTES = 2_000_000
+
