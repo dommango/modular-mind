@@ -165,3 +165,55 @@ def test_kill_orphaned_racks_noop_on_linux(monkeypatch):
     rp._kill_orphaned_racks()
 
     assert calls == []
+
+
+def test_wait_for_wav_reports_final_size_below_min_bytes_once_stable(tmp_path, monkeypatch):
+    # A real render can land a hair under the theoretical min_bytes due to
+    # block-boundary timing; completion detection must not gate on it.
+    wav = tmp_path / "out.wav"
+    wav.write_bytes(b"")
+    sizes = iter([100, 200, 200, 200])
+
+    def fake_sleep(_):
+        try:
+            wav.write_bytes(b"x" * next(sizes))
+        except StopIteration:
+            pass
+
+    monkeypatch.setattr(rp.time, "sleep", fake_sleep)
+    deadline = rp.time.monotonic() + 100
+
+    result = rp._wait_for_wav(wav, deadline)
+
+    assert result == 200
+
+
+def test_wait_for_wav_never_reports_stable_at_zero_bytes(tmp_path, monkeypatch):
+    wav = tmp_path / "out.wav"
+    # file never created within the deadline
+    monkeypatch.setattr(rp.time, "sleep", lambda _: None)
+    deadline = rp.time.monotonic() + 0.05
+
+    result = rp._wait_for_wav(wav, deadline)
+
+    assert result == 0
+
+
+def test_wait_for_wav_returns_last_size_on_deadline_if_never_stable(tmp_path, monkeypatch):
+    wav = tmp_path / "out.wav"
+    wav.write_bytes(b"")
+    counter = {"n": 0}
+
+    def fake_sleep(_):
+        counter["n"] += 1
+        wav.write_bytes(b"x" * (counter["n"] * 10))  # keeps growing, never stabilizes
+
+    monkeypatch.setattr(rp.time, "sleep", fake_sleep)
+    deadline = rp.time.monotonic() + 0.2
+
+    result = rp._wait_for_wav(wav, deadline)
+
+    # never stabilizes -> deadline wins; result reflects real, nonzero growth
+    assert result > 0
+    assert result % 10 == 0
+    assert result <= counter["n"] * 10

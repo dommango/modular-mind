@@ -233,21 +233,30 @@ def _kill_orphaned_racks():
         pass
 
 
-def _wait_for_wav(wav_path, min_bytes, deadline):
-    """Poll until the WAV stops growing at a plausible size, or deadline."""
+def _wait_for_wav(wav_path, deadline, sleep_fn=None):
+    """Poll until the WAV stops growing (2 consecutive nonzero reads at
+    the same size), or deadline. Returns the final observed size — the
+    caller decides whether that's an acceptable length. Block-boundary
+    timing means a genuinely finished render can land its byte count a
+    hair under the theoretical min_bytes, so completion detection can't
+    gate on reaching that threshold or it spins until the deadline on
+    every render."""
+    if sleep_fn is None:
+        sleep_fn = time.sleep
     last_size = -1
     stable = 0
+    size = 0
     while time.monotonic() < deadline:
         size = wav_path.stat().st_size if wav_path.exists() else 0
-        if size >= min_bytes and size == last_size:
+        if size > 0 and size == last_size:
             stable += 1
             if stable >= 2:
-                return True
+                return size
         else:
             stable = 0
         last_size = size
-        time.sleep(0.5)
-    return False
+        sleep_fn(0.5)
+    return size
 
 
 def render(vcv_path, out_path=None, seconds=RENDER_SECONDS):
@@ -288,7 +297,7 @@ def render(vcv_path, out_path=None, seconds=RENDER_SECONDS):
         # 16-bit mono lower bound; the header adds a little on top
         min_bytes = seconds * RENDER_SAMPLE_RATE * 2
         deadline = time.monotonic() + seconds + RENDER_STARTUP_TIMEOUT
-        done = _wait_for_wav(scratch_wav, min_bytes, deadline)
+        final_size = _wait_for_wav(scratch_wav, deadline)
     finally:
         try:
             proc.stdin.close()
@@ -299,7 +308,9 @@ def render(vcv_path, out_path=None, seconds=RENDER_SECONDS):
             # killing the interop proxy orphans the Windows process
             _kill_orphaned_racks()
 
-    if not done:
+    # Tolerate a small shortfall from block-boundary timing quantization —
+    # only a genuinely short/empty/never-started recording should fail.
+    if final_size < min_bytes * 0.9:
         _kill_orphaned_racks()
         raise RenderError(f"render timed out or produced no/short WAV: {name}")
 
