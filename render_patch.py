@@ -233,6 +233,10 @@ def render(vcv_path, out_path=None, seconds=RENDER_SECONDS):
     scratch_patches.mkdir(parents=True, exist_ok=True)
     scratch_out.mkdir(parents=True, exist_ok=True)
     _ensure_scratch_settings()
+    # A truncated log (unclean previous exit) makes Rack pop a blocking
+    # "Rack crashed" dialog BEFORE loading the patch, even headless
+    # (standalone.cpp: logger::wasTruncated() + osdialog_message).
+    (RACK_HEADLESS_DIR / "log.txt").unlink(missing_ok=True)
 
     wav_win = f"{RACK_HEADLESS_DIR_WIN}/out/{name}.wav"
     scratch_wav = scratch_out / f"{name}.wav"
@@ -263,6 +267,8 @@ def render(vcv_path, out_path=None, seconds=RENDER_SECONDS):
         except Exception:
             proc.kill()
             proc.wait()
+            # killing the interop proxy orphans the Windows process
+            _kill_orphaned_racks()
 
     if not done:
         _kill_orphaned_racks()

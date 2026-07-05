@@ -89,11 +89,16 @@ There is no Linux ARM64 Rack build; rendering drives the **Windows** Rack instal
   for each of `Fundamental`, `VCV-Recorder`.
 - Recorder port IDs (from source, cached at `data/repos/VCV-Recorder`):
   params 0=Gain 1=Rec; inputs 0=Gate 1=Trig 2=Left 3=Right; gate threshold ≥2V.
-- Two failure modes handled by `render_patch.py`, don't regress them: the scratch
-  `settings.json` must keep `autoCheckUpdates: false` (Rack's version-check request
-  can hang startup for minutes after many rapid launches), and on timeout the
-  renderer force-kills leftover `Rack.exe` matching the scratch dir via PowerShell
-  (killing the WSL interop proxy does NOT kill the Windows process).
+- Three failure modes handled by `render_patch.py`, don't regress them:
+  1. **Scratch `log.txt` must be deleted before every launch.** If the previous
+     exit was unclean, `logger::wasTruncated()` makes Rack pop a blocking "Rack
+     crashed" osdialog *before* loading the patch — even headless — and every
+     timed-out kill re-truncates the log, wedging all subsequent renders.
+  2. Killing the WSL interop proxy does NOT kill the Windows process; the
+     renderer force-kills leftover `Rack.exe` whose command line matches the
+     scratch dir (PowerShell), never by bare image name (would hit GUI Rack).
+  3. Scratch `settings.json` keeps `autoCheckUpdates: false` — the version-check
+     request can stall startup when it hangs.
 
 ## Pipeline Architecture
 
