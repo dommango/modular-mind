@@ -100,6 +100,68 @@ There is no Linux ARM64 Rack build; rendering drives the **Windows** Rack instal
   3. Scratch `settings.json` keeps `autoCheckUpdates: false` — the version-check
      request can stall startup when it hangs.
 
+### Remote render backend (Railway)
+
+An alternative to the Windows/WSL-interop path above: a small authenticated
+FastAPI service (`render-service/`) runs official Rack Free 2.6.6 **lin-x64**
+headless in a Docker container on Railway (native x86_64 Linux — the ARM64
+gap that forces the Windows recipe locally doesn't exist there). It reuses
+`render_patch.py` unchanged; only the platform-conditional bits added by
+`rack_is_windows()`/`rack_invocation()` differ (see module docstring).
+
+- **Dispatch rule:** `render_client.render()` (what `audition.py` always
+  imports) checks `RACK_RENDER_URL` in `.env` — unset keeps rendering locally
+  via `render_patch.render()`; set, it POSTs the parsed patch JSON to
+  `{RACK_RENDER_URL}/render` with `Authorization: Bearer {RENDER_TOKEN}` and
+  writes back the returned WAV bytes. `render_patch.py`'s own CLI stays
+  local-only regardless.
+- **Railway project:** `modular-mind-render` (Dominic Mangonon's Projects),
+  service `modular-mind-render`, domain
+  `https://modular-mind-render-production.up.railway.app`. `railway.json` at
+  repo root points Railway's Dockerfile builder at `render-service/Dockerfile`;
+  build context is the repo root (`.dockerignore` keeps the untracked `data/`
+  and `.venv/` out of the upload).
+- **Redeploy:** `railway up` from the repo root (must be linked first —
+  `railway link 2bc068b3-42bd-4ada-b04d-560c27a0a264` or `railway service
+  <id>` if working from a fresh checkout). First build is slow (~15-30 min):
+  `render-service/Dockerfile`'s `plugin-builder` stage compiles VCV-Recorder
+  from the Rack SDK, vendoring ffmpeg + lame + libopus from source since
+  Recorder isn't downloadable prebuilt without a VCV account login. That
+  layer is cached on `RECORDER_COMMIT` (a Dockerfile `ARG`) — redeploys that
+  don't touch it are fast. **Observed once:** the vendor build hung
+  completely mid-`make dep` (opus/SILK compile) with zero log output for
+  ~55 minutes and no error — Docker/BuildKit can't detect a wedged
+  subprocess inside one long `RUN` step. `railway down` doesn't apply to an
+  in-progress build; the fix was just `railway up` again (`railway status
+  --json` → `...latestDeployment.status`; a plain retry succeeded and
+  finished normally). If it recurs, split `make dep` and `make dist` into
+  separate `RUN` lines to narrow down which vendored dep is stalling.
+- **Pinned versions:** Rack Free / SDK 2.6.6 lin-x64; VCV-Recorder commit
+  `defcf7890bc9630e288ca7cfcc4dd998eb314ccf` (vendors ffmpeg 7.1.1, lame
+  3.100, libopus 1.5.2 via its own Makefile).
+- **Real-time caveat:** headless Rack has no audio device, so the engine
+  free-runs on its fallback thread — a render of `seconds` takes roughly
+  `seconds` of wall-clock time plus Rack startup, same as the Windows path.
+  Verified live: a 3s render completed in 4.7s end-to-end, a 2s render in
+  3.7s. `RACK_RENDER_URL` requests should still budget for Railway cold-start
+  on top (`sleepApplication: true` in `railway.json` — the service sleeps
+  when idle). `render_client.remote_timeout()` sizes the HTTP client timeout
+  accordingly (`10s connect, 2*seconds + 180s read`).
+- **Local verification without Railway:** the whole image can be built and
+  run locally under Docker Desktop's `linux/amd64` emulation even on an
+  ARM64 host — `docker build --platform linux/amd64 -f
+  render-service/Dockerfile -t modular-mind-render:test .` then `docker run
+  -p 18000:8000 -e RENDER_TOKEN=... modular-mind-render:test`. Emulation
+  makes real-time rendering run much slower than native (observed ~4s to
+  ~90s wall-clock for the same 3-second render, varying with host load) —
+  don't read emulated timing as representative of Railway's native
+  performance.
+- `render_patch.py`'s `_wait_for_wav()` reports the WAV's final size once it
+  stops growing rather than gating on reaching the calculated `min_bytes`
+  exactly — block-boundary timing can land a genuinely finished render a
+  hair under that theoretical minimum. `render()` applies its own tolerance
+  (90% of `min_bytes`) when deciding whether the result is acceptable.
+
 ## Pipeline Architecture
 
 **File-based stage graph.** No database, no orchestrator. Each stage reads previous stage outputs from `data/output/` (or `data/whitelist/`, `data/metadata/`, `data/raw/`) and writes new artifacts. Stages are idempotent — safe to re-run.
