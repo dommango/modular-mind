@@ -89,6 +89,11 @@ There is no Linux ARM64 Rack build; rendering drives the **Windows** Rack instal
   for each of `Fundamental`, `VCV-Recorder`.
 - Recorder port IDs (from source, cached at `data/repos/VCV-Recorder`):
   params 0=Gain 1=Rec; inputs 0=Gate 1=Trig 2=Left 3=Right; gate threshold ≥2V.
+- Two failure modes handled by `render_patch.py`, don't regress them: the scratch
+  `settings.json` must keep `autoCheckUpdates: false` (Rack's version-check request
+  can hang startup for minutes after many rapid launches), and on timeout the
+  renderer force-kills leftover `Rack.exe` matching the scratch dir via PowerShell
+  (killing the WSL interop proxy does NOT kill the Windows process).
 
 ## Pipeline Architecture
 

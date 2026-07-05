@@ -171,6 +171,37 @@ def inject_recorder(patch, wav_path_win, seconds=RENDER_SECONDS):
     }
 
 
+def _ensure_scratch_settings():
+    """Disable Rack's startup version check in the scratch user dir — the
+    request to api.vcvrack.com can hang for minutes after many rapid
+    launches, stalling startup past the render deadline."""
+    settings = RACK_HEADLESS_DIR / "settings.json"
+    if not settings.exists():
+        settings.write_text(json.dumps({"autoCheckUpdates": False}))
+
+
+def _kill_orphaned_racks():
+    """Kill headless Rack.exe instances left behind on timeout — killing
+    the WSL interop proxy does not kill the Windows process, and a
+    lingering instance starves subsequent renders."""
+    marker = Path(RACK_HEADLESS_DIR_WIN).name
+    script = (
+        "Get-CimInstance Win32_Process -Filter \"Name='Rack.exe'\" | "
+        f"Where-Object {{ $_.CommandLine -like '*{marker}*' }} | "
+        "ForEach-Object { Stop-Process -Id $_.ProcessId -Force }"
+    )
+    try:
+        subprocess.run(
+            ["powershell.exe", "-NoProfile", "-Command", script],
+            stdout=subprocess.DEVNULL,
+            stderr=subprocess.DEVNULL,
+            timeout=30,
+            check=False,
+        )
+    except (subprocess.TimeoutExpired, OSError):
+        pass
+
+
 def _wait_for_wav(wav_path, min_bytes, deadline):
     """Poll until the WAV stops growing at a plausible size, or deadline."""
     last_size = -1
@@ -201,6 +232,7 @@ def render(vcv_path, out_path=None, seconds=RENDER_SECONDS):
     scratch_out = RACK_HEADLESS_DIR / "out"
     scratch_patches.mkdir(parents=True, exist_ok=True)
     scratch_out.mkdir(parents=True, exist_ok=True)
+    _ensure_scratch_settings()
 
     wav_win = f"{RACK_HEADLESS_DIR_WIN}/out/{name}.wav"
     scratch_wav = scratch_out / f"{name}.wav"
@@ -233,6 +265,7 @@ def render(vcv_path, out_path=None, seconds=RENDER_SECONDS):
             proc.wait()
 
     if not done:
+        _kill_orphaned_racks()
         raise RenderError(f"render timed out or produced no/short WAV: {name}")
 
     if out_path is None:
