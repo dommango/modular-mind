@@ -115,27 +115,37 @@ gap that forces the Windows recipe locally doesn't exist there). It reuses
   `{RACK_RENDER_URL}/render` with `Authorization: Bearer {RENDER_TOKEN}` and
   writes back the returned WAV bytes. `render_patch.py`'s own CLI stays
   local-only regardless.
-- **Railway project:** `modular-mind-render` (Dominic Mangonon's Projects).
-  `railway.json` at repo root points Railway's Dockerfile builder at
-  `render-service/Dockerfile`; build context is the repo root (`.dockerignore`
-  keeps the untracked `data/` and `.venv/` out of the upload).
+- **Railway project:** `modular-mind-render` (Dominic Mangonon's Projects),
+  service `modular-mind-render`, domain
+  `https://modular-mind-render-production.up.railway.app`. `railway.json` at
+  repo root points Railway's Dockerfile builder at `render-service/Dockerfile`;
+  build context is the repo root (`.dockerignore` keeps the untracked `data/`
+  and `.venv/` out of the upload).
 - **Redeploy:** `railway up` from the repo root (must be linked first —
-  `railway link` or `railway service <id>` if working from a fresh checkout).
-  First build is slow (~15-25 min): `render-service/Dockerfile`'s
-  `plugin-builder` stage compiles VCV-Recorder from the Rack SDK, vendoring
-  ffmpeg + lame + libopus from source since Recorder isn't downloadable
-  prebuilt without a VCV account login. That layer is cached on
-  `RECORDER_COMMIT` (a Dockerfile `ARG`) — redeploys that don't touch it are
-  fast.
+  `railway link 2bc068b3-42bd-4ada-b04d-560c27a0a264` or `railway service
+  <id>` if working from a fresh checkout). First build is slow (~15-30 min):
+  `render-service/Dockerfile`'s `plugin-builder` stage compiles VCV-Recorder
+  from the Rack SDK, vendoring ffmpeg + lame + libopus from source since
+  Recorder isn't downloadable prebuilt without a VCV account login. That
+  layer is cached on `RECORDER_COMMIT` (a Dockerfile `ARG`) — redeploys that
+  don't touch it are fast. **Observed once:** the vendor build hung
+  completely mid-`make dep` (opus/SILK compile) with zero log output for
+  ~55 minutes and no error — Docker/BuildKit can't detect a wedged
+  subprocess inside one long `RUN` step. `railway down` doesn't apply to an
+  in-progress build; the fix was just `railway up` again (`railway status
+  --json` → `...latestDeployment.status`; a plain retry succeeded and
+  finished normally). If it recurs, split `make dep` and `make dist` into
+  separate `RUN` lines to narrow down which vendored dep is stalling.
 - **Pinned versions:** Rack Free / SDK 2.6.6 lin-x64; VCV-Recorder commit
   `defcf7890bc9630e288ca7cfcc4dd998eb314ccf` (vendors ffmpeg 7.1.1, lame
   3.100, libopus 1.5.2 via its own Makefile).
 - **Real-time caveat:** headless Rack has no audio device, so the engine
   free-runs on its fallback thread — a render of `seconds` takes roughly
   `seconds` of wall-clock time plus Rack startup, same as the Windows path.
-  `RACK_RENDER_URL` requests should budget for Railway cold-start on top
-  (`sleepApplication: true` in `railway.json` — the service sleeps when
-  idle). `render_client.remote_timeout()` sizes the HTTP client timeout
+  Verified live: a 3s render completed in 4.7s end-to-end, a 2s render in
+  3.7s. `RACK_RENDER_URL` requests should still budget for Railway cold-start
+  on top (`sleepApplication: true` in `railway.json` — the service sleeps
+  when idle). `render_client.remote_timeout()` sizes the HTTP client timeout
   accordingly (`10s connect, 2*seconds + 180s read`).
 - **Local verification without Railway:** the whole image can be built and
   run locally under Docker Desktop's `linux/amd64` emulation even on an
