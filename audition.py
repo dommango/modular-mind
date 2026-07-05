@@ -23,7 +23,8 @@ from pathlib import Path
 
 from analyze_audio import ANALYSIS_PATH, analyze_file, load_existing
 from config import DATA_DIR
-from render_patch import RenderError, collect_patches, patch_slug, render
+from render_client import render
+from render_patch import RenderError, collect_patches, patch_slug
 from validate_patch import PatchValidator
 
 parse_vcv = importlib.import_module("03_parse_and_filter").parse_vcv
