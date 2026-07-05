@@ -1,8 +1,10 @@
 import copy
 import math
+from pathlib import Path
 
 import pytest
 
+import render_patch as rp
 from config import DATA_DIR
 from render_patch import (
     REC_GATE_INPUT,
@@ -121,3 +123,45 @@ def test_inject_recorder_no_audio_raises():
     patch = {**patch, "cables": []}
     with pytest.raises(RenderError):
         inject_recorder(patch, "C:/tmp/out.wav")
+
+
+def test_rack_is_windows_true_for_exe(monkeypatch):
+    monkeypatch.setattr(rp, "RACK_BINARY", Path("/mnt/c/Program Files/VCV/Rack2Free/Rack.exe"))
+    assert rp.rack_is_windows() is True
+
+
+def test_rack_is_windows_false_for_linux_binary(monkeypatch):
+    monkeypatch.setattr(rp, "RACK_BINARY", Path("/opt/Rack2Free/Rack"))
+    assert rp.rack_is_windows() is False
+
+
+def test_rack_invocation_windows_form(monkeypatch):
+    monkeypatch.setattr(rp, "RACK_BINARY", Path("/mnt/c/Program Files/VCV/Rack2Free/Rack.exe"))
+    monkeypatch.setattr(rp, "RACK_HEADLESS_DIR_WIN", "C:/Users/domma/AppData/Local/Temp/rack-headless")
+
+    recorder_path, userdir_arg, patch_arg = rp.rack_invocation("01-drone")
+
+    assert recorder_path == "C:/Users/domma/AppData/Local/Temp/rack-headless/out/01-drone.wav"
+    assert userdir_arg == "C:\\Users\\domma\\AppData\\Local\\Temp\\rack-headless"
+    assert patch_arg == "C:\\Users\\domma\\AppData\\Local\\Temp\\rack-headless\\patches\\01-drone.vcv"
+
+
+def test_rack_invocation_linux_form(monkeypatch):
+    monkeypatch.setattr(rp, "RACK_BINARY", Path("/opt/Rack2Free/Rack"))
+    monkeypatch.setattr(rp, "RACK_HEADLESS_DIR", Path("/rack-userdir"))
+
+    recorder_path, userdir_arg, patch_arg = rp.rack_invocation("01-drone")
+
+    assert recorder_path == "/rack-userdir/out/01-drone.wav"
+    assert userdir_arg == "/rack-userdir"
+    assert patch_arg == "/rack-userdir/patches/01-drone.vcv"
+
+
+def test_kill_orphaned_racks_noop_on_linux(monkeypatch):
+    monkeypatch.setattr(rp, "RACK_BINARY", Path("/opt/Rack2Free/Rack"))
+    calls = []
+    monkeypatch.setattr(rp.subprocess, "run", lambda *a, **k: calls.append((a, k)))
+
+    rp._kill_orphaned_racks()
+
+    assert calls == []

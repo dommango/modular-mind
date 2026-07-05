@@ -91,7 +91,7 @@ def gate_lfo_freq_param(seconds):
     return math.log2(1.0 / (2.0 * seconds))
 
 
-def inject_recorder(patch, wav_path_win, seconds=RENDER_SECONDS):
+def inject_recorder(patch, wav_path, seconds=RENDER_SECONDS):
     """Return a new patch dict with a Recorder + gate LFO wired in.
 
     Tees the audio-interface feeds into the Recorder, so the original
@@ -117,7 +117,7 @@ def inject_recorder(patch, wav_path_win, seconds=RENDER_SECONDS):
         "pos": [0, 2],
         "data": {
             "format": "wav",
-            "path": wav_path_win,
+            "path": wav_path,
             "incrementPath": False,
             "sampleRate": RENDER_SAMPLE_RATE,
             "depth": 16,
@@ -171,6 +171,34 @@ def inject_recorder(patch, wav_path_win, seconds=RENDER_SECONDS):
     }
 
 
+def rack_is_windows():
+    """True when RACK_BINARY points at the Windows build (driven over WSL
+    interop); False for a native Linux build."""
+    return RACK_BINARY.suffix.lower() == ".exe"
+
+
+def rack_invocation(name):
+    """Return (recorder_wav_path, userdir_arg, patch_arg) for the current
+    platform's Rack binary.
+
+    recorder_wav_path is written into the Recorder module's JSON, so it must
+    already be in the path convention of the OS actually running Rack.
+    userdir_arg/patch_arg are the -u/patch CLI arguments in that same
+    convention. The Windows form drives Rack.exe over WSL interop, so paths
+    are translated to the Windows-side mount and backslashed; the Linux form
+    runs natively and stays POSIX throughout.
+    """
+    if rack_is_windows():
+        recorder_wav_path = f"{RACK_HEADLESS_DIR_WIN}/out/{name}.wav"
+        userdir_arg = RACK_HEADLESS_DIR_WIN.replace("/", "\\")
+        patch_arg = f"{RACK_HEADLESS_DIR_WIN}/patches/{name}.vcv".replace("/", "\\")
+    else:
+        recorder_wav_path = str(RACK_HEADLESS_DIR / "out" / f"{name}.wav")
+        userdir_arg = str(RACK_HEADLESS_DIR)
+        patch_arg = str(RACK_HEADLESS_DIR / "patches" / f"{name}.vcv")
+    return recorder_wav_path, userdir_arg, patch_arg
+
+
 def _ensure_scratch_settings():
     """Disable Rack's startup version check in the scratch user dir — the
     request to api.vcvrack.com can hang for minutes after many rapid
@@ -183,7 +211,10 @@ def _ensure_scratch_settings():
 def _kill_orphaned_racks():
     """Kill headless Rack.exe instances left behind on timeout — killing
     the WSL interop proxy does not kill the Windows process, and a
-    lingering instance starves subsequent renders."""
+    lingering instance starves subsequent renders. No-op on Linux: the
+    render() finally block's proc.kill() reaps the child directly there."""
+    if not rack_is_windows():
+        return
     marker = Path(RACK_HEADLESS_DIR_WIN).name
     script = (
         "Get-CimInstance Win32_Process -Filter \"Name='Rack.exe'\" | "
@@ -238,18 +269,16 @@ def render(vcv_path, out_path=None, seconds=RENDER_SECONDS):
     # (standalone.cpp: logger::wasTruncated() + osdialog_message).
     (RACK_HEADLESS_DIR / "log.txt").unlink(missing_ok=True)
 
-    wav_win = f"{RACK_HEADLESS_DIR_WIN}/out/{name}.wav"
+    recorder_path, userdir_arg, patch_arg = rack_invocation(name)
     scratch_wav = scratch_out / f"{name}.wav"
     scratch_wav.unlink(missing_ok=True)
 
-    injected = inject_recorder(patch, wav_win, seconds)
+    injected = inject_recorder(patch, recorder_path, seconds)
     tmp_patch = scratch_patches / f"{name}.vcv"
     tmp_patch.write_text(json.dumps(injected))
 
-    userdir_win = RACK_HEADLESS_DIR_WIN.replace("/", "\\")
-    patch_win = f"{RACK_HEADLESS_DIR_WIN}/patches/{name}.vcv".replace("/", "\\")
     proc = subprocess.Popen(
-        [str(RACK_BINARY), "-h", "-u", userdir_win, patch_win],
+        [str(RACK_BINARY), "-h", "-u", userdir_arg, patch_arg],
         stdin=subprocess.PIPE,
         stdout=subprocess.DEVNULL,
         stderr=subprocess.DEVNULL,
