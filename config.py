@@ -43,7 +43,7 @@ RACK_HEADLESS_DIR_WIN = os.environ.get(
 )
 RENDER_SECONDS = 10
 RENDER_SAMPLE_RATE = 44100
-RENDER_STARTUP_TIMEOUT = 90  # slack for Rack startup + WAV finalization
+RENDER_STARTUP_TIMEOUT = 900  # TEMP: bumped for local qemu-emulated testing only, revert before commit
 
 # Remote render backend (render-service/ on Railway). Unset RACK_RENDER_URL
 # keeps rendering local via render_patch.render() (Windows/WSL interop).
