@@ -26,3 +26,22 @@ MAX_MODULES = 50
 RACK_VERSION = "2"
 GITHUB_TOKEN = os.environ.get("GITHUB_TOKEN")
 
+# Headless audio rendering (see CLAUDE.md "Headless rendering").
+# Uses the Windows-side VCV Rack install via WSL interop; the scratch user dir
+# isolates settings/autosave and holds a slim plugin set (Fundamental + VCV-Recorder).
+AUDIO_DIR = DATA_DIR / "audio"
+RACK_BINARY = Path(
+    os.environ.get("RACK_BINARY", "/mnt/c/Program Files/VCV/Rack2Free/Rack.exe")
+)
+RACK_HEADLESS_DIR = Path(
+    os.environ.get(
+        "RACK_HEADLESS_DIR", "/mnt/c/Users/domma/AppData/Local/Temp/rack-headless"
+    )
+)
+RACK_HEADLESS_DIR_WIN = os.environ.get(
+    "RACK_HEADLESS_DIR_WIN", "C:/Users/domma/AppData/Local/Temp/rack-headless"
+)
+RENDER_SECONDS = 10
+RENDER_SAMPLE_RATE = 44100
+RENDER_STARTUP_TIMEOUT = 90  # slack for Rack startup + WAV finalization
+

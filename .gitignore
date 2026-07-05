@@ -20,3 +20,6 @@ Thumbs.db
 
 # Zone identifier files from WSL/Windows
 *:Zone.Identifier
+
+# Virtualenv
+.venv/
