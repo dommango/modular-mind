@@ -46,3 +46,10 @@ def test_is_good():
     bad = result_ok()
     bad["structural"] = "FAIL"
     assert is_good(bad) is False
+
+
+def test_is_good_without_metrics():
+    analyze_failed = {"structural": "PASS", "render": "OK", "analyze_error": "boom"}
+    assert is_good(analyze_failed) is False
+    render_failed = {"structural": "PASS", "render": "FAIL", "render_error": "boom"}
+    assert is_good(render_failed) is False

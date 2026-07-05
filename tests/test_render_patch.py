@@ -3,6 +3,7 @@ import math
 
 import pytest
 
+from config import DATA_DIR
 from render_patch import (
     REC_GATE_INPUT,
     REC_LEFT_INPUT,
@@ -11,7 +12,15 @@ from render_patch import (
     find_audio_feeds,
     gate_lfo_freq_param,
     inject_recorder,
+    patch_slug,
 )
+
+
+def test_patch_slug_disambiguates_subdirs():
+    assert patch_slug(DATA_DIR / "generated" / "01-drone.vcv") == "01-drone"
+    assert patch_slug(DATA_DIR / "generated" / "batch3" / "01-drone.vcv") == "batch3-01-drone"
+    assert patch_slug(DATA_DIR / "raw" / "183245.vcv") == "183245"
+    assert patch_slug("/somewhere/else/01-drone.vcv") == "01-drone"
 
 
 def stereo_patch():

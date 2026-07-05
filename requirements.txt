@@ -1,4 +1,4 @@
-requests
-numpy
-soundfile
-pytest
+requests>=2.31.0
+numpy>=1.24
+soundfile>=0.12
+pytest>=7

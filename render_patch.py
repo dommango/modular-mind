@@ -33,6 +33,7 @@ from pathlib import Path
 
 from config import (
     AUDIO_DIR,
+    DATA_DIR,
     RACK_BINARY,
     RACK_HEADLESS_DIR,
     RACK_HEADLESS_DIR_WIN,
@@ -56,6 +57,18 @@ LFO_SQR_OUTPUT = 3
 
 class RenderError(Exception):
     pass
+
+
+def patch_slug(vcv_path):
+    """Collision-resistant output name: subpath under data/<top>/ joined
+    with '-' (batch3/01-drone.vcv -> batch3-01-drone), else the bare stem."""
+    p = Path(vcv_path).resolve()
+    try:
+        rel = p.relative_to(DATA_DIR.resolve())
+    except ValueError:
+        return p.stem
+    parts = rel.with_suffix("").parts
+    return "-".join(parts[1:]) if len(parts) > 1 else rel.stem
 
 
 def find_audio_feeds(patch):
@@ -182,7 +195,7 @@ def render(vcv_path, out_path=None, seconds=RENDER_SECONDS):
         raise RenderError(f"Rack binary not found: {RACK_BINARY}")
 
     patch = parse_vcv(vcv_path)
-    name = vcv_path.stem
+    name = patch_slug(vcv_path)
 
     scratch_patches = RACK_HEADLESS_DIR / "patches"
     scratch_out = RACK_HEADLESS_DIR / "out"
@@ -217,6 +230,7 @@ def render(vcv_path, out_path=None, seconds=RENDER_SECONDS):
             proc.wait(timeout=30)
         except Exception:
             proc.kill()
+            proc.wait()
 
     if not done:
         raise RenderError(f"render timed out or produced no/short WAV: {name}")

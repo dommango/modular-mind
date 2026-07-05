@@ -23,7 +23,7 @@ from pathlib import Path
 
 from analyze_audio import ANALYSIS_PATH, analyze_file, load_existing
 from config import DATA_DIR
-from render_patch import RenderError, collect_patches, render
+from render_patch import RenderError, collect_patches, patch_slug, render
 from validate_patch import PatchValidator
 
 parse_vcv = importlib.import_module("03_parse_and_filter").parse_vcv
@@ -49,7 +49,10 @@ def audition_one(vcv_path):
     except (RenderError, ValueError, OSError) as e:
         return {**result, "render": "FAIL", "render_error": str(e)}
 
-    metrics = analyze_file(wav)
+    try:
+        metrics = analyze_file(wav)
+    except (RuntimeError, ValueError, OSError) as e:
+        return {**result, "render": "OK", "analyze_error": str(e)}
     return {**result, "render": "OK", "metrics": metrics}
 
 
@@ -82,8 +85,9 @@ def merge_manifest(entries, results):
 
 def is_good(result):
     metrics = result.get("metrics")
-    return (
-        result["structural"] == "PASS"
+    return bool(
+        metrics
+        and result["structural"] == "PASS"
         and result["render"] == "OK"
         and metrics["verdict"]["makes_sound"]
         and not metrics["verdict"]["flags"]
@@ -94,6 +98,9 @@ def summary_line(name, result):
     if result["render"] != "OK":
         detail = result.get("render_error", "render failed")
         return f"{name:28s} {result['structural']:4s} RENDER-FAIL  {detail}"
+    if not result.get("metrics"):
+        detail = result.get("analyze_error", "analysis failed")
+        return f"{name:28s} {result['structural']:4s} ANALYZE-FAIL {detail}"
     v = result["metrics"]["verdict"]
     flag_str = ",".join(v["flags"]) or "-"
     good = "GOOD" if is_good(result) else "    "
@@ -119,10 +126,11 @@ def main():
     results = {}
     for i, f in enumerate(files, 1):
         print(f"[{i}/{len(files)}] {f.name} ...", flush=True)
+        slug = patch_slug(f)
         try:
-            results[f.stem] = audition_one(f)
-        except (ValueError, OSError) as e:
-            results[f.stem] = {
+            results[slug] = audition_one(f)
+        except (RuntimeError, ValueError, OSError) as e:
+            results[slug] = {
                 "structural": "FAIL",
                 "structural_errors": -1,
                 "structural_warnings": 0,
@@ -139,9 +147,19 @@ def main():
     ANALYSIS_PATH.write_text(json.dumps(analysis, indent=2))
 
     if BATCH3_MANIFEST.exists():
+        # manifest entries are named by file stem; map them to slug-keyed results
+        batch3_dir = BATCH3_MANIFEST.parent.resolve()
+        stem_results = {
+            f.stem: results[patch_slug(f)]
+            for f in files
+            if f.resolve().parent == batch3_dir and patch_slug(f) in results
+        }
         entries = json.loads(BATCH3_MANIFEST.read_text())
+        for entry in entries:
+            if entry.get("name") not in stem_results:
+                print(f"WARN: no audition result for manifest entry {entry.get('name')}")
         BATCH3_MANIFEST.write_text(
-            json.dumps(merge_manifest(entries, results), indent=2)
+            json.dumps(merge_manifest(entries, stem_results), indent=2)
         )
 
     print("\n=== Audition summary ===")
