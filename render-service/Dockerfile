@@ -1,7 +1,12 @@
-# Remote render backend for the audio listening loop (see CLAUDE.md's
-# "Audio Listening Loop" section). Runs official VCV Rack Free 2.6.6
-# lin-x64 headless, driven the same way as the local Windows/WSL-interop
-# path (render_patch.py), so this image reuses that module unchanged.
+# Rack render image for the audio listening loop (see CLAUDE.md's "Audio
+# Listening Loop" section). Runs official VCV Rack Free 2.6.6 lin-x64
+# headless, driven the same way as the local Windows/WSL-interop path
+# (render_patch.py), so this image reuses that module unchanged.
+#
+# One image, two Railway services selected by start command:
+#   uvicorn app:app          -> on-demand render service (default CMD)
+#   python3 corpus_audition  -> batch worker over the known corpus
+#                               (mount a volume at /app/data)
 
 FROM --platform=linux/amd64 ubuntu:24.04 AS plugin-builder
 
@@ -73,10 +78,15 @@ RUN python3 -m venv /opt/venv
 ENV PATH="/opt/venv/bin:${PATH}"
 
 COPY render-service/requirements.txt /app/render-service-requirements.txt
-RUN pip install --no-cache-dir -r /app/render-service-requirements.txt
+# numpy + soundfile: the corpus worker's analyze_audio step (the render
+# service itself needs only fastapi/uvicorn, but sharing one image is
+# cheaper than a second 20-min VCV-Recorder build).
+RUN pip install --no-cache-dir -r /app/render-service-requirements.txt \
+        'numpy>=1.24' 'soundfile>=0.12' 'requests>=2.31.0'
 
 COPY config.py 03_parse_and_filter.py render_patch.py /app/
 COPY render-service/app.py render-service/validation.py /app/
+COPY analyze_audio.py plugin_sync.py corpus_audition.py /app/
 
 ENV RACK_BINARY=/opt/Rack2Free/Rack
 ENV RACK_HEADLESS_DIR=/rack-userdir

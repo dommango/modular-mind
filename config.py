@@ -41,6 +41,10 @@ RACK_HEADLESS_DIR = Path(
 RACK_HEADLESS_DIR_WIN = os.environ.get(
     "RACK_HEADLESS_DIR_WIN", "C:/Users/domma/AppData/Local/Temp/rack-headless"
 )
+# VCV Library arch string / plugin dir for the platform Rack actually runs on
+# (a .exe binary means the Windows build driven over WSL interop).
+RACK_ARCH = "win-x64" if RACK_BINARY.suffix.lower() == ".exe" else "lin-x64"
+VCV_TOKEN = os.environ.get("VCV_TOKEN")  # VCV account token for library downloads
 RENDER_SECONDS = 10
 RENDER_SAMPLE_RATE = 44100
 RENDER_STARTUP_TIMEOUT = 90  # slack for Rack startup + WAV finalization
