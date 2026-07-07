@@ -162,6 +162,38 @@ gap that forces the Windows recipe locally doesn't exist there). It reuses
   hair under that theoretical minimum. `render()` applies its own tolerance
   (90% of `min_bytes`) when deciding whether the result is acceptable.
 
+### Cloud audition — known corpus (Railway worker)
+
+Where the render-service renders arbitrary patches on demand over HTTP, the
+**corpus worker** batch-plays *known* community patches (`data/raw/`) through
+render→analyze to build acoustic ground truth for the generators — tying real
+patches' parameter settings to what they sound like.
+
+```bash
+.venv/bin/python corpus_audition.py --limit 20   # render+score next 20 corpus patches
+.venv/bin/python corpus_audition.py --summary    # stats from corpus_audio_analysis.json
+.venv/bin/python plugin_sync.py Valley Bogaudio  # pre-warm plugin cache
+```
+
+- Shares the **same image** as the render-service (`render-service/Dockerfile`)
+  — it already bakes lin-x64 Rack + a source-built VCV-Recorder + Fundamental.
+  Deploy as a **second Railway service** off that Dockerfile with start command
+  `python3 corpus_audition.py` and a volume at `/app/data` (seed with `data/raw/`
+  + `data/output/filtered_patches.json`, or run stages 00–03 in-container).
+- `plugin_sync.py` downloads any *other* lin-x64 `.vcvplugin` a patch needs from
+  `api.vcvrack.com` (public manifests; downloads need `VCV_TOKEN` or
+  `VCV_EMAIL`/`VCV_PASSWORD` — Core/Fundamental/VCV-Recorder are already in the
+  image). ~90% of the filtered corpus (2544/2818) is fully coverable on lin-x64;
+  a patch with an unavailable plugin is recorded `missing-plugins`, and the ~60
+  pre-v1 patches (id-less modules, `wires` not `cables`) `old-format` — both
+  skipped, not errors (`corpus_audition.is_renderable_format`).
+- Results accumulate crash-safe in `data/output/corpus_audio_analysis.json`
+  (one write per patch, resumable; `--redo` to re-audition). Renders are
+  real-time: N patches ≈ N × (`RENDER_SECONDS` + ~2s startup) of wall clock.
+- **`filtered_patches.json` is not v2-only** despite the stage-3 rule — it
+  carries v1.1 and pre-v1 patches too; anything that renders/wires patches from
+  it must guard for the modern `id`/`cables` shape first.
+
 ## Pipeline Architecture
 
 **File-based stage graph.** No database, no orchestrator. Each stage reads previous stage outputs from `data/output/` (or `data/whitelist/`, `data/metadata/`, `data/raw/`) and writes new artifacts. Stages are idempotent — safe to re-run.
