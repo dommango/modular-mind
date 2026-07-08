@@ -1,0 +1,478 @@
+[
+  {
+    "id": 111261,
+    "license_tier": "open_source",
+    "modules": [
+      {
+        "plugin": "Core",
+        "model": "AudioInterface"
+      },
+      {
+        "plugin": "Fundamental",
+        "model": "SEQ3"
+      },
+      {
+        "plugin": "Fundamental",
+        "model": "VCO"
+      },
+      {
+        "plugin": "Fundamental",
+        "model": "Scope"
+      },
+      {
+        "plugin": "Fundamental",
+        "model": "VCMixer"
+      },
+      {
+        "plugin": "Fundamental",
+        "model": "Quantizer"
+      },
+      {
+        "plugin": "Fundamental",
+        "model": "ADSR"
+      }
+    ],
+    "module_count": 7,
+    "version": "1.1.3"
+  },
+  {
+    "id": 111487,
+    "license_tier": "open_source",
+    "modules": [
+      {
+        "plugin": "Core",
+        "model": "AudioInterface"
+      },
+      {
+        "plugin": "Fundamental",
+        "model": "SEQ3"
+      },
+      {
+        "plugin": "Fundamental",
+        "model": "VCO"
+      },
+      {
+        "plugin": "Fundamental",
+        "model": "Scope"
+      },
+      {
+        "plugin": "Fundamental",
+        "model": "VCMixer"
+      },
+      {
+        "plugin": "Fundamental",
+        "model": "Quantizer"
+      },
+      {
+        "plugin": "Fundamental",
+        "model": "ADSR"
+      },
+      {
+        "plugin": "Fundamental",
+        "model": "LFO"
+      },
+      {
+        "plugin": "Fundamental",
+        "model": "VCA-1"
+      }
+    ],
+    "module_count": 9,
+    "version": "1.1.3"
+  },
+  {
+    "id": 112164,
+    "license_tier": "open_source",
+    "modules": [
+      {
+        "plugin": "Core",
+        "model": "AudioInterface"
+      },
+      {
+        "plugin": "Fundamental",
+        "model": "SEQ3"
+      },
+      {
+        "plugin": "Fundamental",
+        "model": "VCO"
+      },
+      {
+        "plugin": "Fundamental",
+        "model": "VCMixer"
+      },
+      {
+        "plugin": "Fundamental",
+        "model": "Quantizer"
+      },
+      {
+        "plugin": "Fundamental",
+        "model": "ADSR"
+      },
+      {
+        "plugin": "Fundamental",
+        "model": "LFO"
+      },
+      {
+        "plugin": "Fundamental",
+        "model": "VCA-1"
+      },
+      {
+        "plugin": "Fundamental",
+        "model": "VCF"
+      },
+      {
+        "plugin": "Fundamental",
+        "model": "Scope"
+      },
+      {
+        "plugin": "Bogaudio",
+        "model": "Bogaudio-Analyzer"
+      }
+    ],
+    "module_count": 11,
+    "version": "1.1.4"
+  },
+  {
+    "id": 112767,
+    "license_tier": "open_source",
+    "modules": [
+      {
+        "plugin": "Core",
+        "model": "AudioInterface"
+      },
+      {
+        "plugin": "Fundamental",
+        "model": "SEQ3"
+      },
+      {
+        "plugin": "Fundamental",
+        "model": "VCO"
+      },
+      {
+        "plugin": "Fundamental",
+        "model": "VCMixer"
+      },
+      {
+        "plugin": "Fundamental",
+        "model": "Quantizer"
+      },
+      {
+        "plugin": "Fundamental",
+        "model": "ADSR"
+      },
+      {
+        "plugin": "Fundamental",
+        "model": "LFO"
+      },
+      {
+        "plugin": "Fundamental",
+        "model": "VCA-1"
+      },
+      {
+        "plugin": "Fundamental",
+        "model": "VCF"
+      },
+      {
+        "plugin": "Fundamental",
+        "model": "Scope"
+      },
+      {
+        "plugin": "Fundamental",
+        "model": "VCO2"
+      },
+      {
+        "plugin": "Fundamental",
+        "model": "Quantizer"
+      },
+      {
+        "plugin": "Fundamental",
+        "model": "LFO2"
+      },
+      {
+        "plugin": "Fundamental",
+        "model": "LFO2"
+      },
+      {
+        "plugin": "Fundamental",
+        "model": "Delay"
+      },
+      {
+        "plugin": "AS",
+        "model": "BPMCalc"
+      },
+      {
+        "plugin": "Fundamental",
+        "model": "Delay"
+      }
+    ],
+    "module_count": 17,
+    "version": "1.1.4"
+  },
+  {
+    "id": 117352,
+    "license_tier": "open_source",
+    "modules": [
+      {
+        "plugin": "Core",
+        "model": "AudioInterface"
+      },
+      {
+        "plugin": "Bogaudio",
+        "model": "Bogaudio-FMOp"
+      },
+      {
+        "plugin": "Bogaudio",
+        "model": "Bogaudio-AddrSeq"
+      },
+      {
+        "plugin": "Bogaudio",
+        "model": "Bogaudio-VCO"
+      },
+      {
+        "plugin": "Bogaudio",
+        "model": "Bogaudio-ShaperPlus"
+      },
+      {
+        "plugin": "Bogaudio",
+        "model": "Bogaudio-Mix8"
+      },
+      {
+        "plugin": "Bogaudio",
+        "model": "Bogaudio-VCO"
+      },
+      {
+        "plugin": "Bogaudio",
+        "model": "Bogaudio-FMOp"
+      },
+      {
+        "plugin": "Bogaudio",
+        "model": "Bogaudio-Walk2"
+      },
+      {
+        "plugin": "Bogaudio",
+        "model": "Bogaudio-Reftone"
+      },
+      {
+        "plugin": "Bogaudio",
+        "model": "Bogaudio-EightOne"
+      },
+      {
+        "plugin": "Bogaudio",
+        "model": "Bogaudio-FMOp"
+      },
+      {
+        "plugin": "Bogaudio",
+        "model": "Bogaudio-ShaperPlus"
+      },
+      {
+        "plugin": "Bogaudio",
+        "model": "Bogaudio-Reftone"
+      },
+      {
+        "plugin": "Bogaudio",
+        "model": "Bogaudio-Reftone"
+      },
+      {
+        "plugin": "Bogaudio",
+        "model": "Bogaudio-Reftone"
+      },
+      {
+        "plugin": "Bogaudio",
+        "model": "Bogaudio-Reftone"
+      },
+      {
+        "plugin": "Bogaudio",
+        "model": "Bogaudio-VCO"
+      },
+      {
+        "plugin": "Bogaudio",
+        "model": "Bogaudio-EightFO"
+      },
+      {
+        "plugin": "Bogaudio",
+        "model": "Bogaudio-DGate"
+      },
+      {
+        "plugin": "Bogaudio",
+        "model": "Bogaudio-DGate"
+      },
+      {
+        "plugin": "Bogaudio",
+        "model": "Bogaudio-FMOp"
+      },
+      {
+        "plugin": "Bogaudio",
+        "model": "Bogaudio-FMOp"
+      },
+      {
+        "plugin": "Bogaudio",
+        "model": "Bogaudio-DGate"
+      },
+      {
+        "plugin": "Bogaudio",
+        "model": "Bogaudio-FMOp"
+      },
+      {
+        "plugin": "Bogaudio",
+        "model": "Bogaudio-EightOne"
+      },
+      {
+        "plugin": "Bogaudio",
+        "model": "Bogaudio-EightOne"
+      },
+      {
+        "plugin": "Bogaudio",
+        "model": "Bogaudio-EightOne"
+      },
+      {
+        "plugin": "Bogaudio",
+        "model": "Bogaudio-FMOp"
+      },
+      {
+        "plugin": "Bogaudio",
+        "model": "Bogaudio-FMOp"
+      },
+      {
+        "plugin": "Bogaudio",
+        "model": "Bogaudio-FMOp"
+      },
+      {
+        "plugin": "Bogaudio",
+        "model": "Bogaudio-Mix4"
+      },
+      {
+        "plugin": "Bogaudio",
+        "model": "Bogaudio-FMOp"
+      },
+      {
+        "plugin": "Bogaudio",
+        "model": "Bogaudio-Switch"
+      },
+      {
+        "plugin": "Bogaudio",
+        "model": "Bogaudio-Shaper"
+      },
+      {
+        "plugin": "Bogaudio",
+        "model": "Bogaudio-Shaper"
+      },
+      {
+        "plugin": "Bogaudio",
+        "model": "Bogaudio-FMOp"
+      },
+      {
+        "plugin": "Bogaudio",
+        "model": "Bogaudio-FMOp"
+      },
+      {
+        "plugin": "Bogaudio",
+        "model": "Bogaudio-Shaper"
+      },
+      {
+        "plugin": "Bogaudio",
+        "model": "Bogaudio-Mix4"
+      },
+      {
+        "plugin": "Bogaudio",
+        "model": "Bogaudio-FMOp"
+      },
+      {
+        "plugin": "Bogaudio",
+        "model": "Bogaudio-Mix4"
+      },
+      {
+        "plugin": "Bogaudio",
+        "model": "Bogaudio-LLFO"
+      },
+      {
+        "plugin": "Bogaudio",
+        "model": "Bogaudio-SampleHold"
+      },
+      {
+        "plugin": "Bogaudio",
+        "model": "Bogaudio-SampleHold"
+      },
+      {
+        "plugin": "Bogaudio",
+        "model": "Bogaudio-SampleHold"
+      },
+      {
+        "plugin": "Bogaudio",
+        "model": "Bogaudio-SampleHold"
+      },
+      {
+        "plugin": "Bogaudio",
+        "model": "Bogaudio-SampleHold"
+      },
+      {
+        "plugin": "Bogaudio",
+        "model": "Bogaudio-SampleHold"
+      },
+      {
+        "plugin": "Bogaudio",
+        "model": "Bogaudio-Pressor"
+      },
+      {
+        "plugin": "Bogaudio",
+        "model": "Bogaudio-ShaperPlus"
+      },
+      {
+        "plugin": "Bogaudio",
+        "model": "Bogaudio-Additator"
+      },
+      {
+        "plugin": "Bogaudio",
+        "model": "Bogaudio-Shaper"
+      },
+      {
+        "plugin": "Bogaudio",
+        "model": "Bogaudio-Mix4"
+      },
+      {
+        "plugin": "Bogaudio",
+        "model": "Bogaudio-FMOp"
+      },
+      {
+        "plugin": "Bogaudio",
+        "model": "Bogaudio-EightOne"
+      },
+      {
+        "plugin": "Bogaudio",
+        "model": "Bogaudio-Reftone"
+      },
+      {
+        "plugin": "Bogaudio",
+        "model": "Bogaudio-EightOne"
+      },
+      {
+        "plugin": "Bogaudio",
+        "model": "Bogaudio-EightFO"
+      },
+      {
+        "plugin": "Bogaudio",
+        "model": "Bogaudio-EightFO"
+      },
+      {
+        "plugin": "Bogaudio",
+        "model": "Bogaudio-FMOp"
+      },
+      {
+        "plugin": "Bogaudio",
+        "model": "Bogaudio-Shaper"
+      },
+      {
+        "plugin": "Bogaudio",
+        "model": "Bogaudio-SampleHold"
+      },
+      {
+        "plugin": "Bogaudio",
+        "model": "Bogaudio-SampleHold"
+      },
+      {
+        "plugin": "Bogaudio",
+        "model": "Bogaudio-SampleHold"
+      }
+    ],
+    "module_count": 65,
+    "version": "1.1.6"
+  }
+]
