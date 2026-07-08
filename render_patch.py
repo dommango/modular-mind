@@ -255,6 +255,14 @@ def _wait_for_wav(wav_path, min_bytes, deadline, proc=None, sleep_fn=None):
     accept = min_bytes * 0.9
     if sleep_fn is None:
         sleep_fn = time.sleep
+    # A real render starts writing the WAV within a couple seconds of the
+    # gate firing; if nothing has been written after this grace window the
+    # render is wedged (some plugins hang the engine headless instead of
+    # crashing — e.g. Sha#Bang Photron Panel), so give up rather than wait
+    # out the full deadline. Rack startup itself is well under a second even
+    # for many-module patches.
+    no_output_grace = 15.0
+    start = time.monotonic()
     max_size = 0
     while time.monotonic() < deadline:
         size = wav_path.stat().st_size if wav_path.exists() else 0
@@ -263,7 +271,9 @@ def _wait_for_wav(wav_path, min_bytes, deadline, proc=None, sleep_fn=None):
         if size > max_size:
             max_size = size
         if proc is not None and proc.poll() is not None:
-            return max_size  # Rack died (likely a headless-unsafe plugin)
+            return max_size  # Rack died (a headless-unsafe plugin crashed it)
+        if max_size == 0 and time.monotonic() - start > no_output_grace:
+            return 0  # engine never produced audio -> wedged
         sleep_fn(0.5)
     return max_size
 

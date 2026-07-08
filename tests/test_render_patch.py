@@ -220,3 +220,39 @@ def test_wait_for_wav_returns_zero_when_never_created(tmp_path, monkeypatch):
     result = rp._wait_for_wav(wav, 100_000, deadline)
 
     assert result == 0
+
+
+def test_wait_for_wav_bails_when_proc_dies(tmp_path, monkeypatch):
+    # A headless-unsafe plugin can SIGSEGV Rack; the WAV never appears, but
+    # we must not wait out the deadline — bail as soon as the process exits.
+    wav = tmp_path / "out.wav"  # never created
+
+    class DeadProc:
+        def poll(self):
+            return 139  # exited (segfault)
+
+    monkeypatch.setattr(rp.time, "sleep", lambda _: None)
+    deadline = rp.time.monotonic() + 100
+
+    result = rp._wait_for_wav(wav, 100_000, deadline, proc=DeadProc())
+
+    assert result == 0
+
+
+def test_wait_for_wav_bails_when_no_output_after_grace(tmp_path, monkeypatch):
+    # Some plugins hang the engine headless instead of crashing; the process
+    # stays alive but the WAV never grows. Give up after the grace window
+    # rather than the full deadline.
+    wav = tmp_path / "out.wav"  # never grows
+    clock = {"t": 0.0}
+    monkeypatch.setattr(rp.time, "monotonic", lambda: clock["t"])
+
+    def fake_sleep(_):
+        clock["t"] += 1.0
+
+    monkeypatch.setattr(rp.time, "sleep", fake_sleep)
+
+    result = rp._wait_for_wav(wav, 1000, deadline=100.0)
+
+    assert result == 0
+    assert clock["t"] <= 20  # bailed near the 15s grace, not the 100s deadline
