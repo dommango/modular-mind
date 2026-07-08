@@ -7,14 +7,13 @@ importlib.util.spec_from_file_location without fastapi installed
 
 import hmac
 
-ALLOWED_PLUGINS = {"Core", "Fundamental"}
-
 
 def validate_patch_request(obj):
     """Return a list of error strings for a parsed patch request body;
-    empty means valid. Only Core/Fundamental modules are allowed — those
-    are the only plugins generated patches use, and the only ones built
-    into the render image."""
+    empty means valid. Structural checks only — the app downloads whatever
+    (lin-x64) plugins the patch needs on demand and returns a clear
+    missing-plugins error for any without a Library build, so plugins are
+    not allowlisted here."""
     if not isinstance(obj, dict):
         return ["request body must be a JSON object"]
 
@@ -25,11 +24,6 @@ def validate_patch_request(obj):
     errors = []
     if not isinstance(obj.get("cables"), list):
         errors.append("patch missing cables list")
-
-    for module in modules:
-        plugin = module.get("plugin") if isinstance(module, dict) else None
-        if plugin not in ALLOWED_PLUGINS:
-            errors.append(f"disallowed plugin: {plugin!r}")
 
     return errors
 

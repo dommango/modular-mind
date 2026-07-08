@@ -15,6 +15,7 @@ from fastapi.concurrency import run_in_threadpool
 from fastapi.responses import JSONResponse, Response
 
 from config import RACK_HEADLESS_DIR, RENDER_MAX_PATCH_BYTES, RENDER_MAX_SECONDS
+from plugin_sync import ensure_plugins
 from render_patch import RenderError, render
 from validation import auth_ok, clamp_seconds, validate_patch_request
 
@@ -63,6 +64,16 @@ async def render_endpoint(request: Request, seconds: str | None = None):
         return JSONResponse({"error": "busy"}, status_code=503)
 
     try:
+        # Install any non-bundled plugins this patch needs (lin-x64) before
+        # launching Rack, which loads plugins at startup. Cached across
+        # requests for the container's life.
+        plug_slugs = sorted({m.get("plugin") for m in patch.get("modules", [])} - {"Core", None})
+        sync = await run_in_threadpool(ensure_plugins, plug_slugs)
+        if sync["missing"]:
+            return JSONResponse(
+                {"error": "missing-plugins: " + ",".join(sync["missing"])},
+                status_code=422,
+            )
         try:
             wav_path = await run_in_threadpool(
                 render, incoming_patch, response_wav, render_seconds

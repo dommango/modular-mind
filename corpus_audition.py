@@ -28,9 +28,10 @@ import sys
 from pathlib import Path
 
 from analyze_audio import analyze_file
-from config import AUDIO_DIR, OUTPUT_DIR, RAW_DIR
-from plugin_sync import ensure_plugins
-from render_patch import RenderError, render
+from config import AUDIO_DIR, OUTPUT_DIR, RACK_RENDER_URL, RAW_DIR
+from plugin_sync import ensure_plugins, missing_for_arch
+from render_client import render
+from render_patch import RenderError
 
 parse_vcv = importlib.import_module("03_parse_and_filter").parse_vcv
 
@@ -82,9 +83,14 @@ def audition_one(patch_id):
         return {"status": "old-format", "version": patch.get("version")}
     plugins = patch_plugins(patch)
 
-    sync = ensure_plugins(plugins)
-    if sync["missing"]:
-        return {"status": "missing-plugins", "plugins": plugins, "missing": sync["missing"]}
+    if RACK_RENDER_URL:
+        # Remote render-service (lin-x64) downloads the plugins itself; only
+        # screen out patches whose plugins have no lin-x64 build.
+        missing = missing_for_arch(plugins, "lin-x64")
+    else:
+        missing = ensure_plugins(plugins)["missing"]
+    if missing:
+        return {"status": "missing-plugins", "plugins": plugins, "missing": missing}
 
     try:
         wav = render(vcv_path, out_path=AUDIO_DIR / "corpus" / f"{patch_id}.wav")
