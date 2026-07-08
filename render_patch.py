@@ -234,34 +234,30 @@ def _kill_orphaned_racks():
 
 
 def _wait_for_wav(wav_path, min_bytes, deadline, sleep_fn=None):
-    """Poll until the WAV is done. The Recorder (ffmpeg) flushes to disk in
-    ~256 KB bursts, so the file plateaus for a few seconds *between* writes
-    while recording is still active; a completion check must therefore
-    require a stability window LONGER than that flush gap, or it truncates
-    the render at the first plateau (this bit lin-x64/Railway hard, where a
-    throttled container spaces the flushes out). Two exits: the file reaches
-    the target byte count (unambiguously done), or it stops growing for
-    STABLE_POLLS polls (recording finished, WAV finalized). Returns final
-    size — the caller applies its own shortfall tolerance."""
-    STABLE_POLLS = 12  # 12 * 0.5s = 6s, comfortably > the ~3s inter-flush gap
+    """Return the finished WAV's size, or the largest size seen by deadline.
+
+    The injected gate LFO is a *continuous* square wave, so it re-triggers
+    the Recorder every period; with incrementPath=False the WAV cycles
+    0 -> full -> 0 -> full ... A complete render is the only thing that
+    reaches ~min_bytes, so return as soon as the file crosses 90% of target
+    (grabbing it at a finalized peak, before the next re-trigger wipes it).
+    Otherwise report the largest size observed — a genuinely short/silent
+    render's finalized peak — and let the caller apply its tolerance. This
+    replaces size-stability detection, which raced both the ffmpeg 256 KB
+    flush plateaus and the re-trigger cycle (the latter bit lin-x64/Railway
+    hard: a whole render looked like a 95s stall)."""
+    accept = min_bytes * 0.9
     if sleep_fn is None:
         sleep_fn = time.sleep
-    last_size = -1
-    stable = 0
-    size = 0
+    max_size = 0
     while time.monotonic() < deadline:
         size = wav_path.stat().st_size if wav_path.exists() else 0
-        if size >= min_bytes:
+        if size >= accept:
             return size
-        if size > 0 and size == last_size:
-            stable += 1
-            if stable >= STABLE_POLLS:
-                return size
-        else:
-            stable = 0
-        last_size = size
+        if size > max_size:
+            max_size = size
         sleep_fn(0.5)
-    return size
+    return max_size
 
 
 def render(vcv_path, out_path=None, seconds=RENDER_SECONDS):

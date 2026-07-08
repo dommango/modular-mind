@@ -167,70 +167,56 @@ def test_kill_orphaned_racks_noop_on_linux(monkeypatch):
     assert calls == []
 
 
-def test_wait_for_wav_reports_final_size_below_min_bytes_once_stable(tmp_path, monkeypatch):
-    # A real render can land under the theoretical min_bytes (startup eats
-    # into the gate window); once the file has stopped growing for the full
-    # stability window, completion detection reports that final size.
+def test_wait_for_wav_returns_when_target_reached(tmp_path, monkeypatch):
+    # Returns as soon as the WAV crosses 90% of min_bytes — the only thing
+    # a complete render produces — without waiting out the deadline.
     wav = tmp_path / "out.wav"
     wav.write_bytes(b"")
-    # grow to 200, then hold — must stay stable for STABLE_POLLS (12) polls
-    sizes = iter([100, 200])
+    sizes = iter([100, 500, 950])  # 950 >= 0.9 * 1000
 
     def fake_sleep(_):
         try:
             wav.write_bytes(b"x" * next(sizes))
         except StopIteration:
-            pass  # file stays at 200
+            pass
 
     monkeypatch.setattr(rp.time, "sleep", fake_sleep)
     deadline = rp.time.monotonic() + 100
 
-    # min_bytes far above 200 so the early target-reached exit can't fire
-    result = rp._wait_for_wav(wav, 100_000, deadline)
-
-    assert result == 200
-
-
-def test_wait_for_wav_returns_immediately_when_target_reached(tmp_path, monkeypatch):
-    # Once the WAV reaches min_bytes it is unambiguously done — no waiting
-    # out the stability window.
-    wav = tmp_path / "out.wav"
-    wav.write_bytes(b"x" * 1000)
-    monkeypatch.setattr(rp.time, "sleep", lambda _: None)
-    deadline = rp.time.monotonic() + 100
-
     result = rp._wait_for_wav(wav, 1000, deadline)
 
-    assert result == 1000
+    assert result == 950
 
 
-def test_wait_for_wav_never_reports_stable_at_zero_bytes(tmp_path, monkeypatch):
+def test_wait_for_wav_reports_peak_across_retrigger_cycle(tmp_path, monkeypatch):
+    # The gate LFO re-triggers, so a finished WAV cycles full -> 0 -> full.
+    # If it never crosses 90% (short/silent render) the largest size seen
+    # must be reported, not whatever it happens to be at the deadline.
     wav = tmp_path / "out.wav"
-    # file never created within the deadline
+    wav.write_bytes(b"")
+    # peak at 500, then wiped back to 0 by a re-trigger, ending low
+    sizes = iter([200, 500, 0, 100])
+
+    def fake_sleep(_):
+        try:
+            wav.write_bytes(b"x" * next(sizes))
+        except StopIteration:
+            pass
+
+    monkeypatch.setattr(rp.time, "sleep", fake_sleep)
+    deadline = rp.time.monotonic() + 0.2
+
+    # min_bytes huge so the 90% early-return never fires -> deadline wins
+    result = rp._wait_for_wav(wav, 10**9, deadline)
+
+    assert result == 500  # the peak, not the ending size
+
+
+def test_wait_for_wav_returns_zero_when_never_created(tmp_path, monkeypatch):
+    wav = tmp_path / "out.wav"  # never created
     monkeypatch.setattr(rp.time, "sleep", lambda _: None)
     deadline = rp.time.monotonic() + 0.05
 
     result = rp._wait_for_wav(wav, 100_000, deadline)
 
     assert result == 0
-
-
-def test_wait_for_wav_returns_last_size_on_deadline_if_never_stable(tmp_path, monkeypatch):
-    wav = tmp_path / "out.wav"
-    wav.write_bytes(b"")
-    counter = {"n": 0}
-
-    def fake_sleep(_):
-        counter["n"] += 1
-        wav.write_bytes(b"x" * (counter["n"] * 10))  # keeps growing, never stabilizes
-
-    monkeypatch.setattr(rp.time, "sleep", fake_sleep)
-    deadline = rp.time.monotonic() + 0.2
-
-    # huge min_bytes so growth never reaches it -> deadline wins
-    result = rp._wait_for_wav(wav, 10**9, deadline)
-
-    # never stabilizes -> deadline wins; result reflects real, nonzero growth
-    assert result > 0
-    assert result % 10 == 0
-    assert result <= counter["n"] * 10
