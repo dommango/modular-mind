@@ -233,7 +233,7 @@ def _kill_orphaned_racks():
         pass
 
 
-def _wait_for_wav(wav_path, min_bytes, deadline, sleep_fn=None):
+def _wait_for_wav(wav_path, min_bytes, deadline, proc=None, sleep_fn=None):
     """Return the finished WAV's size, or the largest size seen by deadline.
 
     The injected gate LFO is a *continuous* square wave, so it re-triggers
@@ -245,7 +245,13 @@ def _wait_for_wav(wav_path, min_bytes, deadline, sleep_fn=None):
     render's finalized peak — and let the caller apply its tolerance. This
     replaces size-stability detection, which raced both the ffmpeg 256 KB
     flush plateaus and the re-trigger cycle (the latter bit lin-x64/Railway
-    hard: a whole render looked like a 95s stall)."""
+    hard: a whole render looked like a 95s stall).
+
+    A healthy headless Rack never exits on its own (it blocks on stdin), so
+    if `proc` has exited before the WAV is done it crashed — some plugins
+    SIGSEGV in their widget constructor headless (loadFont with no window).
+    Return immediately in that case instead of waiting out the full deadline
+    for a WAV a dead process will never write."""
     accept = min_bytes * 0.9
     if sleep_fn is None:
         sleep_fn = time.sleep
@@ -256,6 +262,8 @@ def _wait_for_wav(wav_path, min_bytes, deadline, sleep_fn=None):
             return size
         if size > max_size:
             max_size = size
+        if proc is not None and proc.poll() is not None:
+            return max_size  # Rack died (likely a headless-unsafe plugin)
         sleep_fn(0.5)
     return max_size
 
@@ -298,7 +306,7 @@ def render(vcv_path, out_path=None, seconds=RENDER_SECONDS):
         # 16-bit mono lower bound; the header adds a little on top
         min_bytes = seconds * RENDER_SAMPLE_RATE * 2
         deadline = time.monotonic() + seconds + RENDER_STARTUP_TIMEOUT
-        final_size = _wait_for_wav(scratch_wav, min_bytes, deadline)
+        final_size = _wait_for_wav(scratch_wav, min_bytes, deadline, proc=proc)
     finally:
         try:
             proc.stdin.close()
