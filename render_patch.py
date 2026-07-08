@@ -233,14 +233,17 @@ def _kill_orphaned_racks():
         pass
 
 
-def _wait_for_wav(wav_path, deadline, sleep_fn=None):
-    """Poll until the WAV stops growing (2 consecutive nonzero reads at
-    the same size), or deadline. Returns the final observed size — the
-    caller decides whether that's an acceptable length. Block-boundary
-    timing means a genuinely finished render can land its byte count a
-    hair under the theoretical min_bytes, so completion detection can't
-    gate on reaching that threshold or it spins until the deadline on
-    every render."""
+def _wait_for_wav(wav_path, min_bytes, deadline, sleep_fn=None):
+    """Poll until the WAV is done. The Recorder (ffmpeg) flushes to disk in
+    ~256 KB bursts, so the file plateaus for a few seconds *between* writes
+    while recording is still active; a completion check must therefore
+    require a stability window LONGER than that flush gap, or it truncates
+    the render at the first plateau (this bit lin-x64/Railway hard, where a
+    throttled container spaces the flushes out). Two exits: the file reaches
+    the target byte count (unambiguously done), or it stops growing for
+    STABLE_POLLS polls (recording finished, WAV finalized). Returns final
+    size — the caller applies its own shortfall tolerance."""
+    STABLE_POLLS = 12  # 12 * 0.5s = 6s, comfortably > the ~3s inter-flush gap
     if sleep_fn is None:
         sleep_fn = time.sleep
     last_size = -1
@@ -248,9 +251,11 @@ def _wait_for_wav(wav_path, deadline, sleep_fn=None):
     size = 0
     while time.monotonic() < deadline:
         size = wav_path.stat().st_size if wav_path.exists() else 0
+        if size >= min_bytes:
+            return size
         if size > 0 and size == last_size:
             stable += 1
-            if stable >= 2:
+            if stable >= STABLE_POLLS:
                 return size
         else:
             stable = 0
@@ -297,7 +302,7 @@ def render(vcv_path, out_path=None, seconds=RENDER_SECONDS):
         # 16-bit mono lower bound; the header adds a little on top
         min_bytes = seconds * RENDER_SAMPLE_RATE * 2
         deadline = time.monotonic() + seconds + RENDER_STARTUP_TIMEOUT
-        final_size = _wait_for_wav(scratch_wav, deadline)
+        final_size = _wait_for_wav(scratch_wav, min_bytes, deadline)
     finally:
         try:
             proc.stdin.close()
@@ -310,9 +315,9 @@ def render(vcv_path, out_path=None, seconds=RENDER_SECONDS):
 
     # Tolerate a small shortfall from block-boundary timing quantization —
     # only a genuinely short/empty/never-started recording should fail.
-    if final_size < min_bytes * 0.9:
+    if final_size < min_bytes * 0.8:
         _kill_orphaned_racks()
-        raise RenderError(f"render timed out or produced no/short WAV: {name}")
+        raise RenderError(f"short WAV {name}: got {final_size} need>={int(min_bytes*0.8)} (min_bytes={min_bytes})")
 
     if out_path is None:
         AUDIO_DIR.mkdir(parents=True, exist_ok=True)
