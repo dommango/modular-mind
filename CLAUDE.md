@@ -66,6 +66,37 @@ to `validate_patch.py`'s structural checks. Requires the project venv
 **Do not use librosa/numba here** — their JIT kernels crash LLVM on this ARM CPU
 (WSL2 aarch64), even at import time. `analyze_audio.py` is pure numpy by design.
 
+### Closing the loop: score, repair, LLM-generate
+
+Three feedback loops sit on top of render+analyze. Bands come first — both
+other loops read `corpus_metric_bands.json`:
+
+```bash
+.venv/bin/python score_audio.py --rebuild-bands     # 137 non-clipping self-playing corpus
+                                                    #   patches → data/output/corpus_metric_bands.json
+.venv/bin/python score_audio.py                     # fitness 0-100 per patch (percentile-centrality
+                                                    #   vs corpus) → data/output/audio_scores.json
+.venv/bin/python repair_loop.py data/generated/batch3   # flag-driven auto-repair: gain scaling +
+                                                    #   VCF DC-blocker, re-render until is_good;
+                                                    #   variants → data/repaired/<slug>-rN.vcv,
+                                                    #   provenance → data/output/repair_log.json
+.venv/bin/python llm_patch_loop.py --archetype drone    # claude -p drafts patch JSON from
+                                                    #   data/reference/ docs; validate→render→
+                                                    #   analyze→score critique loops back until
+                                                    #   accepted → data/generated/llm/,
+                                                    #   trajectory JSONL → data/llm_loop/trajectories/
+```
+
+- `audition.py` now appends a `score=NN` column and manifest field when the
+  bands file exists; `is_good` (no flags) is unchanged — fitness gates only
+  LLM-loop acceptance (`--target-score`, default 60).
+- LLM-loop patches must stay **Fundamental + Core:AudioInterface only** — the
+  headless scratch dir junctions no other plugins; `llm_prompts.check_whitelist`
+  short-circuits before any render.
+- Renders are serial (~12 s each, shared scratch dir) — never parallelize
+  repair/LLM runs, and expect the first render after a long idle to
+  occasionally wedge at 0 bytes (cold start); re-running the patch recovers.
+
 ### Headless render recipe (verified 2026-07, Rack 2.6.6)
 
 There is no Linux ARM64 Rack build; rendering drives the **Windows** Rack install
