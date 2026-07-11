@@ -9,6 +9,7 @@ to callers.
 """
 
 import importlib
+import time
 from pathlib import Path
 
 import requests
@@ -18,6 +19,15 @@ from render_patch import RenderError, patch_slug
 from render_patch import render as local_render
 
 parse_vcv = importlib.import_module("03_parse_and_filter").parse_vcv
+
+# Transient-failure retry. The corpus run lost ~1,200 patches to local DNS
+# blips and Railway cold-start gateway errors — all recoverable by retrying.
+# Only retry the transient classes; a 401/413/422/500 is deterministic and
+# retrying just burns a full real-time render.
+RETRY_ATTEMPTS = 5
+RETRY_BASE_DELAY = 2.0  # seconds; doubles each attempt, capped at RETRY_MAX_DELAY
+RETRY_MAX_DELAY = 60.0
+RETRYABLE_STATUS = frozenset({502, 503, 504})
 
 
 def select_backend(url):
@@ -46,21 +56,48 @@ def map_remote_error(status, text):
     return f"render-service returned {status}: {text}"
 
 
-def remote_render(vcv_path, out_path=None, seconds=RENDER_SECONDS):
+def retry_delay(attempt):
+    """Exponential backoff for the given 1-based attempt, capped."""
+    return min(RETRY_BASE_DELAY * 2 ** (attempt - 1), RETRY_MAX_DELAY)
+
+
+def post_render(patch, seconds, sleep_fn=time.sleep):
+    """POST a patch to render-service, retrying transient failures (connection
+    errors, timeouts, 502/503/504) with exponential backoff. Returns the 200
+    response; raises RenderError on a deterministic error or once attempts are
+    exhausted."""
+    last = None
+    for attempt in range(1, RETRY_ATTEMPTS + 1):
+        try:
+            resp = requests.post(
+                f"{RACK_RENDER_URL}/render",
+                params={"seconds": seconds},
+                json=patch,
+                headers={"Authorization": f"Bearer {RENDER_TOKEN}"},
+                timeout=remote_timeout(seconds),
+            )
+        except (requests.ConnectionError, requests.Timeout) as e:
+            last = f"connection error: {e}"
+        else:
+            if resp.status_code == 200:
+                return resp
+            if resp.status_code not in RETRYABLE_STATUS:
+                raise RenderError(map_remote_error(resp.status_code, resp.text))
+            last = map_remote_error(resp.status_code, resp.text)
+        if attempt < RETRY_ATTEMPTS:
+            sleep_fn(retry_delay(attempt))
+    raise RenderError(
+        f"render-service unreachable after {RETRY_ATTEMPTS} attempts: {last}"
+    )
+
+
+def remote_render(vcv_path, out_path=None, seconds=RENDER_SECONDS, sleep_fn=time.sleep):
     """Render one patch via the remote render-service. Returns the WAV path."""
     vcv_path = Path(vcv_path)
     patch = parse_vcv(vcv_path)
     name = patch_slug(vcv_path)
 
-    resp = requests.post(
-        f"{RACK_RENDER_URL}/render",
-        params={"seconds": seconds},
-        json=patch,
-        headers={"Authorization": f"Bearer {RENDER_TOKEN}"},
-        timeout=remote_timeout(seconds),
-    )
-    if resp.status_code != 200:
-        raise RenderError(map_remote_error(resp.status_code, resp.text))
+    resp = post_render(patch, seconds, sleep_fn=sleep_fn)
 
     if out_path is None:
         AUDIO_DIR.mkdir(parents=True, exist_ok=True)
