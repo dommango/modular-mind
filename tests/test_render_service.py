@@ -18,29 +18,16 @@ def _load_validation():
 validation = _load_validation()
 
 
-def test_allowed_plugins():
-    assert validation.ALLOWED_PLUGINS == {"Core", "Fundamental"}
-
-
-def test_validate_patch_request_accepts_allowed_plugins():
+def test_validate_patch_request_accepts_any_plugin():
+    # plugins are downloaded on demand now, not allowlisted — structural only
     patch = {
         "modules": [
             {"id": 1, "plugin": "Core", "model": "AudioInterface"},
-            {"id": 2, "plugin": "Fundamental", "model": "VCO"},
+            {"id": 2, "plugin": "Bogaudio", "model": "VCO"},
         ],
         "cables": [],
     }
     assert validation.validate_patch_request(patch) == []
-
-
-def test_validate_patch_request_rejects_disallowed_plugin():
-    patch = {
-        "modules": [{"id": 1, "plugin": "SomeOtherPlugin", "model": "X"}],
-        "cables": [],
-    }
-    errors = validation.validate_patch_request(patch)
-    assert errors
-    assert any("SomeOtherPlugin" in e for e in errors)
 
 
 def test_validate_patch_request_rejects_non_dict_body():

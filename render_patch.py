@@ -233,7 +233,7 @@ def _kill_orphaned_racks():
         pass
 
 
-def _wait_for_wav(wav_path, min_bytes, deadline, sleep_fn=None):
+def _wait_for_wav(wav_path, min_bytes, deadline, proc=None, sleep_fn=None):
     """Return the finished WAV's size, or the largest size seen by deadline.
 
     The injected gate LFO is a *continuous* square wave, so it re-triggers
@@ -245,10 +245,24 @@ def _wait_for_wav(wav_path, min_bytes, deadline, sleep_fn=None):
     render's finalized peak — and let the caller apply its tolerance. This
     replaces size-stability detection, which raced both the ffmpeg 256 KB
     flush plateaus and the re-trigger cycle (the latter bit lin-x64/Railway
-    hard: a whole render looked like a 95s stall)."""
+    hard: a whole render looked like a 95s stall).
+
+    A healthy headless Rack never exits on its own (it blocks on stdin), so
+    if `proc` has exited before the WAV is done it crashed — some plugins
+    SIGSEGV in their widget constructor headless (loadFont with no window).
+    Return immediately in that case instead of waiting out the full deadline
+    for a WAV a dead process will never write."""
     accept = min_bytes * 0.9
     if sleep_fn is None:
         sleep_fn = time.sleep
+    # A real render starts writing the WAV within a couple seconds of the
+    # gate firing; if nothing has been written after this grace window the
+    # render is wedged (some plugins hang the engine headless instead of
+    # crashing — e.g. Sha#Bang Photron Panel), so give up rather than wait
+    # out the full deadline. Rack startup itself is well under a second even
+    # for many-module patches.
+    no_output_grace = 15.0
+    start = time.monotonic()
     max_size = 0
     while time.monotonic() < deadline:
         size = wav_path.stat().st_size if wav_path.exists() else 0
@@ -256,6 +270,10 @@ def _wait_for_wav(wav_path, min_bytes, deadline, sleep_fn=None):
             return size
         if size > max_size:
             max_size = size
+        if proc is not None and proc.poll() is not None:
+            return max_size  # Rack died (a headless-unsafe plugin crashed it)
+        if max_size == 0 and time.monotonic() - start > no_output_grace:
+            return 0  # engine never produced audio -> wedged
         sleep_fn(0.5)
     return max_size
 
@@ -298,7 +316,7 @@ def render(vcv_path, out_path=None, seconds=RENDER_SECONDS):
         # 16-bit mono lower bound; the header adds a little on top
         min_bytes = seconds * RENDER_SAMPLE_RATE * 2
         deadline = time.monotonic() + seconds + RENDER_STARTUP_TIMEOUT
-        final_size = _wait_for_wav(scratch_wav, min_bytes, deadline)
+        final_size = _wait_for_wav(scratch_wav, min_bytes, deadline, proc=proc)
     finally:
         try:
             proc.stdin.close()

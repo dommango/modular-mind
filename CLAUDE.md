@@ -115,6 +115,13 @@ gap that forces the Windows recipe locally doesn't exist there). It reuses
   `{RACK_RENDER_URL}/render` with `Authorization: Bearer {RENDER_TOKEN}` and
   writes back the returned WAV bytes. `render_patch.py`'s own CLI stays
   local-only regardless.
+- **Transient-failure retry:** `render_client.remote_render()` retries only
+  *transient* failures — connection errors, timeouts, HTTP 502/503/504 — with
+  exponential backoff (`RETRY_BASE_DELAY`×2ⁿ, 5 attempts, capped at
+  `RETRY_MAX_DELAY`). Deterministic errors (401/413/422/500) fail fast so a
+  wedged real-time render isn't re-attempted 5×. This is what makes a bulk
+  corpus run survivable — an idle Railway service cold-starts (502) and local
+  DNS can blip mid-run without losing the patch.
 - **Railway project:** `modular-mind-render` (Dominic Mangonon's Projects),
   service `modular-mind-render`, domain
   `https://modular-mind-render-production.up.railway.app`. `railway.json` at
@@ -171,9 +178,16 @@ patches' parameter settings to what they sound like.
 
 ```bash
 .venv/bin/python corpus_audition.py --limit 20   # render+score next 20 corpus patches
+.venv/bin/python corpus_audition.py --ids 183245 190118 --redo  # re-audition specific ids
 .venv/bin/python corpus_audition.py --summary    # stats from corpus_audio_analysis.json
 .venv/bin/python plugin_sync.py Valley Bogaudio  # pre-warm plugin cache
 ```
+
+Runs locally as an **orchestrator**: it imports `render_client.render()`, so with
+`RACK_RENDER_URL` set the ~1GB `data/` stays on your machine while each patch is
+rendered on the remote render-service over HTTP. Without `--redo` it skips ids
+already in `corpus_audio_analysis.json` (resume); `--ids` targets a specific set
+(e.g. re-running only the ids left in a given failure state after a partial run).
 
 - Shares the **same image** as the render-service (`render-service/Dockerfile`)
   — it already bakes lin-x64 Rack + a source-built VCV-Recorder + Fundamental.
@@ -193,6 +207,22 @@ patches' parameter settings to what they sound like.
 - **`filtered_patches.json` is not v2-only** despite the stage-3 rule — it
   carries v1.1 and pre-v1 patches too; anything that renders/wires patches from
   it must guard for the modern `id`/`cables` shape first.
+- **Only self-playing patches make sound headless.** The engine free-runs with
+  no MIDI/clock/gate input, so an "instrument" patch waiting for external
+  triggers renders silent — not a bug. `data/output/patch_playability.json`
+  splits the `ok` renders into `self_playing` (audible: LFO/clock/noise/sequencer
+  self-generates) vs `input_driven` (silent, needs external play), keyed off
+  `analyze_audio`'s `makes_sound`. This split is **only knowable by rendering** —
+  module lists alone predict it at ~66% vs a ~60% base rate (self-play is a
+  topological property: is a free-running source cabled to the output through an
+  ungated path). `data/output/dns_recovery_buckets.json` is a companion artifact
+  segregating any DNS-failed backlog into renderable vs old-format/missing-plugins.
+- **Server-side render-fail baseline is high (~83%).** Most failures are
+  headless-incompatible plugins that crash/hang Rack before the recorder writes,
+  surfacing as `"short WAV got 0"`. A handful of patches also resolve to
+  `missing-plugins` *server-side* even when `missing_for_arch` passed them —
+  paid plugins (e.g. VCV-Pro) have a lin-x64 manifest entry but can't be
+  downloaded without a purchase.
 
 ## Pipeline Architecture
 

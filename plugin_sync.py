@@ -102,6 +102,20 @@ def download_plugin(slug, version, arch, dest_dir):
     return dest
 
 
+def missing_for_arch(slugs, arch=RACK_ARCH):
+    """Slugs (minus preinstalled) that have no build for `arch` in the VCV
+    Library — an availability check with no downloads. Lets a remote-render
+    caller screen out uncoverable patches locally, leaving the actual
+    download to whichever machine runs Rack."""
+    manifests = library_manifests()
+    missing = []
+    for slug in sorted(set(slugs) - PREINSTALLED_PLUGINS):
+        manifest = manifests.get(slug)
+        if manifest is None or arch not in manifest.get("arches", {}):
+            missing.append(slug)
+    return missing
+
+
 def ensure_plugins(slugs, dest_dir=None, arch=RACK_ARCH):
     """Make sure every slug is present in the Rack plugin dir.
 
