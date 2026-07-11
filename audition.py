@@ -128,6 +128,10 @@ def main():
         print("No .vcv files found")
         return 1
 
+    # load bands up front: a bad bands file must surface before the
+    # expensive render loop, not crash after it and discard its results
+    bands = load_bands()
+
     results = {}
     for i, f in enumerate(files, 1):
         print(f"[{i}/{len(files)}] {f.name} ...", flush=True)
@@ -143,7 +147,6 @@ def main():
                 "render_error": f"unreadable patch: {e}",
             }
 
-    bands = load_bands()
     for slug, result in results.items():
         metrics = result.get("metrics")
         if metrics and bands is not None:
