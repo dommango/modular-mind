@@ -25,6 +25,7 @@ from analyze_audio import ANALYSIS_PATH, analyze_file, load_existing
 from config import DATA_DIR
 from render_client import render
 from render_patch import RenderError, collect_patches, patch_slug
+from score_audio import load_bands, score_metrics
 from validate_patch import PatchValidator
 
 parse_vcv = importlib.import_module("03_parse_and_filter").parse_vcv
@@ -80,6 +81,8 @@ def merge_manifest(entries, results):
                 "rms": metrics["rms"],
                 "peak": metrics["peak"],
             }
+            if "score" in result:
+                audio = {**audio, "score": result["score"]}
         merged.append({**entry, "audio": audio})
     return merged
 
@@ -104,11 +107,12 @@ def summary_line(name, result):
         return f"{name:28s} {result['structural']:4s} ANALYZE-FAIL {detail}"
     v = result["metrics"]["verdict"]
     flag_str = ",".join(v["flags"]) or "-"
+    score_str = str(result["score"]) if "score" in result else "-"
     good = "GOOD" if is_good(result) else "    "
     return (
         f"{name:28s} {result['structural']:4s} {v['character']:9s} "
         f"rms={result['metrics']['rms']:.3f} peak={result['metrics']['peak']:.2f} "
-        f"flags={flag_str:22s} {good}"
+        f"score={score_str:4s} flags={flag_str:22s} {good}"
     )
 
 
@@ -138,6 +142,12 @@ def main():
                 "render": "FAIL",
                 "render_error": f"unreadable patch: {e}",
             }
+
+    bands = load_bands()
+    for slug, result in results.items():
+        metrics = result.get("metrics")
+        if metrics and bands is not None:
+            results[slug] = {**result, "score": score_metrics(metrics, bands)["fitness"]}
 
     # merge analyzer metrics into the shared analysis artifact
     analysis = load_existing()
