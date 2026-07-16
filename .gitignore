@@ -2,6 +2,8 @@
 
 # Generated data artifacts
 data/
+# ...except the exported frontend data committed for reproducible web builds
+!/web/public/data/
 __pycache__/
 *.pyc
 *.pyo
