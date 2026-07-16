@@ -77,10 +77,10 @@ def parent_slug(slug):
 
 
 def track_source(slug):
-    if slug.startswith("llm-"):
-        return "llm"
     if parent_slug(slug):
         return "repair"
+    if slug.startswith("llm-"):
+        return "llm"
     if slug.startswith("batch3-"):
         return "batch"
     return "handcrafted"
@@ -205,6 +205,8 @@ def compute_peaks(wav_path):
         n = w.getnframes()
         raw = w.readframes(n)
     samples = np.frombuffer(raw, dtype=np.int16).astype(np.float32) / 32768.0
+    if len(samples) < PEAK_BINS:
+        fail(f"{wav_path.name}: too short for peaks ({len(samples)} frames < {PEAK_BINS})")
     bins = np.array_split(samples, PEAK_BINS)
     return [[round(float(b.min()), 4), round(float(b.max()), 4)] for b in bins]
 
