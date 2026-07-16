@@ -23,7 +23,7 @@
     {
       "id": 3,
       "subject": "Task 3: Run the real export; commit exported data",
-      "status": "in_progress",
+      "status": "completed",
       "blockedBy": [1],
       "description": "**Goal:** Real web/public/data/ + web/public/audio/ committed so builds are reproducible without data/.\n\n**Files:**\n- Create (generated): web/public/data/*.json, web/public/data/peaks/*.json, web/public/audio/*.mp3\n- Modify: web/.gitignore (ensure exports not ignored)\n\n**Acceptance Criteria:**\n- export exits 0, ~39 tracks\n- committed audio < 10 MB, data < 1.5 MB\n- batch3-02-drone-r1 parent linked; exactly 6 featured tracks\n\n**Verify:** .venv/bin/python export_frontend_data.py && jq '[.tracks[] | select(.featured)] | length' web/public/data/tracks.json → 6\n\n**Steps:** run export; jq spot-checks; commit web/public.\n\n```json:metadata\n{\"files\": [\"web/public/data/tracks.json\"], \"verifyCommand\": \".venv/bin/python export_frontend_data.py\", \"acceptanceCriteria\": [\"export succeeds\", \"size budgets met\", \"lineage + featured spot-checks pass\"]}\n```"
     },
