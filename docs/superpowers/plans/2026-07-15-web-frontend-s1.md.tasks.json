@@ -1,0 +1,46 @@
+{
+  "planPath": "docs/superpowers/plans/2026-07-15-web-frontend-s1.md",
+  "tasks": [
+    {
+      "id": 0,
+      "subject": "Task 0: Scaffold web/ Next.js app with nav and placeholder pages",
+      "status": "pending",
+      "description": "**Goal:** A building Next.js 15 App Router app in web/ with shared nav layout and five placeholder routes.\n\n**Files:**\n- Create: web/ (create-next-app), web/src/components/site-nav.tsx, web/src/app/{page,pipeline/page,listen/page,modules/page,insights/page}.tsx\n- Modify: web/next.config.ts (output: 'standalone')\n\n**Acceptance Criteria:**\n- cd web && npm run build exits 0\n- All five routes render a heading and the shared nav\n- next.config.ts sets output: 'standalone'\n\n**Verify:** cd web && npm run build → Compiled successfully, routes /, /pipeline, /listen, /modules, /insights\n\n**Steps:** create-next-app (ts, tailwind, app, src-dir, npm); standalone config; SiteNav; layout; 5 placeholder pages; build; commit.\n\n```json:metadata\n{\"files\": [\"web/next.config.ts\", \"web/src/app/layout.tsx\", \"web/src/components/site-nav.tsx\"], \"verifyCommand\": \"cd web && npm run build\", \"acceptanceCriteria\": [\"npm run build exits 0\", \"five routes render heading + nav\", \"standalone output configured\"]}\n```"
+    },
+    {
+      "id": 1,
+      "subject": "Task 1: export_frontend_data.py with pytest coverage",
+      "status": "pending",
+      "description": "**Goal:** One tested command that snapshots data/ into web/public/ (UI JSON + mp3 + peaks), hard-failing on missing/invalid sources, never leaving partial JSON output.\n\n**Files:**\n- Create: export_frontend_data.py (repo root)\n- Test: tests/test_export_frontend_data.py\n\n**Acceptance Criteria:**\n- pytest tests/test_export_frontend_data.py all pass\n- Real run writes web/public/data/{tracks,stages,modules,insights}.json + peaks/ + audio mp3s\n- Repair lineage linked both directions (batch3-02-drone-r1 ↔ parent)\n- Missing source → exit 1, no partial data/*.json\n- mp3 transcode skipped when newer than WAV\n\n**Verify:** .venv/bin/python -m pytest tests/test_export_frontend_data.py -v → all PASS\n\n**Steps:** TDD — write tests (fixture mini data tree, sine WAVs), fail, implement (full code in plan doc), pass, commit.\n\n```json:metadata\n{\"files\": [\"export_frontend_data.py\", \"tests/test_export_frontend_data.py\"], \"verifyCommand\": \".venv/bin/python -m pytest tests/test_export_frontend_data.py -v\", \"acceptanceCriteria\": [\"all tests pass\", \"repair lineage linked\", \"hard-fail without partial output\", \"idempotent transcode\"]}\n```"
+    },
+    {
+      "id": 2,
+      "subject": "Task 2: Typed data loaders (web/src/lib/data.ts) with vitest",
+      "status": "pending",
+      "blockedBy": [0, 1],
+      "description": "**Goal:** zod-validated loaders over public/data/*.json — components never touch raw JSON; bad data fails at build/test time.\n\n**Files:**\n- Create: web/src/lib/schemas.ts, web/src/lib/data.ts, web/vitest.config.ts\n- Test: web/src/lib/data.test.ts\n- Modify: web/package.json (zod, vitest, test script)\n\n**Acceptance Criteria:**\n- cd web && npm test passes (valid track parses; unknown character/source rejected)\n- Loaders read public/data via node:fs, memoized with react cache()\n\n**Verify:** cd web && npm test → all PASS\n\n**Steps:** install zod+vitest; schemas.ts (verdict/track/stage/module + doc schemas, schema_version literal 1); data.ts loaders; vitest config + tests; commit. Full code in plan doc.\n\n```json:metadata\n{\"files\": [\"web/src/lib/schemas.ts\", \"web/src/lib/data.ts\", \"web/src/lib/data.test.ts\"], \"verifyCommand\": \"cd web && npm test\", \"acceptanceCriteria\": [\"valid fixture parses\", \"invalid enum values rejected\", \"loaders memoized server-side\"]}\n```"
+    },
+    {
+      "id": 3,
+      "subject": "Task 3: Run the real export; commit exported data",
+      "status": "pending",
+      "blockedBy": [1],
+      "description": "**Goal:** Real web/public/data/ + web/public/audio/ committed so builds are reproducible without data/.\n\n**Files:**\n- Create (generated): web/public/data/*.json, web/public/data/peaks/*.json, web/public/audio/*.mp3\n- Modify: web/.gitignore (ensure exports not ignored)\n\n**Acceptance Criteria:**\n- export exits 0, ~39 tracks\n- committed audio < 10 MB, data < 1.5 MB\n- batch3-02-drone-r1 parent linked; exactly 6 featured tracks\n\n**Verify:** .venv/bin/python export_frontend_data.py && jq '[.tracks[] | select(.featured)] | length' web/public/data/tracks.json → 6\n\n**Steps:** run export; jq spot-checks; commit web/public.\n\n```json:metadata\n{\"files\": [\"web/public/data/tracks.json\"], \"verifyCommand\": \".venv/bin/python export_frontend_data.py\", \"acceptanceCriteria\": [\"export succeeds\", \"size budgets met\", \"lineage + featured spot-checks pass\"]}\n```"
+    },
+    {
+      "id": 4,
+      "subject": "Task 4: Dockerfile + Railway config for web/",
+      "status": "pending",
+      "blockedBy": [0],
+      "description": "**Goal:** Production image for the standalone Next build, ready for a modular-mind-web Railway service with root directory web/.\n\n**Files:**\n- Create: web/Dockerfile, web/.dockerignore, web/railway.json\n\n**Acceptance Criteria:**\n- docker build succeeds locally (fallback: standard standalone recipe + npm run build passes, flagged for deploy-time verification)\n- Runs node server.js on :3000 as non-root\n\n**Verify:** cd web && docker build -t mm-web:test . && docker run -d -p 13000:3000 mm-web:test && curl -s -o /dev/null -w '%{http_code}' localhost:13000 → 200\n\n**Steps:** three files (full contents in plan doc); local build + curl smoke; commit.\n\n```json:metadata\n{\"files\": [\"web/Dockerfile\", \"web/.dockerignore\", \"web/railway.json\"], \"verifyCommand\": \"cd web && docker build -t mm-web:test .\", \"acceptanceCriteria\": [\"image builds\", \"serves 200 on 3000 as non-root\"]}\n```"
+    },
+    {
+      "id": 5,
+      "subject": "Task 5: Deploy skeleton to Railway",
+      "status": "pending",
+      "blockedBy": [2, 3, 4],
+      "description": "**Goal:** modular-mind-web service live on a Railway domain serving the skeleton.\n\n**Files:** none (operations task); creates web/README.md with live URL.\n\n**Acceptance Criteria:**\n- New service modular-mind-web in existing project 2bc068b3-42bd-4ada-b04d-560c27a0a264\n- Root directory web/ (render service untouched)\n- Public domain returns 200 on / and /listen\n\n**Verify:** curl -s -o /dev/null -w '%{http_code}' https://<domain>/listen → 200\n\n**Steps:** railway link; railway add --service modular-mind-web; set root dir (CLI, else dashboard — surface to user); railway up; railway domain; curl checks; web/README.md; commit.\n\n```json:metadata\n{\"files\": [\"web/README.md\"], \"verifyCommand\": \"curl -s -o /dev/null -w '%{http_code}' https://<domain>/listen\", \"acceptanceCriteria\": [\"service exists with root dir web\", \"200 on / and /listen\"]}\n```"
+    }
+  ],
+  "lastUpdated": "2026-07-15"
+}
