@@ -4,7 +4,7 @@
     {
       "id": 0,
       "subject": "Task 0: Scaffold web/ Next.js app with nav and placeholder pages",
-      "status": "in_progress",
+      "status": "completed",
       "description": "**Goal:** A building Next.js 15 App Router app in web/ with shared nav layout and five placeholder routes.\n\n**Files:**\n- Create: web/ (create-next-app), web/src/components/site-nav.tsx, web/src/app/{page,pipeline/page,listen/page,modules/page,insights/page}.tsx\n- Modify: web/next.config.ts (output: 'standalone')\n\n**Acceptance Criteria:**\n- cd web && npm run build exits 0\n- All five routes render a heading and the shared nav\n- next.config.ts sets output: 'standalone'\n\n**Verify:** cd web && npm run build → Compiled successfully, routes /, /pipeline, /listen, /modules, /insights\n\n**Steps:** create-next-app (ts, tailwind, app, src-dir, npm); standalone config; SiteNav; layout; 5 placeholder pages; build; commit.\n\n```json:metadata\n{\"files\": [\"web/next.config.ts\", \"web/src/app/layout.tsx\", \"web/src/components/site-nav.tsx\"], \"verifyCommand\": \"cd web && npm run build\", \"acceptanceCriteria\": [\"npm run build exits 0\", \"five routes render heading + nav\", \"standalone output configured\"]}\n```"
     },
     {
@@ -30,7 +30,7 @@
     {
       "id": 4,
       "subject": "Task 4: Dockerfile + Railway config for web/",
-      "status": "in_progress",
+      "status": "completed",
       "blockedBy": [0],
       "description": "**Goal:** Production image for the standalone Next build, ready for a modular-mind-web Railway service with root directory web/.\n\n**Files:**\n- Create: web/Dockerfile, web/.dockerignore, web/railway.json\n\n**Acceptance Criteria:**\n- docker build succeeds locally (fallback: standard standalone recipe + npm run build passes, flagged for deploy-time verification)\n- Runs node server.js on :3000 as non-root\n\n**Verify:** cd web && docker build -t mm-web:test . && docker run -d -p 13000:3000 mm-web:test && curl -s -o /dev/null -w '%{http_code}' localhost:13000 → 200\n\n**Steps:** three files (full contents in plan doc); local build + curl smoke; commit.\n\n```json:metadata\n{\"files\": [\"web/Dockerfile\", \"web/.dockerignore\", \"web/railway.json\"], \"verifyCommand\": \"cd web && docker build -t mm-web:test .\", \"acceptanceCriteria\": [\"image builds\", \"serves 200 on 3000 as non-root\"]}\n```"
     },
