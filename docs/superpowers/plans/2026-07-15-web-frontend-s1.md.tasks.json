@@ -16,7 +16,7 @@
     {
       "id": 2,
       "subject": "Task 2: Typed data loaders (web/src/lib/data.ts) with vitest",
-      "status": "in_progress",
+      "status": "completed",
       "blockedBy": [0, 1],
       "description": "**Goal:** zod-validated loaders over public/data/*.json — components never touch raw JSON; bad data fails at build/test time.\n\n**Files:**\n- Create: web/src/lib/schemas.ts, web/src/lib/data.ts, web/vitest.config.ts\n- Test: web/src/lib/data.test.ts\n- Modify: web/package.json (zod, vitest, test script)\n\n**Acceptance Criteria:**\n- cd web && npm test passes (valid track parses; unknown character/source rejected)\n- Loaders read public/data via node:fs, memoized with react cache()\n\n**Verify:** cd web && npm test → all PASS\n\n**Steps:** install zod+vitest; schemas.ts (verdict/track/stage/module + doc schemas, schema_version literal 1); data.ts loaders; vitest config + tests; commit. Full code in plan doc.\n\n```json:metadata\n{\"files\": [\"web/src/lib/schemas.ts\", \"web/src/lib/data.ts\", \"web/src/lib/data.test.ts\"], \"verifyCommand\": \"cd web && npm test\", \"acceptanceCriteria\": [\"valid fixture parses\", \"invalid enum values rejected\", \"loaders memoized server-side\"]}\n```"
     },
