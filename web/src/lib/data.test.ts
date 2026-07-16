@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { trackSchema } from './schemas'
+import { trackSchema, tracksDocSchema } from './schemas'
 
 const validTrack = {
   slug: 'batch3-01-omri-seq', title: 'Omri Seq', archetype: 'omri-seq', source: 'batch',
@@ -18,5 +18,14 @@ describe('trackSchema', () => {
   })
   it('rejects unknown source', () => {
     expect(() => trackSchema.parse({ ...validTrack, source: 'wild' })).toThrow()
+  })
+})
+
+describe('tracksDocSchema', () => {
+  it('rejects a wrong schema_version', () => {
+    expect(() => tracksDocSchema.parse({ schema_version: 2, tracks: [] })).toThrow()
+  })
+  it('rejects a missing schema_version', () => {
+    expect(() => tracksDocSchema.parse({ tracks: [validTrack] })).toThrow()
   })
 })
