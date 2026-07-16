@@ -1,0 +1,4355 @@
+{
+ "schema_version": 1,
+ "modules": [
+  {
+   "key": "dbRackModules:EVA",
+   "plugin": "dbRackModules",
+   "model": "EVA",
+   "role": "output",
+   "tags": [
+    "Envelope Generator",
+    "Voltage Controlled Amplifier",
+    "Polyphonic"
+   ],
+   "description": "ADSR with integrated VCA",
+   "instances": 283,
+   "manual_url": "",
+   "n_params": 5,
+   "n_inputs": 4,
+   "n_outputs": 2
+  },
+  {
+   "key": "dbRackModules:Drums",
+   "plugin": "dbRackModules",
+   "model": "Drums",
+   "role": "processor",
+   "tags": [
+    "Drums"
+   ],
+   "description": "Sampled drums",
+   "instances": 183,
+   "manual_url": "",
+   "n_params": 6,
+   "n_inputs": 3,
+   "n_outputs": 1
+  },
+  {
+   "key": "dbRackModules:OFS",
+   "plugin": "dbRackModules",
+   "model": "OFS",
+   "role": "processor",
+   "tags": [
+    "Polyphonic",
+    "Attenuator"
+   ],
+   "description": "CPU friendly polyphonic offset/scaler with polyphonic cv inputs and cv attenuators",
+   "instances": 124,
+   "manual_url": "",
+   "n_params": 4,
+   "n_inputs": 3,
+   "n_outputs": 1
+  },
+  {
+   "key": "dbRackModules:AUX",
+   "plugin": "dbRackModules",
+   "model": "AUX",
+   "role": "processor",
+   "tags": [
+    "Mixer",
+    "Polyphonic"
+   ],
+   "description": "Polyphonic stereo signal mixer",
+   "instances": 102,
+   "manual_url": "",
+   "n_params": 1,
+   "n_inputs": 4,
+   "n_outputs": 2
+  },
+  {
+   "key": "Core:AudioInterface2",
+   "plugin": "Core",
+   "model": "AudioInterface2",
+   "role": "output",
+   "tags": [
+    "External"
+   ],
+   "description": "Sends audio and CV to/from an audio device",
+   "instances": 101,
+   "manual_url": "https://vcvrack.com/manual/Core#Audio",
+   "n_params": 1,
+   "n_inputs": 0,
+   "n_outputs": 0
+  },
+  {
+   "key": "dbRackModules:PPD",
+   "plugin": "dbRackModules",
+   "model": "PPD",
+   "role": "processor",
+   "tags": [
+    "Delay"
+   ],
+   "description": "Ping Pong Delay",
+   "instances": 91,
+   "manual_url": "",
+   "n_params": 5,
+   "n_inputs": 6,
+   "n_outputs": 4
+  },
+  {
+   "key": "dbRackSequencer:S16",
+   "plugin": "dbRackSequencer",
+   "model": "S16",
+   "role": "source",
+   "tags": [
+    "Polyphonic",
+    "Utility"
+   ],
+   "description": "Split polyphonic input to 16 output channels",
+   "instances": 87,
+   "manual_url": "",
+   "n_params": 0,
+   "n_inputs": 1,
+   "n_outputs": 0
+  },
+  {
+   "key": "dbRackModules:L4P",
+   "plugin": "dbRackModules",
+   "model": "L4P",
+   "role": "output",
+   "tags": [
+    "Filter",
+    "Polyphonic"
+   ],
+   "description": "CPU friendly polyphonic stereo 4 pole filter",
+   "instances": 84,
+   "manual_url": "",
+   "n_params": 4,
+   "n_inputs": 4,
+   "n_outputs": 2
+  },
+  {
+   "key": "VCV-Recorder:Recorder",
+   "plugin": "VCV-Recorder",
+   "model": "Recorder",
+   "role": "output",
+   "tags": [
+    "Recording",
+    "Visual"
+   ],
+   "description": "Records stereo audio and video to a file",
+   "instances": 83,
+   "manual_url": "https://vcvrack.com/Recorder#manual",
+   "n_params": 1,
+   "n_inputs": 4,
+   "n_outputs": 0
+  },
+  {
+   "key": "Fundamental:ADSR",
+   "plugin": "Fundamental",
+   "model": "ADSR",
+   "role": "processor",
+   "tags": [
+    "Envelope Generator",
+    "Polyphonic"
+   ],
+   "description": "Generates an envelope with Attack/Decay/Sustain/Release",
+   "instances": 81,
+   "manual_url": "https://vcvrack.com/Free#ADSR",
+   "n_params": 8,
+   "n_inputs": 6,
+   "n_outputs": 1
+  },
+  {
+   "key": "dbRackSequencer:AG",
+   "plugin": "dbRackSequencer",
+   "model": "AG",
+   "role": "source",
+   "tags": [
+    "Polyphonic",
+    "Sequencer"
+   ],
+   "description": "Voltage addressable Gate Patterns",
+   "instances": 80,
+   "manual_url": "",
+   "n_params": 1,
+   "n_inputs": 1,
+   "n_outputs": 1
+  },
+  {
+   "key": "Fundamental:VCO",
+   "plugin": "Fundamental",
+   "model": "VCO",
+   "role": "processor",
+   "tags": [
+    "VCO",
+    "Polyphonic"
+   ],
+   "description": "Voltage-controlled oscillator",
+   "instances": 76,
+   "manual_url": "https://vcvrack.com/Free#VCO",
+   "n_params": 6,
+   "n_inputs": 4,
+   "n_outputs": 4
+  },
+  {
+   "key": "dbRackModules:PLC",
+   "plugin": "dbRackModules",
+   "model": "PLC",
+   "role": "source",
+   "tags": [
+    "Polyphonic"
+   ],
+   "description": "Poly Controller",
+   "instances": 75,
+   "manual_url": "",
+   "n_params": 0,
+   "n_inputs": 0,
+   "n_outputs": 1
+  },
+  {
+   "key": "GrandeModular:Quant",
+   "plugin": "GrandeModular",
+   "model": "Quant",
+   "role": "source",
+   "tags": [
+    "Quantizer",
+    "Polyphonic"
+   ],
+   "description": "Quantizer with equi-likely notes mode.",
+   "instances": 72,
+   "manual_url": "https://github.com/dbgrande/GrandeModular/#quant",
+   "n_params": 14,
+   "n_inputs": 3,
+   "n_outputs": 2
+  },
+  {
+   "key": "dbRackModules:YAC",
+   "plugin": "dbRackModules",
+   "model": "YAC",
+   "role": "processor",
+   "tags": [
+    "Chorus"
+   ],
+   "description": "Yet another chorus, this one can be modulated",
+   "instances": 71,
+   "manual_url": "",
+   "n_params": 6,
+   "n_inputs": 4,
+   "n_outputs": 2
+  },
+  {
+   "key": "Valley:Plateau",
+   "plugin": "Valley",
+   "model": "Plateau",
+   "role": "processor",
+   "tags": [
+    "Reverb",
+    "Effect",
+    "Polyphonic"
+   ],
+   "description": "Lush and bendable plate reverb based on the Dattorro 1997 algorithm.",
+   "instances": 67,
+   "manual_url": "",
+   "n_params": 30,
+   "n_inputs": 17,
+   "n_outputs": 2
+  },
+  {
+   "key": "Fundamental:Octave",
+   "plugin": "Fundamental",
+   "model": "Octave",
+   "role": "processor",
+   "tags": [
+    "Utility",
+    "Polyphonic"
+   ],
+   "description": "Shifts 1V/oct pitch CV by octaves",
+   "instances": 65,
+   "manual_url": "https://vcvrack.com/Free#Octave",
+   "n_params": 1,
+   "n_inputs": 2,
+   "n_outputs": 1
+  },
+  {
+   "key": "dbRackModules:Osc4",
+   "plugin": "dbRackModules",
+   "model": "Osc4",
+   "role": "processor",
+   "tags": [
+    "Oscillator",
+    "Polyphonic"
+   ],
+   "description": "Classic oscillator with alias suppressing",
+   "instances": 63,
+   "manual_url": "",
+   "n_params": 4,
+   "n_inputs": 4,
+   "n_outputs": 1
+  },
+  {
+   "key": "Fundamental:VCA-1",
+   "plugin": "Fundamental",
+   "model": "VCA-1",
+   "role": "processor",
+   "tags": [
+    "VCA",
+    "Polyphonic"
+   ],
+   "description": "Voltage-controlled amplifier",
+   "instances": 60,
+   "manual_url": "https://vcvrack.com/Free#VCA-1",
+   "n_params": 2,
+   "n_inputs": 2,
+   "n_outputs": 1
+  },
+  {
+   "key": "Fundamental:LFO",
+   "plugin": "Fundamental",
+   "model": "LFO",
+   "role": "source",
+   "tags": [
+    "LFO",
+    "Polyphonic"
+   ],
+   "description": "Low-frequency oscillator",
+   "instances": 57,
+   "manual_url": "https://vcvrack.com/Free#LFO",
+   "n_params": 5,
+   "n_inputs": 4,
+   "n_outputs": 4
+  },
+  {
+   "key": "Fundamental:VCF",
+   "plugin": "Fundamental",
+   "model": "VCF",
+   "role": "processor",
+   "tags": [
+    "VCF",
+    "Polyphonic"
+   ],
+   "description": "Voltage-controlled filter",
+   "instances": 57,
+   "manual_url": "https://vcvrack.com/Free#VCF",
+   "n_params": 6,
+   "n_inputs": 4,
+   "n_outputs": 2
+  },
+  {
+   "key": "dbRackSequencer:PwmClock",
+   "plugin": "dbRackSequencer",
+   "model": "PwmClock",
+   "role": "source",
+   "tags": [
+    "Clock generator"
+   ],
+   "description": "Clock generator with nine configurable clocks with adjustable pwm",
+   "instances": 57,
+   "manual_url": "",
+   "n_params": 1,
+   "n_inputs": 3,
+   "n_outputs": 3
+  },
+  {
+   "key": "Fundamental:VCMixer",
+   "plugin": "Fundamental",
+   "model": "VCMixer",
+   "role": "processor",
+   "tags": [
+    "Mixer",
+    "VCA",
+    "Polyphonic"
+   ],
+   "description": "Mixes 4 signals with built-in VCAs",
+   "instances": 55,
+   "manual_url": "https://vcvrack.com/Free#VCMixer",
+   "n_params": 5,
+   "n_inputs": 1,
+   "n_outputs": 1
+  },
+  {
+   "key": "dbRackSequencer:M16S",
+   "plugin": "dbRackSequencer",
+   "model": "M16S",
+   "role": "output",
+   "tags": [
+    "Polyphonic",
+    "Utility"
+   ],
+   "description": "Merge stereo input channels into polyphonic stereo output",
+   "instances": 54,
+   "manual_url": "",
+   "n_params": 0,
+   "n_inputs": 0,
+   "n_outputs": 2
+  },
+  {
+   "key": "CosineKitty-Sapphire:Galaxy",
+   "plugin": "CosineKitty-Sapphire",
+   "model": "Galaxy",
+   "role": "processor",
+   "tags": [
+    "Reverb",
+    "Effect",
+    "Filter",
+    "Distortion"
+   ],
+   "description": "An adaptation of the Airwindows Galactic algorithm by Chris Johnson (https://github.com/airwindows).",
+   "instances": 53,
+   "manual_url": "https://github.com/cosinekitty/sapphire/blob/main/doc/Galaxy.md",
+   "n_params": 0,
+   "n_inputs": 2,
+   "n_outputs": 2
+  },
+  {
+   "key": "dbRackModules:FS6",
+   "plugin": "dbRackModules",
+   "model": "FS6",
+   "role": "processor",
+   "tags": [
+    "Oscillator",
+    "Polyphonic"
+   ],
+   "description": "Fast Sine approximations",
+   "instances": 51,
+   "manual_url": "",
+   "n_params": 4,
+   "n_inputs": 4,
+   "n_outputs": 1
+  },
+  {
+   "key": "dbRackModules:PHSR",
+   "plugin": "dbRackModules",
+   "model": "PHSR",
+   "role": "processor",
+   "tags": [
+    "Oscillator",
+    "Polyphonic"
+   ],
+   "description": "Phasor",
+   "instances": 48,
+   "manual_url": "",
+   "n_params": 3,
+   "n_inputs": 3,
+   "n_outputs": 3
+  },
+  {
+   "key": "AudibleInstruments:Links",
+   "plugin": "AudibleInstruments",
+   "model": "Links",
+   "role": "processor",
+   "tags": [
+    "Multiple",
+    "Mixer",
+    "Hardware clone",
+    "Polyphonic"
+   ],
+   "description": "Based on Mutable Instruments Links",
+   "instances": 44,
+   "manual_url": "https://mutable-instruments.net/modules/links/manual/",
+   "n_params": 0,
+   "n_inputs": 6,
+   "n_outputs": 6
+  },
+  {
+   "key": "Fundamental:SEQ3",
+   "plugin": "Fundamental",
+   "model": "SEQ3",
+   "role": "source",
+   "tags": [
+    "Sequencer"
+   ],
+   "description": "3-channel 8-step sequencer also with gate outputs",
+   "instances": 43,
+   "manual_url": "https://vcvrack.com/Free#SEQ3",
+   "n_params": 4,
+   "n_inputs": 5,
+   "n_outputs": 5
+  },
+  {
+   "key": "Fundamental:Delay",
+   "plugin": "Fundamental",
+   "model": "Delay",
+   "role": "processor",
+   "tags": [
+    "Delay"
+   ],
+   "description": "",
+   "instances": 39,
+   "manual_url": "https://vcvrack.com/Free#Delay",
+   "n_params": 8,
+   "n_inputs": 6,
+   "n_outputs": 2
+  },
+  {
+   "key": "dbRackModules:RndC",
+   "plugin": "dbRackModules",
+   "model": "RndC",
+   "role": "source",
+   "tags": [
+    "Polyphonic",
+    "Random"
+   ],
+   "description": "Polyphonic RandomLFO with cubic interpolation",
+   "instances": 39,
+   "manual_url": "",
+   "n_params": 6,
+   "n_inputs": 2,
+   "n_outputs": 3
+  },
+  {
+   "key": "Fundamental:Scope",
+   "plugin": "Fundamental",
+   "model": "Scope",
+   "role": "output",
+   "tags": [
+    "Visual",
+    "Polyphonic"
+   ],
+   "description": "Inspect waveforms with an oscilloscope",
+   "instances": 37,
+   "manual_url": "https://vcvrack.com/Free#Scope",
+   "n_params": 8,
+   "n_inputs": 3,
+   "n_outputs": 2
+  },
+  {
+   "key": "dbRackSequencer:CV",
+   "plugin": "dbRackSequencer",
+   "model": "CV",
+   "role": "source",
+   "tags": [
+    "Utility"
+   ],
+   "description": "CV Source for Sequencing",
+   "instances": 37,
+   "manual_url": "",
+   "n_params": 2,
+   "n_inputs": 1,
+   "n_outputs": 0
+  },
+  {
+   "key": "dbRackSequencer:M16",
+   "plugin": "dbRackSequencer",
+   "model": "M16",
+   "role": "output",
+   "tags": [
+    "Polyphonic",
+    "Utility"
+   ],
+   "description": "Merge 16 channels into polyphonic output",
+   "instances": 36,
+   "manual_url": "",
+   "n_params": 0,
+   "n_inputs": 0,
+   "n_outputs": 1
+  },
+  {
+   "key": "Core:AudioInterface",
+   "plugin": "Core",
+   "model": "AudioInterface",
+   "role": "output",
+   "tags": [
+    "External"
+   ],
+   "description": "Sends audio and CV to/from an audio device",
+   "instances": 34,
+   "manual_url": "https://vcvrack.com/manual/Core#Audio",
+   "n_params": 1,
+   "n_inputs": 0,
+   "n_outputs": 0
+  },
+  {
+   "key": "dbRackModules:CSOSC",
+   "plugin": "dbRackModules",
+   "model": "CSOSC",
+   "role": "processor",
+   "tags": [
+    "Oscillator",
+    "Polyphonic"
+   ],
+   "description": "Cosine Oscillator",
+   "instances": 33,
+   "manual_url": "",
+   "n_params": 6,
+   "n_inputs": 5,
+   "n_outputs": 2
+  },
+  {
+   "key": "Bogaudio:Bogaudio-SampleHold",
+   "plugin": "Bogaudio",
+   "model": "Bogaudio-SampleHold",
+   "role": "processor",
+   "tags": [
+    "Sample and hold",
+    "Dual",
+    "Polyphonic"
+   ],
+   "description": "Dual sample (or track) and hold",
+   "instances": 32,
+   "manual_url": "https://github.com/bogaudio/BogaudioModules/blob/master/README.md#samplehold",
+   "n_params": 4,
+   "n_inputs": 4,
+   "n_outputs": 0
+  },
+  {
+   "key": "SubmarineFree:NG-106",
+   "plugin": "SubmarineFree",
+   "model": "NG-106",
+   "role": "processor",
+   "tags": [
+    "LOGIC",
+    "MULTIPLE"
+   ],
+   "description": "NG-106 NOT Gates",
+   "instances": 32,
+   "manual_url": "https://github.com/david-c14/SubmarineFree/blob/main/manual/NG.md",
+   "n_params": 0,
+   "n_inputs": 0,
+   "n_outputs": 0
+  },
+  {
+   "key": "dbRackModules:RSC",
+   "plugin": "dbRackModules",
+   "model": "RSC",
+   "role": "processor",
+   "tags": [
+    "Reverb",
+    "Effect"
+   ],
+   "description": "Reverb",
+   "instances": 32,
+   "manual_url": "",
+   "n_params": 4,
+   "n_inputs": 2,
+   "n_outputs": 2
+  },
+  {
+   "key": "dbRackModules:RndH",
+   "plugin": "dbRackModules",
+   "model": "RndH",
+   "role": "processor",
+   "tags": [
+    "Random",
+    "Polyphonic"
+   ],
+   "description": "Polyphonic Random Hold",
+   "instances": 31,
+   "manual_url": "",
+   "n_params": 3,
+   "n_inputs": 5,
+   "n_outputs": 3
+  },
+  {
+   "key": "dbRackSequencer:Chords",
+   "plugin": "dbRackSequencer",
+   "model": "Chords",
+   "role": "source",
+   "tags": [
+    "Sequencer"
+   ],
+   "description": "Chord Sequencer",
+   "instances": 31,
+   "manual_url": "",
+   "n_params": 5,
+   "n_inputs": 1,
+   "n_outputs": 2
+  },
+  {
+   "key": "dbRackModules:Ratio",
+   "plugin": "dbRackModules",
+   "model": "Ratio",
+   "role": "processor",
+   "tags": [
+    "Utility",
+    "Polyphonic"
+   ],
+   "description": "Ratio scaling for FM",
+   "instances": 31,
+   "manual_url": "",
+   "n_params": 5,
+   "n_inputs": 7,
+   "n_outputs": 2
+  },
+  {
+   "key": "Fundamental:CVMix",
+   "plugin": "Fundamental",
+   "model": "CVMix",
+   "role": "processor",
+   "tags": [
+    "Mixer",
+    "Utility",
+    "Polyphonic"
+   ],
+   "description": "Mixes 3 CV signals with attenuverters",
+   "instances": 28,
+   "manual_url": "https://vcvrack.com/Free#CVMix",
+   "n_params": 0,
+   "n_inputs": 0,
+   "n_outputs": 1
+  },
+  {
+   "key": "AudibleInstruments:Braids",
+   "plugin": "AudibleInstruments",
+   "model": "Braids",
+   "role": "processor",
+   "tags": [
+    "Oscillator",
+    "Hardware clone"
+   ],
+   "description": "Based on Mutable Instruments Braids",
+   "instances": 27,
+   "manual_url": "https://mutable-instruments.net/modules/braids/manual/",
+   "n_params": 7,
+   "n_inputs": 5,
+   "n_outputs": 1
+  },
+  {
+   "key": "dbRackSequencer:Mix8",
+   "plugin": "dbRackSequencer",
+   "model": "Mix8",
+   "role": "output",
+   "tags": [
+    "Mixer"
+   ],
+   "description": "CV Mixer with 8 channels",
+   "instances": 27,
+   "manual_url": "",
+   "n_params": 0,
+   "n_inputs": 0,
+   "n_outputs": 1
+  },
+  {
+   "key": "Fundamental:VCA",
+   "plugin": "Fundamental",
+   "model": "VCA",
+   "role": "processor",
+   "tags": [
+    "VCA",
+    "Dual",
+    "Polyphonic"
+   ],
+   "description": "2-channel voltage-controlled amplifier",
+   "instances": 26,
+   "manual_url": "",
+   "n_params": 2,
+   "n_inputs": 6,
+   "n_outputs": 2
+  },
+  {
+   "key": "dbRackSequencer:P16S",
+   "plugin": "dbRackSequencer",
+   "model": "P16S",
+   "role": "output",
+   "tags": [
+    "Sequencer"
+   ],
+   "description": "Poly switch for CV addressing or sequencing",
+   "instances": 25,
+   "manual_url": "",
+   "n_params": 1,
+   "n_inputs": 3,
+   "n_outputs": 1
+  },
+  {
+   "key": "dbRackSequencer:PMod",
+   "plugin": "dbRackSequencer",
+   "model": "PMod",
+   "role": "processor",
+   "tags": [
+    "Sequencer"
+   ],
+   "description": "Address sequencing via multiply and modulo",
+   "instances": 23,
+   "manual_url": "",
+   "n_params": 4,
+   "n_inputs": 5,
+   "n_outputs": 1
+  },
+  {
+   "key": "AudibleInstruments:Clouds",
+   "plugin": "AudibleInstruments",
+   "model": "Clouds",
+   "role": "processor",
+   "tags": [
+    "Granular",
+    "Reverb",
+    "Hardware clone"
+   ],
+   "description": "Based on Mutable Instruments Clouds",
+   "instances": 21,
+   "manual_url": "https://mutable-instruments.net/modules/clouds/manual/",
+   "n_params": 10,
+   "n_inputs": 10,
+   "n_outputs": 2
+  },
+  {
+   "key": "dbRackModules:Pulsar",
+   "plugin": "dbRackModules",
+   "model": "Pulsar",
+   "role": "processor",
+   "tags": [
+    "Oscillator",
+    "Polyphonic"
+   ],
+   "description": "Pulsar Synthesis Oscillator",
+   "instances": 21,
+   "manual_url": "",
+   "n_params": 9,
+   "n_inputs": 6,
+   "n_outputs": 1
+  },
+  {
+   "key": "AudibleInstruments:Marbles",
+   "plugin": "AudibleInstruments",
+   "model": "Marbles",
+   "role": "source",
+   "tags": [
+    "Random",
+    "Hardware clone"
+   ],
+   "description": "Based on Mutable Instruments Marbles",
+   "instances": 19,
+   "manual_url": "https://www.mutable-instruments.net/modules/marbles/manual/",
+   "n_params": 8,
+   "n_inputs": 9,
+   "n_outputs": 7
+  },
+  {
+   "key": "Bogaudio:Bogaudio-FMOp",
+   "plugin": "Bogaudio",
+   "model": "Bogaudio-FMOp",
+   "role": "output",
+   "tags": [
+    "Oscillator",
+    "Synth voice",
+    "Polyphonic"
+   ],
+   "description": "FM operator / oscillator / synth voice",
+   "instances": 19,
+   "manual_url": "https://github.com/bogaudio/BogaudioModules/blob/master/README.md#fmop",
+   "n_params": 4,
+   "n_inputs": 7,
+   "n_outputs": 1
+  },
+  {
+   "key": "Fundamental:Random",
+   "plugin": "Fundamental",
+   "model": "Random",
+   "role": "source",
+   "tags": [
+    "Random",
+    "Sample and hold",
+    "Polyphonic"
+   ],
+   "description": "Random CV generator",
+   "instances": 19,
+   "manual_url": "https://vcvrack.com/Free#Random",
+   "n_params": 9,
+   "n_inputs": 6,
+   "n_outputs": 5
+  },
+  {
+   "key": "SubmarineFree:AG-104",
+   "plugin": "SubmarineFree",
+   "model": "AG-104",
+   "role": "processor",
+   "tags": [
+    "LOGIC",
+    "MULTIPLE"
+   ],
+   "description": "AG-104 AND Gates",
+   "instances": 19,
+   "manual_url": "https://github.com/david-c14/SubmarineFree/blob/main/manual/AG.md",
+   "n_params": 0,
+   "n_inputs": 2,
+   "n_outputs": 0
+  },
+  {
+   "key": "Fundamental:Quantizer",
+   "plugin": "Fundamental",
+   "model": "Quantizer",
+   "role": "processor",
+   "tags": [
+    "Quantizer",
+    "Polyphonic"
+   ],
+   "description": "12-note quantizer and scale selector",
+   "instances": 18,
+   "manual_url": "https://vcvrack.com/Free#Quantizer",
+   "n_params": 1,
+   "n_inputs": 1,
+   "n_outputs": 1
+  },
+  {
+   "key": "Bogaudio:Bogaudio-LLFO",
+   "plugin": "Bogaudio",
+   "model": "Bogaudio-LLFO",
+   "role": "source",
+   "tags": [
+    "LFO",
+    "Random",
+    "Polyphonic"
+   ],
+   "description": "Low frequency oscillator",
+   "instances": 18,
+   "manual_url": "https://github.com/bogaudio/BogaudioModules/blob/master/README.md#llfo",
+   "n_params": 2,
+   "n_inputs": 2,
+   "n_outputs": 1
+  },
+  {
+   "key": "dbRackModules:Pad",
+   "plugin": "dbRackModules",
+   "model": "Pad",
+   "role": "processor",
+   "tags": [
+    "Oscillator",
+    "Polyphonic"
+   ],
+   "description": "PadSynth",
+   "instances": 18,
+   "manual_url": "",
+   "n_params": 6,
+   "n_inputs": 1,
+   "n_outputs": 2
+  },
+  {
+   "key": "dbRackModules:PhS",
+   "plugin": "dbRackModules",
+   "model": "PhS",
+   "role": "processor",
+   "tags": [
+    "Waveshaper",
+    "Polyphonic"
+   ],
+   "description": "Phase Shaper",
+   "instances": 18,
+   "manual_url": "",
+   "n_params": 3,
+   "n_inputs": 3,
+   "n_outputs": 1
+  },
+  {
+   "key": "dbRackModules:PhO",
+   "plugin": "dbRackModules",
+   "model": "PhO",
+   "role": "processor",
+   "tags": [
+    "Oscillator",
+    "Polyphonic"
+   ],
+   "description": "Phase driven additive oscillator",
+   "instances": 17,
+   "manual_url": "",
+   "n_params": 2,
+   "n_inputs": 3,
+   "n_outputs": 1
+  },
+  {
+   "key": "Fundamental:VCO2",
+   "plugin": "Fundamental",
+   "model": "VCO2",
+   "role": "processor",
+   "tags": [
+    "VCO",
+    "Polyphonic"
+   ],
+   "description": "Voltage-controlled wavetable oscillator",
+   "instances": 16,
+   "manual_url": "https://vcvrack.com/Free#WavetableVCO",
+   "n_params": 6,
+   "n_inputs": 4,
+   "n_outputs": 1
+  },
+  {
+   "key": "dbRackSequencer:ACC",
+   "plugin": "dbRackSequencer",
+   "model": "ACC",
+   "role": "processor",
+   "tags": [
+    "Utility"
+   ],
+   "description": "Accumulator",
+   "instances": 16,
+   "manual_url": "",
+   "n_params": 3,
+   "n_inputs": 5,
+   "n_outputs": 2
+  },
+  {
+   "key": "dbRackModules:RndG",
+   "plugin": "dbRackModules",
+   "model": "RndG",
+   "role": "output",
+   "tags": [
+    "Random",
+    "Polyphonic"
+   ],
+   "description": "Random Gates",
+   "instances": 16,
+   "manual_url": "",
+   "n_params": 2,
+   "n_inputs": 3,
+   "n_outputs": 3
+  },
+  {
+   "key": "AudibleInstruments:Rings",
+   "plugin": "AudibleInstruments",
+   "model": "Rings",
+   "role": "processor",
+   "tags": [
+    "Physical modeling",
+    "Hardware clone"
+   ],
+   "description": "Based on Mutable Instruments Rings",
+   "instances": 15,
+   "manual_url": "https://mutable-instruments.net/modules/rings/manual/",
+   "n_params": 10,
+   "n_inputs": 8,
+   "n_outputs": 2
+  },
+  {
+   "key": "Fundamental:Noise",
+   "plugin": "Fundamental",
+   "model": "Noise",
+   "role": "source",
+   "tags": [
+    "Noise"
+   ],
+   "description": "Multicolored noise generator",
+   "instances": 15,
+   "manual_url": "https://vcvrack.com/Free#Noise",
+   "n_params": 0,
+   "n_inputs": 0,
+   "n_outputs": 7
+  },
+  {
+   "key": "dbRackSequencer:P16",
+   "plugin": "dbRackSequencer",
+   "model": "P16",
+   "role": "processor",
+   "tags": [
+    "Sequencer"
+   ],
+   "description": "One hundred permutations of 16 steps",
+   "instances": 15,
+   "manual_url": "",
+   "n_params": 4,
+   "n_inputs": 5,
+   "n_outputs": 1
+  },
+  {
+   "key": "dbRackModules:Osc7",
+   "plugin": "dbRackModules",
+   "model": "Osc7",
+   "role": "processor",
+   "tags": [
+    "Oscillator",
+    "Polyphonic"
+   ],
+   "description": "Komplex Oscillaor providing phase distorted waves",
+   "instances": 14,
+   "manual_url": "",
+   "n_params": 5,
+   "n_inputs": 3,
+   "n_outputs": 1
+  },
+  {
+   "key": "Venom:Mix4",
+   "plugin": "Venom",
+   "model": "Mix4",
+   "role": "output",
+   "tags": [
+    "Attenuator",
+    "Mixer",
+    "Polyphonic",
+    "Utility"
+   ],
+   "description": "Compact audio or CV mixer, attenuator, inverter, amplifier, and/or offset",
+   "instances": 14,
+   "manual_url": "https://github.com/DaveBenham/VenomModules/blob/main/README.md#mix-4",
+   "n_params": 1,
+   "n_inputs": 0,
+   "n_outputs": 1
+  },
+  {
+   "key": "AudibleInstruments:Tides",
+   "plugin": "AudibleInstruments",
+   "model": "Tides",
+   "role": "source",
+   "tags": [
+    "LFO",
+    "Oscillator",
+    "Waveshaper",
+    "Function generator",
+    "Hardware clone"
+   ],
+   "description": "Based on Mutable Instruments Tides",
+   "instances": 12,
+   "manual_url": "https://mutable-instruments.net/modules/tides1/manual/",
+   "n_params": 5,
+   "n_inputs": 9,
+   "n_outputs": 4
+  },
+  {
+   "key": "AudibleInstruments:Plaits",
+   "plugin": "AudibleInstruments",
+   "model": "Plaits",
+   "role": "output",
+   "tags": [
+    "Oscillator",
+    "Hardware clone",
+    "Polyphonic"
+   ],
+   "description": "Based on Mutable Instruments Plaits",
+   "instances": 12,
+   "manual_url": "https://mutable-instruments.net/modules/plaits/manual/",
+   "n_params": 9,
+   "n_inputs": 8,
+   "n_outputs": 2
+  },
+  {
+   "key": "Bogaudio:Bogaudio-Walk",
+   "plugin": "Bogaudio",
+   "model": "Bogaudio-Walk",
+   "role": "source",
+   "tags": [
+    "Random",
+    "Sample and hold",
+    "Polyphonic"
+   ],
+   "description": "Random-walk CV source",
+   "instances": 12,
+   "manual_url": "https://github.com/bogaudio/BogaudioModules/blob/master/README.md#walk",
+   "n_params": 3,
+   "n_inputs": 4,
+   "n_outputs": 1
+  },
+  {
+   "key": "Core:MIDIToCVInterface",
+   "plugin": "Core",
+   "model": "MIDIToCVInterface",
+   "role": "source",
+   "tags": [
+    "External",
+    "MIDI",
+    "Polyphonic"
+   ],
+   "description": "Converts MIDI from an external device to CV and gates",
+   "instances": 11,
+   "manual_url": "https://vcvrack.com/manual/Core#MIDI-CV",
+   "n_params": 0,
+   "n_inputs": 0,
+   "n_outputs": 12
+  },
+  {
+   "key": "dbRackSequencer:CSR",
+   "plugin": "dbRackSequencer",
+   "model": "CSR",
+   "role": "output",
+   "tags": [
+    "Sequencer"
+   ],
+   "description": "16 value shift register",
+   "instances": 11,
+   "manual_url": "",
+   "n_params": 1,
+   "n_inputs": 4,
+   "n_outputs": 2
+  },
+  {
+   "key": "Befaco:SpringReverb",
+   "plugin": "Befaco",
+   "model": "SpringReverb",
+   "role": "processor",
+   "tags": [
+    "Reverb",
+    "Hardware clone"
+   ],
+   "description": "Spring reverb tank driver",
+   "instances": 10,
+   "manual_url": "https://www.befaco.org/spring-reverb/",
+   "n_params": 4,
+   "n_inputs": 5,
+   "n_outputs": 2
+  },
+  {
+   "key": "dbRackModules:HexSeq",
+   "plugin": "dbRackModules",
+   "model": "HexSeq",
+   "role": "source",
+   "tags": [
+    "Sequencer"
+   ],
+   "description": "A Sequencer using compact hexadecimal strings for trigger sequencing",
+   "instances": 10,
+   "manual_url": "",
+   "n_params": 0,
+   "n_inputs": 2,
+   "n_outputs": 1
+  },
+  {
+   "key": "dbRackSequencer:P4",
+   "plugin": "dbRackSequencer",
+   "model": "P4",
+   "role": "output",
+   "tags": [
+    "Sequencer"
+   ],
+   "description": "Permutations of 4 steps",
+   "instances": 10,
+   "manual_url": "",
+   "n_params": 4,
+   "n_inputs": 5,
+   "n_outputs": 1
+  },
+  {
+   "key": "AudibleInstruments:Kinks",
+   "plugin": "AudibleInstruments",
+   "model": "Kinks",
+   "role": "processor",
+   "tags": [
+    "Utility",
+    "Sample and hold",
+    "Noise",
+    "Hardware clone"
+   ],
+   "description": "Based on Mutable Instruments Kinks",
+   "instances": 9,
+   "manual_url": "https://mutable-instruments.net/modules/kinks/manual/",
+   "n_params": 0,
+   "n_inputs": 5,
+   "n_outputs": 7
+  },
+  {
+   "key": "Bogaudio:Bogaudio-Mix4",
+   "plugin": "Bogaudio",
+   "model": "Bogaudio-Mix4",
+   "role": "output",
+   "tags": [
+    "Mixer",
+    "Panning"
+   ],
+   "description": "4-channel mixer and panner",
+   "instances": 9,
+   "manual_url": "https://github.com/bogaudio/BogaudioModules/blob/master/README.md#mix4",
+   "n_params": 14,
+   "n_inputs": 13,
+   "n_outputs": 2
+  },
+  {
+   "key": "Bogaudio:Bogaudio-Switch",
+   "plugin": "Bogaudio",
+   "model": "Bogaudio-Switch",
+   "role": "source",
+   "tags": [
+    "Switch",
+    "Polyphonic"
+   ],
+   "description": "2-way signal router",
+   "instances": 9,
+   "manual_url": "https://github.com/bogaudio/BogaudioModules/blob/master/README.md#switch",
+   "n_params": 0,
+   "n_inputs": 4,
+   "n_outputs": 4
+  },
+  {
+   "key": "dbRackSequencer:MMatrix",
+   "plugin": "dbRackSequencer",
+   "model": "MMatrix",
+   "role": "processor",
+   "tags": [
+    "Sequencer",
+    "Polyphonic"
+   ],
+   "description": "A 32x4 Grid ASCII Sequencer with up to 16 play heads",
+   "instances": 9,
+   "manual_url": "",
+   "n_params": 6,
+   "n_inputs": 6,
+   "n_outputs": 3
+  },
+  {
+   "key": "dbRackModules:SPF",
+   "plugin": "dbRackModules",
+   "model": "SPF",
+   "role": "processor",
+   "tags": [
+    "Filter",
+    "Polyphonic"
+   ],
+   "description": "CPU friendly polyphonic steiner parker filter",
+   "instances": 9,
+   "manual_url": "",
+   "n_params": 4,
+   "n_inputs": 5,
+   "n_outputs": 1
+  },
+  {
+   "key": "dbRackModules:RndH2",
+   "plugin": "dbRackModules",
+   "model": "RndH2",
+   "role": "processor",
+   "tags": [
+    "Random",
+    "Polyphonic"
+   ],
+   "description": "Random and Hold mk2",
+   "instances": 9,
+   "manual_url": "",
+   "n_params": 10,
+   "n_inputs": 7,
+   "n_outputs": 4
+  },
+  {
+   "key": "dbRackSequencer:Swen",
+   "plugin": "dbRackSequencer",
+   "model": "Swen",
+   "role": "source",
+   "tags": [
+    "Sequencer",
+    "Random"
+   ],
+   "description": "A Chaos Module",
+   "instances": 9,
+   "manual_url": "",
+   "n_params": 4,
+   "n_inputs": 5,
+   "n_outputs": 0
+  },
+  {
+   "key": "AudibleInstruments:Shades",
+   "plugin": "AudibleInstruments",
+   "model": "Shades",
+   "role": "processor",
+   "tags": [
+    "Mixer",
+    "Hardware clone"
+   ],
+   "description": "Based on Mutable Instruments Shades",
+   "instances": 9,
+   "manual_url": "https://mutable-instruments.net/modules/shades/manual/",
+   "n_params": 0,
+   "n_inputs": 0,
+   "n_outputs": 0
+  },
+  {
+   "key": "dbRackModules:CVS",
+   "plugin": "dbRackModules",
+   "model": "CVS",
+   "role": "output",
+   "tags": [
+    "Switch",
+    "Mixer",
+    "Sequencer",
+    "Polyphonic"
+   ],
+   "description": "CV controlled polyphonic switch, sequencer, crossfader, scanner",
+   "instances": 9,
+   "manual_url": "",
+   "n_params": 1,
+   "n_inputs": 1,
+   "n_outputs": 2
+  },
+  {
+   "key": "AudibleInstruments:Blinds",
+   "plugin": "AudibleInstruments",
+   "model": "Blinds",
+   "role": "output",
+   "tags": [
+    "Mixer",
+    "Attenuator",
+    "Hardware clone"
+   ],
+   "description": "Based on Mutable Instruments Blinds",
+   "instances": 8,
+   "manual_url": "https://mutable-instruments.net/modules/blinds/manual/",
+   "n_params": 0,
+   "n_inputs": 0,
+   "n_outputs": 0
+  },
+  {
+   "key": "dbRackModules:SKF",
+   "plugin": "dbRackModules",
+   "model": "SKF",
+   "role": "output",
+   "tags": [
+    "Filter",
+    "Polyphonic"
+   ],
+   "description": "CPU friendly polyphonic stereo sallen key filter",
+   "instances": 8,
+   "manual_url": "",
+   "n_params": 4,
+   "n_inputs": 4,
+   "n_outputs": 2
+  },
+  {
+   "key": "Fundamental:LFO2",
+   "plugin": "Fundamental",
+   "model": "LFO2",
+   "role": "source",
+   "tags": [
+    "LFO",
+    "Polyphonic"
+   ],
+   "description": "Low-frequency wavetable oscillator",
+   "instances": 7,
+   "manual_url": "https://vcvrack.com/Free#LFO2",
+   "n_params": 5,
+   "n_inputs": 4,
+   "n_outputs": 1
+  },
+  {
+   "key": "Bogaudio:Bogaudio-EightOne",
+   "plugin": "Bogaudio",
+   "model": "Bogaudio-EightOne",
+   "role": "output",
+   "tags": [
+    "Switch",
+    "Polyphonic"
+   ],
+   "description": "8-channel demultiplexer & sequential switch",
+   "instances": 7,
+   "manual_url": "https://github.com/bogaudio/BogaudioModules/blob/master/README.md#eightone",
+   "n_params": 3,
+   "n_inputs": 11,
+   "n_outputs": 1
+  },
+  {
+   "key": "Befaco:Mex",
+   "plugin": "Befaco",
+   "model": "Mex",
+   "role": "source",
+   "tags": [
+    "Expander",
+    "Hardware clone"
+   ],
+   "description": "Gate Expander for Befaco Muxlicer",
+   "instances": 7,
+   "manual_url": "https://www.befaco.org/mex/",
+   "n_params": 2,
+   "n_inputs": 7,
+   "n_outputs": 6
+  },
+  {
+   "key": "Befaco:STMix",
+   "plugin": "Befaco",
+   "model": "STMix",
+   "role": "processor",
+   "tags": [
+    "Hardware clone",
+    "Mixer",
+    "Polyphonic"
+   ],
+   "description": "A compact 4 channel stereo mixer with an auxiliary input",
+   "instances": 7,
+   "manual_url": "https://www.befaco.org/stmix/",
+   "n_params": 0,
+   "n_inputs": 2,
+   "n_outputs": 2
+  },
+  {
+   "key": "Bogaudio:Bogaudio-Slew",
+   "plugin": "Bogaudio",
+   "model": "Bogaudio-Slew",
+   "role": "processor",
+   "tags": [
+    "Slew limiter",
+    "Polyphonic"
+   ],
+   "description": "Slew limiter / lag generator / glide",
+   "instances": 7,
+   "manual_url": "https://github.com/bogaudio/BogaudioModules/blob/master/README.md#slew",
+   "n_params": 3,
+   "n_inputs": 3,
+   "n_outputs": 1
+  },
+  {
+   "key": "GrandeModular:SampleDelays",
+   "plugin": "GrandeModular",
+   "model": "SampleDelays",
+   "role": "processor",
+   "tags": [
+    "Delay",
+    "Polyphonic"
+   ],
+   "description": "Provides multiple sample delay options.",
+   "instances": 7,
+   "manual_url": "https://github.com/dbgrande/GrandeModular/#sampledelays-sd",
+   "n_params": 0,
+   "n_inputs": 3,
+   "n_outputs": 6
+  },
+  {
+   "key": "dbRackSequencer:TME",
+   "plugin": "dbRackSequencer",
+   "model": "TME",
+   "role": "processor",
+   "tags": [
+    "Sequencer"
+   ],
+   "description": "Triadex Muse emulator",
+   "instances": 7,
+   "manual_url": "",
+   "n_params": 9,
+   "n_inputs": 11,
+   "n_outputs": 3
+  },
+  {
+   "key": "GrandeModular:PolySplit",
+   "plugin": "GrandeModular",
+   "model": "PolySplit",
+   "role": "processor",
+   "tags": [
+    "Utility",
+    "Polyphonic"
+   ],
+   "description": "Poly-to-poly splitter with visual selection of channel split points.",
+   "instances": 7,
+   "manual_url": "https://github.com/dbgrande/GrandeModular/#polysplit",
+   "n_params": 0,
+   "n_inputs": 1,
+   "n_outputs": 4
+  },
+  {
+   "key": "dbRackModules:GenScale",
+   "plugin": "dbRackModules",
+   "model": "GenScale",
+   "role": "source",
+   "tags": [
+    "Polyphonic"
+   ],
+   "description": "Generates a polyphonic Scale",
+   "instances": 7,
+   "manual_url": "",
+   "n_params": 14,
+   "n_inputs": 1,
+   "n_outputs": 1
+  },
+  {
+   "key": "AudibleInstruments:Elements",
+   "plugin": "AudibleInstruments",
+   "model": "Elements",
+   "role": "output",
+   "tags": [
+    "Physical modeling",
+    "Hardware clone"
+   ],
+   "description": "Based on Mutable Instruments Elements",
+   "instances": 7,
+   "manual_url": "https://mutable-instruments.net/modules/elements/manual/",
+   "n_params": 27,
+   "n_inputs": 16,
+   "n_outputs": 2
+  },
+  {
+   "key": "dbRackModules:Frac",
+   "plugin": "dbRackModules",
+   "model": "Frac",
+   "role": "output",
+   "tags": [
+    "Sequencer"
+   ],
+   "description": "Outputs expansions of integer fractions",
+   "instances": 7,
+   "manual_url": "",
+   "n_params": 6,
+   "n_inputs": 2,
+   "n_outputs": 1
+  },
+  {
+   "key": "dbRackModules:X4",
+   "plugin": "dbRackModules",
+   "model": "X4",
+   "role": "processor",
+   "tags": [
+    "Mixer",
+    "Polyphonic"
+   ],
+   "description": "4x4 Matrix Mixer with modulation",
+   "instances": 7,
+   "manual_url": "",
+   "n_params": 0,
+   "n_inputs": 0,
+   "n_outputs": 0
+  },
+  {
+   "key": "Bogaudio:Bogaudio-Reftone",
+   "plugin": "Bogaudio",
+   "model": "Bogaudio-Reftone",
+   "role": "source",
+   "tags": [
+    "Tuner"
+   ],
+   "description": "Precision pitch CV generator",
+   "instances": 6,
+   "manual_url": "https://github.com/bogaudio/BogaudioModules/blob/master/README.md#reftone",
+   "n_params": 3,
+   "n_inputs": 0,
+   "n_outputs": 2
+  },
+  {
+   "key": "Bogaudio:Bogaudio-Shaper",
+   "plugin": "Bogaudio",
+   "model": "Bogaudio-Shaper",
+   "role": "processor",
+   "tags": [
+    "Envelope generator",
+    "VCA",
+    "Polyphonic"
+   ],
+   "description": "Retro-inspired envelope generator and amplifier",
+   "instances": 6,
+   "manual_url": "https://github.com/bogaudio/BogaudioModules/blob/master/README.md#shaper",
+   "n_params": 4,
+   "n_inputs": 2,
+   "n_outputs": 4
+  },
+  {
+   "key": "Fundamental:8vert",
+   "plugin": "Fundamental",
+   "model": "8vert",
+   "role": "source",
+   "tags": [
+    "Attenuator",
+    "Polyphonic"
+   ],
+   "description": "Attenuverts 8 signals or creates constant voltages",
+   "instances": 6,
+   "manual_url": "https://vcvrack.com/Free#8vert",
+   "n_params": 0,
+   "n_inputs": 0,
+   "n_outputs": 0
+  },
+  {
+   "key": "Befaco:Rampage",
+   "plugin": "Befaco",
+   "model": "Rampage",
+   "role": "processor",
+   "tags": [
+    "Function Generator",
+    "Logic",
+    "Slew Limiter",
+    "Envelope Follower",
+    "Dual",
+    "Hardware clone",
+    "Polyphonic"
+   ],
+   "description": "Dual ramp generator",
+   "instances": 6,
+   "manual_url": "https://www.befaco.org/rampage-2/",
+   "n_params": 11,
+   "n_inputs": 12,
+   "n_outputs": 11
+  },
+  {
+   "key": "dbRackSequencer:SE",
+   "plugin": "dbRackSequencer",
+   "model": "SE",
+   "role": "source",
+   "tags": [
+    "Expander"
+   ],
+   "description": "Expander for Sum",
+   "instances": 6,
+   "manual_url": "",
+   "n_params": 0,
+   "n_inputs": 0,
+   "n_outputs": 1
+  },
+  {
+   "key": "Fundamental:SequentialSwitch2",
+   "plugin": "Fundamental",
+   "model": "SequentialSwitch2",
+   "role": "output",
+   "tags": [
+    "Switch",
+    "Utility",
+    "Polyphonic"
+   ],
+   "description": "Routes one of 4 inputs to 1 output",
+   "instances": 6,
+   "manual_url": "https://vcvrack.com/Free#SequentialSwitch2",
+   "n_params": 1,
+   "n_inputs": 3,
+   "n_outputs": 1
+  },
+  {
+   "key": "dbRackModules:GeneticTerrain",
+   "plugin": "dbRackModules",
+   "model": "GeneticTerrain",
+   "role": "output",
+   "tags": [
+    "Oscillator",
+    "Polyphonic"
+   ],
+   "description": "Genetic Wave Terrain Synthesis",
+   "instances": 6,
+   "manual_url": "",
+   "n_params": 49,
+   "n_inputs": 23,
+   "n_outputs": 4
+  },
+  {
+   "key": "dbRackModules:CLP",
+   "plugin": "dbRackModules",
+   "model": "CLP",
+   "role": "processor",
+   "tags": [
+    "Waveshaper",
+    "Distortion",
+    "Polyphonic"
+   ],
+   "description": "Clipper/Waveshaper",
+   "instances": 6,
+   "manual_url": "",
+   "n_params": 3,
+   "n_inputs": 2,
+   "n_outputs": 2
+  },
+  {
+   "key": "dbRackSequencer:TD4",
+   "plugin": "dbRackSequencer",
+   "model": "TD4",
+   "role": "processor",
+   "tags": [
+    "Sequencer"
+   ],
+   "description": "A building block for 4x4 sequencers",
+   "instances": 6,
+   "manual_url": "",
+   "n_params": 0,
+   "n_inputs": 2,
+   "n_outputs": 3
+  },
+  {
+   "key": "Befaco:EvenVCO",
+   "plugin": "Befaco",
+   "model": "EvenVCO",
+   "role": "processor",
+   "tags": [
+    "VCO",
+    "Hardware clone",
+    "Polyphonic"
+   ],
+   "description": "Even VCO is an oscillator including even-harmonic waveform",
+   "instances": 5,
+   "manual_url": "https://www.befaco.org/even-vco/",
+   "n_params": 3,
+   "n_inputs": 5,
+   "n_outputs": 5
+  },
+  {
+   "key": "Befaco:Muxlicer",
+   "plugin": "Befaco",
+   "model": "Muxlicer",
+   "role": "source",
+   "tags": [
+    "Clock generator",
+    "Hardware clone",
+    "Polyphonic",
+    "Sequencer",
+    "Switch"
+   ],
+   "description": "Muxlicer is a VC adressable sequential switch and sequencer",
+   "instances": 5,
+   "manual_url": "https://github.com/VCVRack/Befaco/blob/v2/docs/Muxlicer.md",
+   "n_params": 2,
+   "n_inputs": 7,
+   "n_outputs": 6
+  },
+  {
+   "key": "Bogaudio:Bogaudio-Offset",
+   "plugin": "Bogaudio",
+   "model": "Bogaudio-Offset",
+   "role": "source",
+   "tags": [
+    "Attenuator",
+    "Polyphonic"
+   ],
+   "description": "CV offset and scaler",
+   "instances": 5,
+   "manual_url": "https://github.com/bogaudio/BogaudioModules/blob/master/README.md#offset",
+   "n_params": 1,
+   "n_inputs": 3,
+   "n_outputs": 1
+  },
+  {
+   "key": "AudibleInstruments:Tides2",
+   "plugin": "AudibleInstruments",
+   "model": "Tides2",
+   "role": "source",
+   "tags": [
+    "LFO",
+    "Oscillator",
+    "Waveshaper",
+    "Function generator",
+    "Hardware clone"
+   ],
+   "description": "Based on Mutable Instruments Tides",
+   "instances": 5,
+   "manual_url": "https://mutable-instruments.net/modules/tides/manual/",
+   "n_params": 10,
+   "n_inputs": 8,
+   "n_outputs": 0
+  },
+  {
+   "key": "Bogaudio:Bogaudio-Stack",
+   "plugin": "Bogaudio",
+   "model": "Bogaudio-Stack",
+   "role": "processor",
+   "tags": [
+    "Tuner",
+    "Polyphonic"
+   ],
+   "description": "Pitch CV transposer",
+   "instances": 5,
+   "manual_url": "https://github.com/bogaudio/BogaudioModules/blob/master/README.md#stack",
+   "n_params": 4,
+   "n_inputs": 2,
+   "n_outputs": 2
+  },
+  {
+   "key": "Befaco:DualAtenuverter",
+   "plugin": "Befaco",
+   "model": "DualAtenuverter",
+   "role": "source",
+   "tags": [
+    "Attenuator",
+    "Dual",
+    "Hardware clone",
+    "Polyphonic"
+   ],
+   "description": "Attenuates, inverts, and applies offset to a signal",
+   "instances": 5,
+   "manual_url": "https://www.befaco.org/dual-atenuverter/",
+   "n_params": 4,
+   "n_inputs": 2,
+   "n_outputs": 2
+  },
+  {
+   "key": "dbRackModules:Osc6",
+   "plugin": "dbRackModules",
+   "model": "Osc6",
+   "role": "processor",
+   "tags": [
+    "Oscillator",
+    "Polyphonic"
+   ],
+   "description": "Komplex Oscillaor using bit logic",
+   "instances": 5,
+   "manual_url": "",
+   "n_params": 13,
+   "n_inputs": 14,
+   "n_outputs": 1
+  },
+  {
+   "key": "dbRackSequencer:HexSeqP2",
+   "plugin": "dbRackSequencer",
+   "model": "HexSeqP2",
+   "role": "processor",
+   "tags": [
+    "Sequencer",
+    "Polyphonic"
+   ],
+   "description": "A 100x16x64 Trigger Sequencer with probability",
+   "instances": 5,
+   "manual_url": "",
+   "n_params": 1,
+   "n_inputs": 1,
+   "n_outputs": 5
+  },
+  {
+   "key": "dbRackSequencer:Klee",
+   "plugin": "dbRackSequencer",
+   "model": "Klee",
+   "role": "source",
+   "tags": [
+    "Sequencer"
+   ],
+   "description": "A Klee like sequencer",
+   "instances": 5,
+   "manual_url": "",
+   "n_params": 5,
+   "n_inputs": 8,
+   "n_outputs": 9
+  },
+  {
+   "key": "dbRackModules:Osc3",
+   "plugin": "dbRackModules",
+   "model": "Osc3",
+   "role": "processor",
+   "tags": [
+    "Oscillator",
+    "Polyphonic"
+   ],
+   "description": "Step/Line segment oscillator with alias suppressing",
+   "instances": 5,
+   "manual_url": "",
+   "n_params": 2,
+   "n_inputs": 3,
+   "n_outputs": 2
+  },
+  {
+   "key": "dbRackSequencer:C42",
+   "plugin": "dbRackSequencer",
+   "model": "C42",
+   "role": "processor",
+   "tags": [
+    "Sequencer",
+    "Polyphonic"
+   ],
+   "description": "An universal Sequencer with up to 16 play heads and cellular automation",
+   "instances": 5,
+   "manual_url": "",
+   "n_params": 6,
+   "n_inputs": 12,
+   "n_outputs": 12
+  },
+  {
+   "key": "dbRackModules:Faders",
+   "plugin": "dbRackModules",
+   "model": "Faders",
+   "role": "processor",
+   "tags": [
+    "Controller",
+    "Polyphonic"
+   ],
+   "description": "Three polyphonic slider banks with modulation and value grids",
+   "instances": 5,
+   "manual_url": "",
+   "n_params": 5,
+   "n_inputs": 6,
+   "n_outputs": 2
+  },
+  {
+   "key": "dbRackModules:DTrig",
+   "plugin": "dbRackModules",
+   "model": "DTrig",
+   "role": "processor",
+   "tags": [
+    "Utility",
+    "Polyphonic"
+   ],
+   "description": "CV change detector",
+   "instances": 5,
+   "manual_url": "",
+   "n_params": 1,
+   "n_inputs": 1,
+   "n_outputs": 1
+  },
+  {
+   "key": "dbRackSequencer:BC",
+   "plugin": "dbRackSequencer",
+   "model": "BC",
+   "role": "processor",
+   "tags": [
+    "Sequencer",
+    "Logic"
+   ],
+   "description": "Binary Counter",
+   "instances": 5,
+   "manual_url": "",
+   "n_params": 0,
+   "n_inputs": 4,
+   "n_outputs": 1
+  },
+  {
+   "key": "dbRackSequencer:VCM8",
+   "plugin": "dbRackSequencer",
+   "model": "VCM8",
+   "role": "output",
+   "tags": [
+    "Mixer",
+    "Polyphonic"
+   ],
+   "description": "8 channel voltage controlled CV mixer",
+   "instances": 5,
+   "manual_url": "",
+   "n_params": 1,
+   "n_inputs": 0,
+   "n_outputs": 1
+  },
+  {
+   "key": "Bogaudio:Bogaudio-Mix8",
+   "plugin": "Bogaudio",
+   "model": "Bogaudio-Mix8",
+   "role": "output",
+   "tags": [
+    "Mixer",
+    "Panning"
+   ],
+   "description": "8-channel mixer and panner",
+   "instances": 4,
+   "manual_url": "https://github.com/bogaudio/BogaudioModules/blob/master/README.md#mix8",
+   "n_params": 26,
+   "n_inputs": 25,
+   "n_outputs": 2
+  },
+  {
+   "key": "AudibleInstruments:Warps",
+   "plugin": "AudibleInstruments",
+   "model": "Warps",
+   "role": "processor",
+   "tags": [
+    "Ring modulator",
+    "Waveshaper",
+    "Hardware clone"
+   ],
+   "description": "Based on Mutable Instruments Warps",
+   "instances": 4,
+   "manual_url": "https://mutable-instruments.net/modules/warps/manual/",
+   "n_params": 4,
+   "n_inputs": 6,
+   "n_outputs": 2
+  },
+  {
+   "key": "AudibleInstruments:Stages",
+   "plugin": "AudibleInstruments",
+   "model": "Stages",
+   "role": "source",
+   "tags": [
+    "Function generator",
+    "Envelope generator",
+    "Hardware clone"
+   ],
+   "description": "Based on Mutable Instruments Stages",
+   "instances": 4,
+   "manual_url": "https://www.mutable-instruments.net/modules/stages/manual/",
+   "n_params": 0,
+   "n_inputs": 0,
+   "n_outputs": 0
+  },
+  {
+   "key": "AudibleInstruments:Branches",
+   "plugin": "AudibleInstruments",
+   "model": "Branches",
+   "role": "processor",
+   "tags": [
+    "Random",
+    "Dual",
+    "Hardware clone",
+    "Polyphonic"
+   ],
+   "description": "Based on Mutable Instruments Branches",
+   "instances": 4,
+   "manual_url": "https://mutable-instruments.net/modules/branches/manual/",
+   "n_params": 0,
+   "n_inputs": 0,
+   "n_outputs": 0
+  },
+  {
+   "key": "Fundamental:Pulses",
+   "plugin": "Fundamental",
+   "model": "Pulses",
+   "role": "source",
+   "tags": [
+    "Switch"
+   ],
+   "description": "Generates up to 10 trigger and gate signals",
+   "instances": 4,
+   "manual_url": "https://vcvrack.com/Free#Pulses",
+   "n_params": 0,
+   "n_inputs": 0,
+   "n_outputs": 0
+  },
+  {
+   "key": "Fundamental:Sum",
+   "plugin": "Fundamental",
+   "model": "Sum",
+   "role": "processor",
+   "tags": [
+    "Polyphonic",
+    "Utility"
+   ],
+   "description": "Sums all channels of a polyphonic cable",
+   "instances": 4,
+   "manual_url": "https://vcvrack.com/Free#Sum",
+   "n_params": 1,
+   "n_inputs": 1,
+   "n_outputs": 1
+  },
+  {
+   "key": "Fundamental:Merge",
+   "plugin": "Fundamental",
+   "model": "Merge",
+   "role": "output",
+   "tags": [
+    "Polyphonic",
+    "Utility"
+   ],
+   "description": "Combines multiple monophonic cables into a polyphonic cable",
+   "instances": 4,
+   "manual_url": "https://vcvrack.com/Free#Merge",
+   "n_params": 0,
+   "n_inputs": 0,
+   "n_outputs": 1
+  },
+  {
+   "key": "SubmarineFree:OG-104",
+   "plugin": "SubmarineFree",
+   "model": "OG-104",
+   "role": "processor",
+   "tags": [
+    "LOGIC",
+    "MULTIPLE"
+   ],
+   "description": "OG-104 OR Gates",
+   "instances": 4,
+   "manual_url": "https://github.com/david-c14/SubmarineFree/blob/main/manual/OG.md",
+   "n_params": 0,
+   "n_inputs": 2,
+   "n_outputs": 0
+  },
+  {
+   "key": "dbRackModules:Osc8",
+   "plugin": "dbRackModules",
+   "model": "Osc8",
+   "role": "processor",
+   "tags": [
+    "Oscillator",
+    "Polyphonic"
+   ],
+   "description": "Two additive oscillators with linear FM through zero and cross FM",
+   "instances": 4,
+   "manual_url": "",
+   "n_params": 0,
+   "n_inputs": 1,
+   "n_outputs": 0
+  },
+  {
+   "key": "dbRackSequencer:MouseSeq",
+   "plugin": "dbRackSequencer",
+   "model": "MouseSeq",
+   "role": "processor",
+   "tags": [
+    "Sequencer"
+   ],
+   "description": "Mouse Sequencer",
+   "instances": 4,
+   "manual_url": "",
+   "n_params": 6,
+   "n_inputs": 9,
+   "n_outputs": 4
+  },
+  {
+   "key": "Stoermelder-P1:CVMapMicro",
+   "plugin": "Stoermelder-P1",
+   "model": "CVMapMicro",
+   "role": "output",
+   "tags": [
+    "Utility",
+    "Controller"
+   ],
+   "description": "Add CV automation to one parameter of any module",
+   "instances": 4,
+   "manual_url": "https://github.com/stoermelder/vcvrack-packone/blob/v2/docs/cvmap/CVMapMicro.md",
+   "n_params": 5,
+   "n_inputs": 4,
+   "n_outputs": 2
+  },
+  {
+   "key": "AudibleInstruments:Ripples",
+   "plugin": "AudibleInstruments",
+   "model": "Ripples",
+   "role": "processor",
+   "tags": [
+    "Filter",
+    "Voltage-controlled amplifier",
+    "Hardware clone",
+    "Polyphonic"
+   ],
+   "description": "Based on Mutable Instruments Ripples",
+   "instances": 4,
+   "manual_url": "https://www.mutable-instruments.net/modules/ripples/manual/",
+   "n_params": 3,
+   "n_inputs": 5,
+   "n_outputs": 4
+  },
+  {
+   "key": "Fundamental:Push",
+   "plugin": "Fundamental",
+   "model": "Push",
+   "role": "source",
+   "tags": [
+    "Utility"
+   ],
+   "description": "Button with gate/trigger outputs and hold switch",
+   "instances": 4,
+   "manual_url": "https://vcvrack.com/Free#Push",
+   "n_params": 0,
+   "n_inputs": 2,
+   "n_outputs": 2
+  },
+  {
+   "key": "SubmarineFree:XG-104",
+   "plugin": "SubmarineFree",
+   "model": "XG-104",
+   "role": "output",
+   "tags": [
+    "LOGIC",
+    "MULTIPLE"
+   ],
+   "description": "XG-104 XOR Gates",
+   "instances": 4,
+   "manual_url": "https://github.com/david-c14/SubmarineFree/blob/main/manual/XG.md",
+   "n_params": 0,
+   "n_inputs": 2,
+   "n_outputs": 0
+  },
+  {
+   "key": "Bogaudio:Bogaudio-CVD",
+   "plugin": "Bogaudio",
+   "model": "Bogaudio-CVD",
+   "role": "processor",
+   "tags": [
+    "Delay",
+    "Polyphonic"
+   ],
+   "description": "Simple delay designed for triggers and other CVs",
+   "instances": 4,
+   "manual_url": "https://github.com/bogaudio/BogaudioModules/blob/master/README.md#cvd",
+   "n_params": 3,
+   "n_inputs": 3,
+   "n_outputs": 1
+  },
+  {
+   "key": "Fundamental:Viz",
+   "plugin": "Fundamental",
+   "model": "Viz",
+   "role": "output",
+   "tags": [
+    "Polyphonic",
+    "Visual"
+   ],
+   "description": "Visualizes all channels of a polyphonic cable",
+   "instances": 4,
+   "manual_url": "https://vcvrack.com/Free#Viz",
+   "n_params": 0,
+   "n_inputs": 1,
+   "n_outputs": 0
+  },
+  {
+   "key": "dbRackSequencer:TheMatrix",
+   "plugin": "dbRackSequencer",
+   "model": "TheMatrix",
+   "role": "processor",
+   "tags": [
+    "Sequencer",
+    "Polyphonic"
+   ],
+   "description": "A 32x32 Grid ASCII Sequencer with up to 16 play heads",
+   "instances": 4,
+   "manual_url": "",
+   "n_params": 6,
+   "n_inputs": 6,
+   "n_outputs": 3
+  },
+  {
+   "key": "Befaco:Mixer",
+   "plugin": "Befaco",
+   "model": "Mixer",
+   "role": "output",
+   "tags": [
+    "Mixer",
+    "Hardware clone",
+    "Polyphonic"
+   ],
+   "description": "Four-channel mixer for audio or CV",
+   "instances": 4,
+   "manual_url": "https://www.befaco.org/mixer-2/",
+   "n_params": 4,
+   "n_inputs": 4,
+   "n_outputs": 2
+  },
+  {
+   "key": "Bogaudio:Bogaudio-VCO",
+   "plugin": "Bogaudio",
+   "model": "Bogaudio-VCO",
+   "role": "source",
+   "tags": [
+    "Oscillator",
+    "Polyphonic"
+   ],
+   "description": "Oscillator",
+   "instances": 3,
+   "manual_url": "https://github.com/bogaudio/BogaudioModules/blob/master/README.md#vco",
+   "n_params": 4,
+   "n_inputs": 4,
+   "n_outputs": 4
+  },
+  {
+   "key": "Bogaudio:Bogaudio-ShaperPlus",
+   "plugin": "Bogaudio",
+   "model": "Bogaudio-ShaperPlus",
+   "role": "processor",
+   "tags": [
+    "Envelope generator",
+    "VCA",
+    "Polyphonic"
+   ],
+   "description": "Retro-inspired envelope generator and amplifier with additional CV",
+   "instances": 3,
+   "manual_url": "https://github.com/bogaudio/BogaudioModules/blob/master/README.md#shaperplus",
+   "n_params": 4,
+   "n_inputs": 8,
+   "n_outputs": 8
+  },
+  {
+   "key": "Bogaudio:Bogaudio-EightFO",
+   "plugin": "Bogaudio",
+   "model": "Bogaudio-EightFO",
+   "role": "source",
+   "tags": [
+    "LFO",
+    "Random",
+    "Polyphonic"
+   ],
+   "description": "LFO with outputs at 8 different phases",
+   "instances": 3,
+   "manual_url": "https://github.com/bogaudio/BogaudioModules/blob/master/README.md#eightfo",
+   "n_params": 12,
+   "n_inputs": 14,
+   "n_outputs": 8
+  },
+  {
+   "key": "Bogaudio:Bogaudio-DGate",
+   "plugin": "Bogaudio",
+   "model": "Bogaudio-DGate",
+   "role": "source",
+   "tags": [
+    "Polyphonic"
+   ],
+   "description": "Trigger-to-gate converter with delay",
+   "instances": 3,
+   "manual_url": "https://github.com/bogaudio/BogaudioModules/blob/master/README.md#dgate",
+   "n_params": 1,
+   "n_inputs": 1,
+   "n_outputs": 2
+  },
+  {
+   "key": "Bogaudio:Bogaudio-LFO",
+   "plugin": "Bogaudio",
+   "model": "Bogaudio-LFO",
+   "role": "source",
+   "tags": [
+    "LFO",
+    "Random",
+    "Polyphonic"
+   ],
+   "description": "Low frequency oscillator",
+   "instances": 3,
+   "manual_url": "https://github.com/bogaudio/BogaudioModules/blob/master/README.md#lfo",
+   "n_params": 4,
+   "n_inputs": 6,
+   "n_outputs": 6
+  },
+  {
+   "key": "Fundamental:Unity",
+   "plugin": "Fundamental",
+   "model": "Unity",
+   "role": "processor",
+   "tags": [
+    "Mixer",
+    "Utility",
+    "Dual"
+   ],
+   "description": "Mixes or averages signals with unity gain",
+   "instances": 3,
+   "manual_url": "",
+   "n_params": 2,
+   "n_inputs": 0,
+   "n_outputs": 4
+  },
+  {
+   "key": "ImpromptuModular:Clocked-Clkd",
+   "plugin": "ImpromptuModular",
+   "model": "Clocked-Clkd",
+   "role": "source",
+   "tags": [
+    "Clock generator"
+   ],
+   "description": "Chainable master clock",
+   "instances": 3,
+   "manual_url": "https://marcboule.github.io/ImpromptuModular/#clocked",
+   "n_params": 6,
+   "n_inputs": 3,
+   "n_outputs": 4
+  },
+  {
+   "key": "JW-Modules:Quantizer",
+   "plugin": "JW-Modules",
+   "model": "Quantizer",
+   "role": "processor",
+   "tags": [
+    "Quantizer",
+    "Poly"
+   ],
+   "description": "",
+   "instances": 3,
+   "manual_url": "https://github.com/jeremywen/JW-Modules#quantizer",
+   "n_params": 3,
+   "n_inputs": 4,
+   "n_outputs": 1
+  },
+  {
+   "key": "Befaco:NoisePlethora",
+   "plugin": "Befaco",
+   "model": "NoisePlethora",
+   "role": "processor",
+   "tags": [
+    "Dual",
+    "Filter",
+    "Hardware clone",
+    "Noise"
+   ],
+   "description": "Noise Plethora is a multitimbral noise monster",
+   "instances": 3,
+   "manual_url": "https://www.befaco.org/noise-plethora/",
+   "n_params": 19,
+   "n_inputs": 10,
+   "n_outputs": 5
+  },
+  {
+   "key": "Fundamental:Process",
+   "plugin": "Fundamental",
+   "model": "Process",
+   "role": "source",
+   "tags": [
+    "Sample and hold",
+    "Slew limiter",
+    "Polyphonic"
+   ],
+   "description": "CV processor",
+   "instances": 3,
+   "manual_url": "https://vcvrack.com/Free#Process",
+   "n_params": 0,
+   "n_inputs": 3,
+   "n_outputs": 6
+  },
+  {
+   "key": "MindMeldModular:MixMasterJr",
+   "plugin": "MindMeldModular",
+   "model": "MixMasterJr",
+   "role": "processor",
+   "tags": [
+    "Mixer"
+   ],
+   "description": "8-track stereo mixer with 2 group busses",
+   "instances": 3,
+   "manual_url": "https://github.com/MarcBoule/MindMeldModular/tree/master/doc/MindMeld-MixMaster-Manual-V1_1_4.pdf",
+   "n_params": 4,
+   "n_inputs": 0,
+   "n_outputs": 0
+  },
+  {
+   "key": "Fundamental:Mult",
+   "plugin": "Fundamental",
+   "model": "Mult",
+   "role": "source",
+   "tags": [
+    "Multiple",
+    "Utility",
+    "Polyphonic"
+   ],
+   "description": "Copies a signal to 8 outputs",
+   "instances": 3,
+   "manual_url": "https://vcvrack.com/Free#Mult",
+   "n_params": 0,
+   "n_inputs": 1,
+   "n_outputs": 0
+  },
+  {
+   "key": "dbRackModules:PHSR2",
+   "plugin": "dbRackModules",
+   "model": "PHSR2",
+   "role": "processor",
+   "tags": [
+    "Oscillator",
+    "Polyphonic"
+   ],
+   "description": "Advanced Phasor with Line Segments and FM",
+   "instances": 3,
+   "manual_url": "",
+   "n_params": 3,
+   "n_inputs": 3,
+   "n_outputs": 1
+  },
+  {
+   "key": "dbRackModules:LWF",
+   "plugin": "dbRackModules",
+   "model": "LWF",
+   "role": "output",
+   "tags": [
+    "Waveshaper",
+    "Polyphonic"
+   ],
+   "description": "Lockhard Wavefolder",
+   "instances": 3,
+   "manual_url": "",
+   "n_params": 10,
+   "n_inputs": 6,
+   "n_outputs": 1
+  },
+  {
+   "key": "MindMeldModular:MasterChannel",
+   "plugin": "MindMeldModular",
+   "model": "MasterChannel",
+   "role": "source",
+   "tags": [
+    "Controller"
+   ],
+   "description": "Master channel strip (for use with PatchMaster or standalone)",
+   "instances": 3,
+   "manual_url": "https://github.com/MarcBoule/MindMeldModular/#patchmaster",
+   "n_params": 4,
+   "n_inputs": 2,
+   "n_outputs": 2
+  },
+  {
+   "key": "dbRackModules:PRB",
+   "plugin": "dbRackModules",
+   "model": "PRB",
+   "role": "processor",
+   "tags": [
+    "Oscillator",
+    "Polyphonic"
+   ],
+   "description": "Parabolic Oscillator",
+   "instances": 3,
+   "manual_url": "",
+   "n_params": 4,
+   "n_inputs": 4,
+   "n_outputs": 1
+  },
+  {
+   "key": "MindMeldModular:BassMaster",
+   "plugin": "MindMeldModular",
+   "model": "BassMaster",
+   "role": "source",
+   "tags": [
+    "Utility",
+    "Equalizer"
+   ],
+   "description": "Dual band spatialiser for high spread and bass mono with VU meter",
+   "instances": 3,
+   "manual_url": "",
+   "n_params": 11,
+   "n_inputs": 4,
+   "n_outputs": 2
+  },
+  {
+   "key": "dbRackModules:Osc9",
+   "plugin": "dbRackModules",
+   "model": "Osc9",
+   "role": "output",
+   "tags": [
+    "Oscillator",
+    "Polyphonic"
+   ],
+   "description": "Waveshaping Oscillaor",
+   "instances": 3,
+   "manual_url": "",
+   "n_params": 6,
+   "n_inputs": 4,
+   "n_outputs": 1
+  },
+  {
+   "key": "Bogaudio:Bogaudio-PolyMult",
+   "plugin": "Bogaudio",
+   "model": "Bogaudio-PolyMult",
+   "role": "source",
+   "tags": [
+    "Polyphonic"
+   ],
+   "description": "Monophonic-to-polyphonic multiple",
+   "instances": 3,
+   "manual_url": "https://github.com/bogaudio/BogaudioModules/blob/master/README.md#polymult",
+   "n_params": 1,
+   "n_inputs": 2,
+   "n_outputs": 4
+  },
+  {
+   "key": "AudibleInstruments:Streams",
+   "plugin": "AudibleInstruments",
+   "model": "Streams",
+   "role": "processor",
+   "tags": [
+    "Dynamics",
+    "Low-pass gate",
+    "Polyphonic"
+   ],
+   "description": "Based on Mutable Instruments Streams",
+   "instances": 3,
+   "manual_url": "",
+   "n_params": 8,
+   "n_inputs": 6,
+   "n_outputs": 2
+  },
+  {
+   "key": "Venom:MixSend",
+   "plugin": "Venom",
+   "model": "MixSend",
+   "role": "processor",
+   "tags": [
+    "Attenuator",
+    "Expander",
+    "Mixer",
+    "Polyphonic",
+    "Utility"
+   ],
+   "description": "Add aux send/return to any of the Mix modules",
+   "instances": 3,
+   "manual_url": "https://github.com/DaveBenham/VenomModules/blob/main/README.md#mix-aux-send-expander",
+   "n_params": 1,
+   "n_inputs": 2,
+   "n_outputs": 2
+  },
+  {
+   "key": "dbRackModules:OscA1",
+   "plugin": "dbRackModules",
+   "model": "OscA1",
+   "role": "output",
+   "tags": [
+    "Oscillator",
+    "Polyphonic"
+   ],
+   "description": "Additive Oscillator with up to 256 partials and comb filter",
+   "instances": 3,
+   "manual_url": "",
+   "n_params": 24,
+   "n_inputs": 13,
+   "n_outputs": 1
+  },
+  {
+   "key": "dbRackSequencer:CDiv",
+   "plugin": "dbRackSequencer",
+   "model": "CDiv",
+   "role": "processor",
+   "tags": [
+    "Clock modulator"
+   ],
+   "description": "Clock divider",
+   "instances": 3,
+   "manual_url": "",
+   "n_params": 0,
+   "n_inputs": 2,
+   "n_outputs": 0
+  },
+  {
+   "key": "AS:BPMClock",
+   "plugin": "AS",
+   "model": "BPMClock",
+   "role": "source",
+   "tags": [
+    "Clock"
+   ],
+   "description": "BPM Clock",
+   "instances": 3,
+   "manual_url": "",
+   "n_params": 6,
+   "n_inputs": 2,
+   "n_outputs": 6
+  },
+  {
+   "key": "AudibleInstruments:Veils",
+   "plugin": "AudibleInstruments",
+   "model": "Veils",
+   "role": "output",
+   "tags": [
+    "Mixer",
+    "Hardware clone"
+   ],
+   "description": "Based on Mutable Instruments Veils",
+   "instances": 2,
+   "manual_url": "https://www.mutable-instruments.net/modules/veils/manual/",
+   "n_params": 0,
+   "n_inputs": 0,
+   "n_outputs": 0
+  },
+  {
+   "key": "cf:MASTER",
+   "plugin": "cf",
+   "model": "MASTER",
+   "role": "processor",
+   "tags": [
+    "Mixer"
+   ],
+   "description": "Modular mixer Master",
+   "instances": 2,
+   "manual_url": "https://github.com/cfoulc/cf",
+   "n_params": 1,
+   "n_inputs": 2,
+   "n_outputs": 4
+  },
+  {
+   "key": "Fundamental:MidSide",
+   "plugin": "Fundamental",
+   "model": "MidSide",
+   "role": "processor",
+   "tags": [
+    "Utility",
+    "Polyphonic"
+   ],
+   "description": "Encodes/decodes between mid/side and left/right stereo signals",
+   "instances": 2,
+   "manual_url": "https://vcvrack.com/Free#MidSide",
+   "n_params": 2,
+   "n_inputs": 6,
+   "n_outputs": 4
+  },
+  {
+   "key": "Fundamental:Split",
+   "plugin": "Fundamental",
+   "model": "Split",
+   "role": "source",
+   "tags": [
+    "Polyphonic",
+    "Utility"
+   ],
+   "description": "Splits a polyphonic cable into multiple monophonic cables",
+   "instances": 2,
+   "manual_url": "https://vcvrack.com/Free#Split",
+   "n_params": 0,
+   "n_inputs": 1,
+   "n_outputs": 0
+  },
+  {
+   "key": "ImpromptuModular:Clocked",
+   "plugin": "ImpromptuModular",
+   "model": "Clocked",
+   "role": "source",
+   "tags": [
+    "Clock generator"
+   ],
+   "description": "Chainable master clock with swing, clock delay and pulse width",
+   "instances": 2,
+   "manual_url": "https://marcboule.github.io/ImpromptuModular/#clocked",
+   "n_params": 6,
+   "n_inputs": 3,
+   "n_outputs": 4
+  },
+  {
+   "key": "Bogaudio:Bogaudio-VCF",
+   "plugin": "Bogaudio",
+   "model": "Bogaudio-VCF",
+   "role": "output",
+   "tags": [
+    "Filter",
+    "Polyphonic"
+   ],
+   "description": "Multimode filter",
+   "instances": 2,
+   "manual_url": "https://github.com/bogaudio/BogaudioModules/blob/master/README.md#vcf",
+   "n_params": 4,
+   "n_inputs": 6,
+   "n_outputs": 1
+  },
+  {
+   "key": "Bogaudio:Bogaudio-EQ",
+   "plugin": "Bogaudio",
+   "model": "Bogaudio-EQ",
+   "role": "processor",
+   "tags": [
+    "Equalizer",
+    "Polyphonic"
+   ],
+   "description": "3-band equalizer",
+   "instances": 2,
+   "manual_url": "https://github.com/bogaudio/BogaudioModules/blob/master/README.md#eq",
+   "n_params": 0,
+   "n_inputs": 1,
+   "n_outputs": 1
+  },
+  {
+   "key": "Bogaudio:Bogaudio-LVCF",
+   "plugin": "Bogaudio",
+   "model": "Bogaudio-LVCF",
+   "role": "processor",
+   "tags": [
+    "Filter",
+    "Polyphonic"
+   ],
+   "description": "Multimode filter",
+   "instances": 2,
+   "manual_url": "https://github.com/bogaudio/BogaudioModules/blob/master/README.md#lvcf",
+   "n_params": 3,
+   "n_inputs": 2,
+   "n_outputs": 1
+  },
+  {
+   "key": "Befaco:ABC",
+   "plugin": "Befaco",
+   "model": "ABC",
+   "role": "processor",
+   "tags": [
+    "Ring Modulator",
+    "Attenuator",
+    "Dual",
+    "Hardware clone",
+    "Polyphonic"
+   ],
+   "description": "Dual four-quadrant multiplier with VC offset",
+   "instances": 2,
+   "manual_url": "https://www.befaco.org/abc/",
+   "n_params": 4,
+   "n_inputs": 6,
+   "n_outputs": 2
+  },
+  {
+   "key": "ML_modules:Quantum",
+   "plugin": "ML_modules",
+   "model": "Quantum",
+   "role": "source",
+   "tags": [
+    "Quantizer",
+    "Polyphonic"
+   ],
+   "description": "Quantizer with selectable notes",
+   "instances": 2,
+   "manual_url": "https://github.com/martin-lueders/ML_modules/wiki/Quantizers#quantum",
+   "n_params": 0,
+   "n_inputs": 5,
+   "n_outputs": 3
+  },
+  {
+   "key": "CountModula:Fade",
+   "plugin": "CountModula",
+   "model": "Fade",
+   "role": "source",
+   "tags": [
+    "Controller",
+    "Polyphonic"
+   ],
+   "description": "Automated fade in/out with integrated start/stop control for the VCV Record module",
+   "instances": 2,
+   "manual_url": "",
+   "n_params": 4,
+   "n_inputs": 3,
+   "n_outputs": 4
+  },
+  {
+   "key": "Fundamental:Fade",
+   "plugin": "Fundamental",
+   "model": "Fade",
+   "role": "output",
+   "tags": [
+    "Panning",
+    "Voltage-controlled amplifier",
+    "Utility",
+    "Polyphonic"
+   ],
+   "description": "Crossfades audio or CV",
+   "instances": 2,
+   "manual_url": "https://vcvrack.com/Free#Fade",
+   "n_params": 2,
+   "n_inputs": 3,
+   "n_outputs": 2
+  },
+  {
+   "key": "Befaco:Percall",
+   "plugin": "Befaco",
+   "model": "Percall",
+   "role": "processor",
+   "tags": [
+    "Envelope generator",
+    "Mixer",
+    "Polyphonic",
+    "Hardware clone",
+    "Quad"
+   ],
+   "description": "Percussive Envelope Generator",
+   "instances": 2,
+   "manual_url": "http://www.befaco.org/percall/",
+   "n_params": 0,
+   "n_inputs": 0,
+   "n_outputs": 0
+  },
+  {
+   "key": "Fundamental:Gates",
+   "plugin": "Fundamental",
+   "model": "Gates",
+   "role": "processor",
+   "tags": [
+    "Polyphonic"
+   ],
+   "description": "Gate processor",
+   "instances": 2,
+   "manual_url": "https://vcvrack.com/Free#Gates",
+   "n_params": 1,
+   "n_inputs": 3,
+   "n_outputs": 6
+  },
+  {
+   "key": "Befaco:PonyVCO",
+   "plugin": "Befaco",
+   "model": "PonyVCO",
+   "role": "processor",
+   "tags": [
+    "Hardware clone",
+    "Low-frequency oscillator",
+    "Oscillator",
+    "Polyphonic",
+    "Waveshaper"
+   ],
+   "description": "Pony VCO is a compact Thru-Zero (TZFM) oscillator with wavefolder and VCA",
+   "instances": 2,
+   "manual_url": "https://www.befaco.org/pony-vco/",
+   "n_params": 5,
+   "n_inputs": 5,
+   "n_outputs": 1
+  },
+  {
+   "key": "MindMeldModular:ShapeMaster",
+   "plugin": "MindMeldModular",
+   "model": "ShapeMaster",
+   "role": "source",
+   "tags": [
+    "Envelope generator",
+    "LFO",
+    "Sequencer"
+   ],
+   "description": "Multi-Stage Envelope Generator (MSEG) / Complex LFO",
+   "instances": 2,
+   "manual_url": "https://github.com/MarcBoule/MindMeldModular/tree/master/doc/MindMeld-ShapeMaster-Manual-V1_0.pdf",
+   "n_params": 3,
+   "n_inputs": 4,
+   "n_outputs": 0
+  },
+  {
+   "key": "dbRackModules:CWS",
+   "plugin": "dbRackModules",
+   "model": "CWS",
+   "role": "output",
+   "tags": [
+    "Polyphonic",
+    "Waveshaper"
+   ],
+   "description": "Chebyshev Waveshaper",
+   "instances": 2,
+   "manual_url": "",
+   "n_params": 2,
+   "n_inputs": 3,
+   "n_outputs": 1
+  },
+  {
+   "key": "dbRackModules:SWF",
+   "plugin": "dbRackModules",
+   "model": "SWF",
+   "role": "output",
+   "tags": [
+    "Waveshaper",
+    "Polyphonic"
+   ],
+   "description": "Sharp Wavefolder",
+   "instances": 2,
+   "manual_url": "",
+   "n_params": 4,
+   "n_inputs": 4,
+   "n_outputs": 2
+  },
+  {
+   "key": "Fundamental:Compare",
+   "plugin": "Fundamental",
+   "model": "Compare",
+   "role": "processor",
+   "tags": [
+    "Utility",
+    "Polyphonic"
+   ],
+   "description": "Compares two voltages",
+   "instances": 2,
+   "manual_url": "https://vcvrack.com/Free#Compare",
+   "n_params": 1,
+   "n_inputs": 2,
+   "n_outputs": 8
+  },
+  {
+   "key": "dbRackModules:USVF",
+   "plugin": "dbRackModules",
+   "model": "USVF",
+   "role": "processor",
+   "tags": [
+    "Filter",
+    "Polyphonic"
+   ],
+   "description": "CPU friendly polyphonic unstable state variable filter with overdrive",
+   "instances": 2,
+   "manual_url": "",
+   "n_params": 6,
+   "n_inputs": 4,
+   "n_outputs": 3
+  },
+  {
+   "key": "dbRackSequencer:C42E",
+   "plugin": "dbRackSequencer",
+   "model": "C42E",
+   "role": "utility",
+   "tags": [
+    "Expander"
+   ],
+   "description": "C42 Expander",
+   "instances": 2,
+   "manual_url": "",
+   "n_params": 0,
+   "n_inputs": 0,
+   "n_outputs": 10
+  },
+  {
+   "key": "dbRackSequencer:Uno",
+   "plugin": "dbRackSequencer",
+   "model": "Uno",
+   "role": "processor",
+   "tags": [
+    "Sequencer"
+   ],
+   "description": "A step sequencer with random skip function",
+   "instances": 2,
+   "manual_url": "",
+   "n_params": 1,
+   "n_inputs": 6,
+   "n_outputs": 3
+  },
+  {
+   "key": "Core:MIDICCToCVInterface",
+   "plugin": "Core",
+   "model": "MIDICCToCVInterface",
+   "role": "source",
+   "tags": [
+    "External",
+    "MIDI"
+   ],
+   "description": "Converts MIDI CC from an external device to CV",
+   "instances": 2,
+   "manual_url": "https://vcvrack.com/manual/Core#MIDI-CC",
+   "n_params": 0,
+   "n_inputs": 0,
+   "n_outputs": 0
+  },
+  {
+   "key": "Venom:VCAMix4Stereo",
+   "plugin": "Venom",
+   "model": "VCAMix4Stereo",
+   "role": "output",
+   "tags": [
+    "Attenuator",
+    "Mixer",
+    "Polyphonic",
+    "Ring modulator",
+    "Utility",
+    "Voltage-controlled amplifier"
+   ],
+   "description": "Stereo compact audio or CV VCA, mixer, attenuator, inverter, amplifier, and/or offset",
+   "instances": 2,
+   "manual_url": "https://github.com/DaveBenham/VenomModules/blob/main/README.md#vca-mix-4-stereo",
+   "n_params": 1,
+   "n_inputs": 2,
+   "n_outputs": 2
+  },
+  {
+   "key": "dbRackSequencer:SEQ22",
+   "plugin": "dbRackSequencer",
+   "model": "SEQ22",
+   "role": "processor",
+   "tags": [
+    "Sequencer",
+    "Random"
+   ],
+   "description": "Stochastic Sequencer",
+   "instances": 2,
+   "manual_url": "",
+   "n_params": 2,
+   "n_inputs": 6,
+   "n_outputs": 3
+  },
+  {
+   "key": "dbRackSequencer:ASEQ",
+   "plugin": "dbRackSequencer",
+   "model": "ASEQ",
+   "role": "processor",
+   "tags": [
+    "Sequencer"
+   ],
+   "description": "A sequencer with fine grained random variations",
+   "instances": 2,
+   "manual_url": "",
+   "n_params": 7,
+   "n_inputs": 6,
+   "n_outputs": 2
+  },
+  {
+   "key": "GrandeModular:Merge8",
+   "plugin": "GrandeModular",
+   "model": "Merge8",
+   "role": "output",
+   "tags": [
+    "Utility",
+    "Polyphonic"
+   ],
+   "description": "8-channel polyphonic merge.",
+   "instances": 2,
+   "manual_url": "https://github.com/dbgrande/GrandeModular/#merge8",
+   "n_params": 0,
+   "n_inputs": 8,
+   "n_outputs": 1
+  },
+  {
+   "key": "dbRackModules:Osc1",
+   "plugin": "dbRackModules",
+   "model": "Osc1",
+   "role": "output",
+   "tags": [
+    "Oscillator",
+    "Polyphonic"
+   ],
+   "description": "Line segement oscillator with alias suppressing ",
+   "instances": 2,
+   "manual_url": "",
+   "n_params": 3,
+   "n_inputs": 3,
+   "n_outputs": 2
+  },
+  {
+   "key": "Venom:Push5",
+   "plugin": "Venom",
+   "model": "Push5",
+   "role": "source",
+   "tags": [
+    "Controller",
+    "Polyphonic",
+    "Utility"
+   ],
+   "description": "5 configurable push buttons",
+   "instances": 2,
+   "manual_url": "https://github.com/DaveBenham/VenomModules/blob/main/README.md#push-5",
+   "n_params": 0,
+   "n_inputs": 0,
+   "n_outputs": 0
+  },
+  {
+   "key": "dbRackModules:X16",
+   "plugin": "dbRackModules",
+   "model": "X16",
+   "role": "output",
+   "tags": [
+    "Mixer"
+   ],
+   "description": "Matrix Mixer 16x16 with modulation",
+   "instances": 2,
+   "manual_url": "",
+   "n_params": 0,
+   "n_inputs": 0,
+   "n_outputs": 0
+  },
+  {
+   "key": "Bogaudio:Bogaudio-Switch81",
+   "plugin": "Bogaudio",
+   "model": "Bogaudio-Switch81",
+   "role": "output",
+   "tags": [
+    "Mixer",
+    "Switch",
+    "Polyphonic"
+   ],
+   "description": "8-channel mixer",
+   "instances": 2,
+   "manual_url": "https://github.com/bogaudio/BogaudioModules/blob/master/README.md#switch81",
+   "n_params": 0,
+   "n_inputs": 8,
+   "n_outputs": 1
+  },
+  {
+   "key": "dbRackSequencer:AD",
+   "plugin": "dbRackSequencer",
+   "model": "AD",
+   "role": "source",
+   "tags": [
+    "Sequencer",
+    "Logic"
+   ],
+   "description": "Analog to 8 Bit Converter",
+   "instances": 2,
+   "manual_url": "",
+   "n_params": 0,
+   "n_inputs": 2,
+   "n_outputs": 1
+  },
+  {
+   "key": "JW-Modules:Arrange",
+   "plugin": "JW-Modules",
+   "model": "Arrange",
+   "role": "processor",
+   "tags": [
+    "Sequencer",
+    "Utility",
+    "Switch",
+    "Poly"
+   ],
+   "description": "",
+   "instances": 2,
+   "manual_url": "https://github.com/jeremywen/JW-Modules",
+   "n_params": 8,
+   "n_inputs": 8,
+   "n_outputs": 3
+  },
+  {
+   "key": "dbRackSequencer:PMKV",
+   "plugin": "dbRackSequencer",
+   "model": "PMKV",
+   "role": "output",
+   "tags": [
+    "Sequencer"
+   ],
+   "description": "Markov Chain for address CV",
+   "instances": 2,
+   "manual_url": "",
+   "n_params": 2,
+   "n_inputs": 3,
+   "n_outputs": 4
+  },
+  {
+   "key": "dbRackSequencer:MTD4",
+   "plugin": "dbRackSequencer",
+   "model": "MTD4",
+   "role": "processor",
+   "tags": [
+    "Sequencer"
+   ],
+   "description": "Mini TD4",
+   "instances": 2,
+   "manual_url": "",
+   "n_params": 0,
+   "n_inputs": 2,
+   "n_outputs": 2
+  },
+  {
+   "key": "dbRackSequencer:PXY",
+   "plugin": "dbRackSequencer",
+   "model": "PXY",
+   "role": "output",
+   "tags": [
+    "Sequencer"
+   ],
+   "description": "2D Cartesian Sequencer",
+   "instances": 2,
+   "manual_url": "",
+   "n_params": 5,
+   "n_inputs": 6,
+   "n_outputs": 3
+  },
+  {
+   "key": "dbRackModules:DRM",
+   "plugin": "dbRackModules",
+   "model": "DRM",
+   "role": "output",
+   "tags": [
+    "Ring modulator",
+    "Polyphonic"
+   ],
+   "description": "Diode Ring Modulator",
+   "instances": 2,
+   "manual_url": "",
+   "n_params": 12,
+   "n_inputs": 6,
+   "n_outputs": 5
+  },
+  {
+   "key": "AS:SEQ16",
+   "plugin": "AS",
+   "model": "SEQ16",
+   "role": "processor",
+   "tags": [
+    "Sequencer"
+   ],
+   "description": "3-channel 16-step sequencer with step editor",
+   "instances": 2,
+   "manual_url": "",
+   "n_params": 7,
+   "n_inputs": 4,
+   "n_outputs": 4
+  },
+  {
+   "key": "AudibleInstruments:Frames",
+   "plugin": "AudibleInstruments",
+   "model": "Frames",
+   "role": "source",
+   "tags": [
+    "Oscillator",
+    "Mixer",
+    "Attenuator",
+    "LFO",
+    "Hardware clone"
+   ],
+   "description": "Based on Mutable Instruments Frames",
+   "instances": 1,
+   "manual_url": "https://www.mutable-instruments.net/modules/frames/manual/",
+   "n_params": 7,
+   "n_inputs": 6,
+   "n_outputs": 6
+  },
+  {
+   "key": "Bogaudio:Bogaudio-Analyzer",
+   "plugin": "Bogaudio",
+   "model": "Bogaudio-Analyzer",
+   "role": "",
+   "tags": [
+    "Visual"
+   ],
+   "description": "4-channel spectrum analyzer",
+   "instances": 1,
+   "manual_url": "https://github.com/bogaudio/BogaudioModules/blob/master/README.md#analyzer",
+   "n_params": 4,
+   "n_inputs": 4,
+   "n_outputs": 4
+  },
+  {
+   "key": "AS:BPMCalc",
+   "plugin": "AS",
+   "model": "BPMCalc",
+   "role": "utility",
+   "tags": [
+    "Utility"
+   ],
+   "description": "BPM to delay/hz calculator helper",
+   "instances": 1,
+   "manual_url": "",
+   "n_params": 1,
+   "n_inputs": 1,
+   "n_outputs": 16
+  },
+  {
+   "key": "Bogaudio:Bogaudio-AddrSeq",
+   "plugin": "Bogaudio",
+   "model": "Bogaudio-AddrSeq",
+   "role": "utility",
+   "tags": [
+    "Sequencer",
+    "Polyphonic"
+   ],
+   "description": "Voltage-addressable 8-step sequencer",
+   "instances": 1,
+   "manual_url": "https://github.com/bogaudio/BogaudioModules/blob/master/README.md#addrseq",
+   "n_params": 1,
+   "n_inputs": 3,
+   "n_outputs": 1
+  },
+  {
+   "key": "Bogaudio:Bogaudio-Walk2",
+   "plugin": "Bogaudio",
+   "model": "Bogaudio-Walk2",
+   "role": "source",
+   "tags": [
+    "Random",
+    "Sample and hold",
+    "Controller"
+   ],
+   "description": "2D random-walk and X/Y controller",
+   "instances": 1,
+   "manual_url": "https://github.com/bogaudio/BogaudioModules/blob/master/README.md#walk2",
+   "n_params": 7,
+   "n_inputs": 7,
+   "n_outputs": 3
+  },
+  {
+   "key": "Bogaudio:Bogaudio-Pressor",
+   "plugin": "Bogaudio",
+   "model": "Bogaudio-Pressor",
+   "role": "processor",
+   "tags": [
+    "Compressor",
+    "Dynamics",
+    "Polyphonic"
+   ],
+   "description": "Stereo compressor and noise gate",
+   "instances": 1,
+   "manual_url": "https://github.com/bogaudio/BogaudioModules/blob/master/README.md#pressor",
+   "n_params": 6,
+   "n_inputs": 9,
+   "n_outputs": 3
+  },
+  {
+   "key": "Bogaudio:Bogaudio-Additator",
+   "plugin": "Bogaudio",
+   "model": "Bogaudio-Additator",
+   "role": "output",
+   "tags": [
+    "Oscillator",
+    "Polyphonic"
+   ],
+   "description": "Additive oscillator",
+   "instances": 1,
+   "manual_url": "https://github.com/bogaudio/BogaudioModules/blob/master/README.md#additator",
+   "n_params": 10,
+   "n_inputs": 10,
+   "n_outputs": 1
+  },
+  {
+   "key": "Fundamental:Mutes",
+   "plugin": "Fundamental",
+   "model": "Mutes",
+   "role": "processor",
+   "tags": [
+    "Switch",
+    "Polyphonic"
+   ],
+   "description": "Toggles up to 10 signals",
+   "instances": 1,
+   "manual_url": "https://vcvrack.com/Free#Mutes",
+   "n_params": 0,
+   "n_inputs": 0,
+   "n_outputs": 0
+  },
+  {
+   "key": "SubmarineFree:FF-206",
+   "plugin": "SubmarineFree",
+   "model": "FF-206",
+   "role": "source",
+   "tags": [
+    "LOGIC",
+    "MULTIPLE"
+   ],
+   "description": "FF-206 Edge Triggered Flip-Flops",
+   "instances": 1,
+   "manual_url": "https://github.com/david-c14/SubmarineFree/blob/main/manual/FF.md",
+   "n_params": 0,
+   "n_inputs": 0,
+   "n_outputs": 0
+  },
+  {
+   "key": "CountModula:Palette",
+   "plugin": "CountModula",
+   "model": "Palette",
+   "role": "",
+   "tags": [
+    "Utility"
+   ],
+   "description": "Cable colour picker",
+   "instances": 1,
+   "manual_url": "",
+   "n_params": 0,
+   "n_inputs": 0,
+   "n_outputs": 0
+  },
+  {
+   "key": "Stoermelder-P1:EightFace",
+   "plugin": "Stoermelder-P1",
+   "model": "EightFace",
+   "role": "utility",
+   "tags": [
+    "Utility",
+    "Sequencer"
+   ],
+   "description": "Universal expander for sequencing up to eight presets of any module",
+   "instances": 1,
+   "manual_url": "https://github.com/stoermelder/vcvrack-packone/blob/v2/docs/eightface/EightFace.md",
+   "n_params": 4,
+   "n_inputs": 3,
+   "n_outputs": 1
+  },
+  {
+   "key": "Stoermelder-P1:Stroke",
+   "plugin": "Stoermelder-P1",
+   "model": "Stroke",
+   "role": "source",
+   "tags": [
+    "Utility",
+    "Polyphonic"
+   ],
+   "description": "Utility for converting hotkeys to triggers, gates and some other special commands",
+   "instances": 1,
+   "manual_url": "https://github.com/stoermelder/vcvrack-packone/blob/v2/docs/stroke/Stroke.md",
+   "n_params": 3,
+   "n_inputs": 1,
+   "n_outputs": 1
+  },
+  {
+   "key": "LittleUtils:BiasSemitone",
+   "plugin": "LittleUtils",
+   "model": "BiasSemitone",
+   "role": "source",
+   "tags": [
+    "utility",
+    "polyphonic"
+   ],
+   "description": "Offset an incoming voltage by volts or semitones",
+   "instances": 1,
+   "manual_url": "",
+   "n_params": 1,
+   "n_inputs": 0,
+   "n_outputs": 0
+  },
+  {
+   "key": "ML_modules:OctaSwitch",
+   "plugin": "ML_modules",
+   "model": "OctaSwitch",
+   "role": "output",
+   "tags": [
+    "Switch",
+    "Polyphonic"
+   ],
+   "description": "8 fold switch with CV controllable switching point",
+   "instances": 1,
+   "manual_url": "https://github.com/martin-lueders/ML_modules/wiki/OctaSwitch",
+   "n_params": 1,
+   "n_inputs": 1,
+   "n_outputs": 0
+  },
+  {
+   "key": "ML_modules:Sum8",
+   "plugin": "ML_modules",
+   "model": "Sum8",
+   "role": "output",
+   "tags": [
+    "Mixer",
+    "Polyphonic"
+   ],
+   "description": "simple summer",
+   "instances": 1,
+   "manual_url": "https://github.com/martin-lueders/ML_modules/wiki/Mixer#sum-mk-ii",
+   "n_params": 0,
+   "n_inputs": 1,
+   "n_outputs": 1
+  },
+  {
+   "key": "Stoermelder-P1:Strip",
+   "plugin": "Stoermelder-P1",
+   "model": "Strip",
+   "role": "",
+   "tags": [
+    "Utility",
+    "Controller",
+    "Random"
+   ],
+   "description": "Manage a group of modules by using the expander-mechanism, providing load, save, copy, paste, disable, enable and randomize",
+   "instances": 1,
+   "manual_url": "https://github.com/stoermelder/vcvrack-packone/blob/v2/docs/strip/Strip.md",
+   "n_params": 8,
+   "n_inputs": 4,
+   "n_outputs": 1
+  },
+  {
+   "key": "ImpromptuModular:Foundry",
+   "plugin": "ImpromptuModular",
+   "model": "Foundry",
+   "role": "source",
+   "tags": [
+    "Sequencer"
+   ],
+   "description": "4-track, 32-step, 64-pattern sequencer",
+   "instances": 1,
+   "manual_url": "https://marcboule.github.io/ImpromptuModular/#foundry",
+   "n_params": 27,
+   "n_inputs": 5,
+   "n_outputs": 0
+  },
+  {
+   "key": "cf:PLAYER",
+   "plugin": "cf",
+   "model": "PLAYER",
+   "role": "source",
+   "tags": [
+    "Sampler"
+   ],
+   "description": "Sample player",
+   "instances": 1,
+   "manual_url": "https://github.com/cfoulc/cf",
+   "n_params": 4,
+   "n_inputs": 7,
+   "n_outputs": 2
+  },
+  {
+   "key": "CountModula:Rectifier",
+   "plugin": "CountModula",
+   "model": "Rectifier",
+   "role": "utility",
+   "tags": [
+    "Waveshaper",
+    "Polyphonic"
+   ],
+   "description": "A full/half wave rectifier with variable rectification axis",
+   "instances": 1,
+   "manual_url": "",
+   "n_params": 2,
+   "n_inputs": 2,
+   "n_outputs": 6
+  },
+  {
+   "key": "Stoermelder-P1:Mb",
+   "plugin": "Stoermelder-P1",
+   "model": "Mb",
+   "role": "",
+   "tags": [
+    "Utility"
+   ],
+   "description": "Experimental replacement module browsers for Rack. Brings back the browser from Rack v0.6x and has a modified browser from Rack v1.x with adjustable preview size, favorites, extended filtering options and more.",
+   "instances": 1,
+   "manual_url": "https://github.com/stoermelder/vcvrack-packone/blob/v2/docs/trial-and-error/Mb.md",
+   "n_params": 3,
+   "n_inputs": 1,
+   "n_outputs": 1
+  },
+  {
+   "key": "Bogaudio:Bogaudio-Mix4x",
+   "plugin": "Bogaudio",
+   "model": "Bogaudio-Mix4x",
+   "role": "output",
+   "tags": [
+    "Mixer",
+    "Expander"
+   ],
+   "description": "Expander for MIX4, adds EQs and sends",
+   "instances": 1,
+   "manual_url": "https://github.com/bogaudio/BogaudioModules/blob/master/README.md#mix4x",
+   "n_params": 8,
+   "n_inputs": 13,
+   "n_outputs": 2
+  },
+  {
+   "key": "Bogaudio:Bogaudio-Mix8x",
+   "plugin": "Bogaudio",
+   "model": "Bogaudio-Mix8x",
+   "role": "output",
+   "tags": [
+    "Mixer",
+    "Expander"
+   ],
+   "description": "Expander for MIX8, adds EQs and sends",
+   "instances": 1,
+   "manual_url": "https://github.com/bogaudio/BogaudioModules/blob/master/README.md#mix8x",
+   "n_params": 16,
+   "n_inputs": 21,
+   "n_outputs": 2
+  },
+  {
+   "key": "dbRackSequencer:Sum",
+   "plugin": "dbRackSequencer",
+   "model": "Sum",
+   "role": "output",
+   "tags": [
+    "Utility"
+   ],
+   "description": "Expandable Polyphonic Adder, Mixer ",
+   "instances": 1,
+   "manual_url": "",
+   "n_params": 0,
+   "n_inputs": 1,
+   "n_outputs": 1
+  },
+  {
+   "key": "Befaco:Kickall",
+   "plugin": "Befaco",
+   "model": "Kickall",
+   "role": "utility",
+   "tags": [
+    "Drum",
+    "Hardware clone",
+    "Synth voice"
+   ],
+   "description": "Bassdrum module, with pitch and volume envelopes",
+   "instances": 1,
+   "manual_url": "https://www.befaco.org/kickall-2/",
+   "n_params": 5,
+   "n_inputs": 5,
+   "n_outputs": 1
+  },
+  {
+   "key": "Befaco:StereoStrip",
+   "plugin": "Befaco",
+   "model": "StereoStrip",
+   "role": "processor",
+   "tags": [
+    "Equalizer",
+    "Hardware clone",
+    "Mixer",
+    "Limiter",
+    "Panning",
+    "Polyphonic"
+   ],
+   "description": "Stereo VCA, panning, and EQ",
+   "instances": 1,
+   "manual_url": "https://www.befaco.org/stereo-strip/",
+   "n_params": 9,
+   "n_inputs": 4,
+   "n_outputs": 2
+  },
+  {
+   "key": "squinkylabs-plug1:squinkylabs-super",
+   "plugin": "squinkylabs-plug1",
+   "model": "squinkylabs-super",
+   "role": "processor",
+   "tags": [
+    "VCO",
+    "Polyphonic"
+   ],
+   "description": "Super saw VCO emulation",
+   "instances": 1,
+   "manual_url": "https://github.com/kockie69/SquinkyVCV-main/blob/master/docs/saws.md",
+   "n_params": 0,
+   "n_inputs": 5,
+   "n_outputs": 2
+  },
+  {
+   "key": "squinkylabs-plug1:squinkylabs-f2",
+   "plugin": "squinkylabs-plug1",
+   "model": "squinkylabs-f2",
+   "role": "output",
+   "tags": [
+    "VCF",
+    "Polyphonic"
+   ],
+   "description": "Multimode state-variable filter",
+   "instances": 1,
+   "manual_url": "https://github.com/kockie69/SquinkyVCV-main/blob/master/docs/f2.md",
+   "n_params": 0,
+   "n_inputs": 4,
+   "n_outputs": 1
+  },
+  {
+   "key": "Stoermelder-P1:CVMap",
+   "plugin": "Stoermelder-P1",
+   "model": "CVMap",
+   "role": "utility",
+   "tags": [
+    "Utility",
+    "Polyphonic",
+    "Controller"
+   ],
+   "description": "Add CV automation to 32 parameters of any module",
+   "instances": 1,
+   "manual_url": "https://github.com/stoermelder/vcvrack-packone/blob/v2/docs/cvmap/CVMap.md",
+   "n_params": 3,
+   "n_inputs": 3,
+   "n_outputs": 1
+  },
+  {
+   "key": "dbRackModules:MVerb",
+   "plugin": "dbRackModules",
+   "model": "MVerb",
+   "role": "processor",
+   "tags": [
+    "Reverb",
+    "Effect"
+   ],
+   "description": "5x5 Waveguide Mesh Reverb",
+   "instances": 1,
+   "manual_url": "",
+   "n_params": 5,
+   "n_inputs": 6,
+   "n_outputs": 2
+  },
+  {
+   "key": "MindMeldModular:AuxExpander",
+   "plugin": "MindMeldModular",
+   "model": "AuxExpander",
+   "role": "processor",
+   "tags": [
+    "Mixer",
+    "Expander"
+   ],
+   "description": "4-aux FX bus expander for MixMaster",
+   "instances": 1,
+   "manual_url": "https://github.com/MarcBoule/MindMeldModular/tree/master/doc/MindMeld-MixMaster-Manual-V1_1_4.pdf",
+   "n_params": 0,
+   "n_inputs": 0,
+   "n_outputs": 0
+  },
+  {
+   "key": "MindMeldModular:MixMaster",
+   "plugin": "MindMeldModular",
+   "model": "MixMaster",
+   "role": "processor",
+   "tags": [
+    "Mixer"
+   ],
+   "description": "16-track stereo mixer with 4 group busses",
+   "instances": 1,
+   "manual_url": "https://github.com/MarcBoule/MindMeldModular/tree/master/doc/MindMeld-MixMaster-Manual-V1_1_4.pdf",
+   "n_params": 4,
+   "n_inputs": 0,
+   "n_outputs": 0
+  },
+  {
+   "key": "Fundamental:Logic",
+   "plugin": "Fundamental",
+   "model": "Logic",
+   "role": "processor",
+   "tags": [
+    "Logic",
+    "Polyphonic"
+   ],
+   "description": "Gate logic processor",
+   "instances": 1,
+   "manual_url": "https://vcvrack.com/Free#Logic",
+   "n_params": 0,
+   "n_inputs": 2,
+   "n_outputs": 8
+  },
+  {
+   "key": "dbRackModules:Plotter",
+   "plugin": "dbRackModules",
+   "model": "Plotter",
+   "role": "utility",
+   "tags": [
+    "Visual",
+    "Polyphonic"
+   ],
+   "description": "Plots a 2D signal",
+   "instances": 1,
+   "manual_url": "",
+   "n_params": 2,
+   "n_inputs": 2,
+   "n_outputs": 0
+  },
+  {
+   "key": "CountModula:StartupDelay",
+   "plugin": "CountModula",
+   "model": "StartupDelay",
+   "role": "utility",
+   "tags": [
+    "Utility"
+   ],
+   "description": "Generates delayed start signals for sequencers on load or startup",
+   "instances": 1,
+   "manual_url": "",
+   "n_params": 1,
+   "n_inputs": 0,
+   "n_outputs": 3
+  },
+  {
+   "key": "dbRackSequencer:TXVI",
+   "plugin": "dbRackSequencer",
+   "model": "TXVI",
+   "role": "output",
+   "tags": [
+    "Sequencer"
+   ],
+   "description": "A 16 step sequencer, sequential switch, clock divider, s&h etc. ",
+   "instances": 1,
+   "manual_url": "",
+   "n_params": 1,
+   "n_inputs": 6,
+   "n_outputs": 3
+  },
+  {
+   "key": "Bogaudio:Bogaudio-EQS",
+   "plugin": "Bogaudio",
+   "model": "Bogaudio-EQS",
+   "role": "",
+   "tags": [
+    "Equalizer",
+    "Polyphonic"
+   ],
+   "description": "Stereo 3-band equalizer",
+   "instances": 1,
+   "manual_url": "https://github.com/bogaudio/BogaudioModules/blob/master/README.md#eqs",
+   "n_params": 0,
+   "n_inputs": 2,
+   "n_outputs": 2
+  },
+  {
+   "key": "GrandeModular:Compare3",
+   "plugin": "GrandeModular",
+   "model": "Compare3",
+   "role": "source",
+   "tags": [
+    "Logic",
+    "Polyphonic"
+   ],
+   "description": "Three windowed comparators with common input.",
+   "instances": 1,
+   "manual_url": "https://github.com/dbgrande/GrandeModular/#compare3",
+   "n_params": 6,
+   "n_inputs": 1,
+   "n_outputs": 3
+  },
+  {
+   "key": "dbRackSequencer:P16A",
+   "plugin": "dbRackSequencer",
+   "model": "P16A",
+   "role": "output",
+   "tags": [
+    "Sequencer"
+   ],
+   "description": "Address Sequencer",
+   "instances": 1,
+   "manual_url": "",
+   "n_params": 4,
+   "n_inputs": 5,
+   "n_outputs": 2
+  },
+  {
+   "key": "dbRackModules:SuperLFO",
+   "plugin": "dbRackModules",
+   "model": "SuperLFO",
+   "role": "source",
+   "tags": [
+    "Oscillator",
+    "Low-frequency Oscillator",
+    "Polyphonic"
+   ],
+   "description": "2D LFO for superformula curves",
+   "instances": 1,
+   "manual_url": "",
+   "n_params": 22,
+   "n_inputs": 9,
+   "n_outputs": 2
+  },
+  {
+   "key": "dbRackSequencer:Carambol",
+   "plugin": "dbRackSequencer",
+   "model": "Carambol",
+   "role": "source",
+   "tags": [
+    "Sequencer",
+    "Low-frequency Oscillator",
+    "Polyphonic"
+   ],
+   "description": "Carambolage Simulation",
+   "instances": 1,
+   "manual_url": "",
+   "n_params": 3,
+   "n_inputs": 8,
+   "n_outputs": 4
+  },
+  {
+   "key": "Bogaudio:Bogaudio-RGate",
+   "plugin": "Bogaudio",
+   "model": "Bogaudio-RGate",
+   "role": "utility",
+   "tags": [
+    "Clock modulator",
+    "Polyphonic"
+   ],
+   "description": "Clock-relative gate generator & clock divider/multiplier",
+   "instances": 1,
+   "manual_url": "https://github.com/bogaudio/BogaudioModules/blob/master/README.md#rgate",
+   "n_params": 1,
+   "n_inputs": 5,
+   "n_outputs": 1
+  },
+  {
+   "key": "Bogaudio:Bogaudio-Bool",
+   "plugin": "Bogaudio",
+   "model": "Bogaudio-Bool",
+   "role": "processor",
+   "tags": [
+    "Logic",
+    "Polyphonic"
+   ],
+   "description": "Boolean logic",
+   "instances": 1,
+   "manual_url": "https://github.com/bogaudio/BogaudioModules/blob/master/README.md#bool",
+   "n_params": 0,
+   "n_inputs": 3,
+   "n_outputs": 4
+  },
+  {
+   "key": "AS:SignalDelay",
+   "plugin": "AS",
+   "model": "SignalDelay",
+   "role": "source",
+   "tags": [
+    "Delay",
+    "Dual",
+    "Utility"
+   ],
+   "description": "Delay the incomming CV signal by set milliseconds",
+   "instances": 1,
+   "manual_url": "",
+   "n_params": 4,
+   "n_inputs": 4,
+   "n_outputs": 4
+  },
+  {
+   "key": "AS:SuperDriveFx",
+   "plugin": "AS",
+   "model": "SuperDriveFx",
+   "role": "utility",
+   "tags": [
+    "Distortion",
+    "Effect"
+   ],
+   "description": "Overdrive FX with CV input for each parameter and bypass switch",
+   "instances": 1,
+   "manual_url": "",
+   "n_params": 3,
+   "n_inputs": 5,
+   "n_outputs": 1
+  },
+  {
+   "key": "Fundamental:Rescale",
+   "plugin": "Fundamental",
+   "model": "Rescale",
+   "role": "utility",
+   "tags": [
+    "Attenuator",
+    "Utility",
+    "Polyphonic"
+   ],
+   "description": "Rescales voltages with gain, offset, and range limiting",
+   "instances": 1,
+   "manual_url": "https://vcvrack.com/Free#Rescale",
+   "n_params": 3,
+   "n_inputs": 1,
+   "n_outputs": 1
+  },
+  {
+   "key": "AudibleInstruments:Shelves",
+   "plugin": "AudibleInstruments",
+   "model": "Shelves",
+   "role": "utility",
+   "tags": [
+    "Equalizer",
+    "Filter",
+    "Polyphonic"
+   ],
+   "description": "Based on Mutable Instruments Shelves",
+   "instances": 1,
+   "manual_url": "https://mutable-instruments.net/modules/shelves/manual/",
+   "n_params": 10,
+   "n_inputs": 13,
+   "n_outputs": 7
+  },
+  {
+   "key": "Bogaudio:Bogaudio-AD",
+   "plugin": "Bogaudio",
+   "model": "Bogaudio-AD",
+   "role": "utility",
+   "tags": [
+    "Envelope generator",
+    "Polyphonic"
+   ],
+   "description": "Attack/decay envelope generator",
+   "instances": 1,
+   "manual_url": "https://github.com/bogaudio/BogaudioModules/blob/master/README.md#ad",
+   "n_params": 3,
+   "n_inputs": 3,
+   "n_outputs": 2
+  },
+  {
+   "key": "Bogaudio:Bogaudio-Lmtr",
+   "plugin": "Bogaudio",
+   "model": "Bogaudio-Lmtr",
+   "role": "processor",
+   "tags": [
+    "Limiter",
+    "Dynamics",
+    "Polyphonic"
+   ],
+   "description": "Limiter",
+   "instances": 1,
+   "manual_url": "https://github.com/bogaudio/BogaudioModules/blob/master/README.md#lmtr",
+   "n_params": 2,
+   "n_inputs": 4,
+   "n_outputs": 2
+  },
+  {
+   "key": "Bogaudio:Bogaudio-Matrix88",
+   "plugin": "Bogaudio",
+   "model": "Bogaudio-Matrix88",
+   "role": "processor",
+   "tags": [
+    "Mixer",
+    "Polyphonic"
+   ],
+   "description": "8x8 matrix mixer",
+   "instances": 1,
+   "manual_url": "https://github.com/bogaudio/BogaudioModules/blob/master/README.md#matrix88",
+   "n_params": 64,
+   "n_inputs": 8,
+   "n_outputs": 8
+  },
+  {
+   "key": "Venom:VCAMix4",
+   "plugin": "Venom",
+   "model": "VCAMix4",
+   "role": "output",
+   "tags": [
+    "Attenuator",
+    "Mixer",
+    "Polyphonic",
+    "Ring modulator",
+    "Utility",
+    "Voltage-controlled amplifier"
+   ],
+   "description": "Compact audio or CV VCA, mixer, attenuator, inverter, amplifier, and/or offset",
+   "instances": 1,
+   "manual_url": "https://github.com/DaveBenham/VenomModules/blob/main/README.md#vca-mix-4",
+   "n_params": 1,
+   "n_inputs": 2,
+   "n_outputs": 1
+  },
+  {
+   "key": "dbRackModules:X8",
+   "plugin": "dbRackModules",
+   "model": "X8",
+   "role": "processor",
+   "tags": [
+    "Mixer",
+    "Polyphonic"
+   ],
+   "description": "8x8 Matrix Mixer with modulation",
+   "instances": 1,
+   "manual_url": "",
+   "n_params": 0,
+   "n_inputs": 0,
+   "n_outputs": 0
+  },
+  {
+   "key": "SubmarineFree:SS-212",
+   "plugin": "SubmarineFree",
+   "model": "SS-212",
+   "role": "source",
+   "tags": [
+    "UTILITY"
+   ],
+   "description": "SS-212 12 Chromatic Output Voltage Sources",
+   "instances": 1,
+   "manual_url": "https://github.com/david-c14/SubmarineFree/blob/main/manual/SS.md",
+   "n_params": 0,
+   "n_inputs": 1,
+   "n_outputs": 8
+  },
+  {
+   "key": "dbRackSequencer:Ant",
+   "plugin": "dbRackSequencer",
+   "model": "Ant",
+   "role": "output",
+   "tags": [
+    "Sequencer"
+   ],
+   "description": "Langton's-Ant Cellular Automaton",
+   "instances": 1,
+   "manual_url": "",
+   "n_params": 6,
+   "n_inputs": 8,
+   "n_outputs": 4
+  },
+  {
+   "key": "dbRackSequencer:TT",
+   "plugin": "dbRackSequencer",
+   "model": "TT",
+   "role": "output",
+   "tags": [
+    "Sequencer",
+    "Logic"
+   ],
+   "description": "A modulated truth table",
+   "instances": 1,
+   "manual_url": "",
+   "n_params": 0,
+   "n_inputs": 5,
+   "n_outputs": 1
+  },
+  {
+   "key": "dbRackModules:SPL",
+   "plugin": "dbRackModules",
+   "model": "SPL",
+   "role": "output",
+   "tags": [
+    "Oscillator",
+    "Polyphonic"
+   ],
+   "description": "Spline wave oscillator with phase input",
+   "instances": 1,
+   "manual_url": "",
+   "n_params": 1,
+   "n_inputs": 4,
+   "n_outputs": 3
+  },
+  {
+   "key": "Fundamental:Mixer",
+   "plugin": "Fundamental",
+   "model": "Mixer",
+   "role": "source",
+   "tags": [
+    "Mixer",
+    "Polyphonic"
+   ],
+   "description": "Mixes 6 signals",
+   "instances": 1,
+   "manual_url": "https://vcvrack.com/Free#Mixer",
+   "n_params": 1,
+   "n_inputs": 0,
+   "n_outputs": 1
+  },
+  {
+   "key": "dbRackSequencer:G32",
+   "plugin": "dbRackSequencer",
+   "model": "G32",
+   "role": "output",
+   "tags": [
+    "Sequencer"
+   ],
+   "description": "Deterministic Gate Provider",
+   "instances": 1,
+   "manual_url": "",
+   "n_params": 1,
+   "n_inputs": 3,
+   "n_outputs": 2
+  },
+  {
+   "key": "dbRackSequencer:MC1",
+   "plugin": "dbRackSequencer",
+   "model": "MC1",
+   "role": "utility",
+   "tags": [
+    "Controller",
+    "Envelope Generator"
+   ],
+   "description": "Recordable Mouse Controller",
+   "instances": 1,
+   "manual_url": "",
+   "n_params": 1,
+   "n_inputs": 1,
+   "n_outputs": 2
+  },
+  {
+   "key": "Bogaudio:Bogaudio-VCA",
+   "plugin": "Bogaudio",
+   "model": "Bogaudio-VCA",
+   "role": "output",
+   "tags": [
+    "VCA",
+    "Dual",
+    "Polyphonic"
+   ],
+   "description": "Dual voltage controlled attenuator",
+   "instances": 1,
+   "manual_url": "https://github.com/bogaudio/BogaudioModules/blob/master/README.md#vca",
+   "n_params": 1,
+   "n_inputs": 4,
+   "n_outputs": 2
+  },
+  {
+   "key": "Core:CV-MIDI",
+   "plugin": "Core",
+   "model": "CV-MIDI",
+   "role": "utility",
+   "tags": [
+    "External",
+    "MIDI",
+    "Polyphonic"
+   ],
+   "description": "Converts CV to MIDI and sends to an external device",
+   "instances": 1,
+   "manual_url": "https://vcvrack.com/manual/Core#CV-MIDI",
+   "n_params": 0,
+   "n_inputs": 12,
+   "n_outputs": 0
+  },
+  {
+   "key": "Bogaudio:Bogaudio-Assign",
+   "plugin": "Bogaudio",
+   "model": "Bogaudio-Assign",
+   "role": "processor",
+   "tags": [
+    "Polyphonic"
+   ],
+   "description": "Polyphonic voice (re)assigner",
+   "instances": 1,
+   "manual_url": "https://github.com/bogaudio/BogaudioModules/blob/master/README.md#assign",
+   "n_params": 1,
+   "n_inputs": 3,
+   "n_outputs": 2
+  },
+  {
+   "key": "Bogaudio:Bogaudio-LVCO",
+   "plugin": "Bogaudio",
+   "model": "Bogaudio-LVCO",
+   "role": "source",
+   "tags": [
+    "Oscillator",
+    "Polyphonic"
+   ],
+   "description": "Oscillator",
+   "instances": 1,
+   "manual_url": "https://github.com/bogaudio/BogaudioModules/blob/master/README.md#lvco",
+   "n_params": 2,
+   "n_inputs": 3,
+   "n_outputs": 1
+  },
+  {
+   "key": "SubmarineFree:DN-112",
+   "plugin": "SubmarineFree",
+   "model": "DN-112",
+   "role": "utility",
+   "tags": [
+    "DIGITAL",
+    "NOISE",
+    "MULTIPLE"
+   ],
+   "description": "DN-112 Digital Noise",
+   "instances": 1,
+   "manual_url": "https://github.com/david-c14/SubmarineFree/blob/main/manual/DN.md",
+   "n_params": 0,
+   "n_inputs": 0,
+   "n_outputs": 0
+  },
+  {
+   "key": "Befaco:SlewLimiter",
+   "plugin": "Befaco",
+   "model": "SlewLimiter",
+   "role": "utility",
+   "tags": [
+    "Slew Limiter",
+    "Envelope Follower",
+    "Hardware clone",
+    "Polyphonic"
+   ],
+   "description": "Voltage controlled slew limiter, AKA lag processor",
+   "instances": 1,
+   "manual_url": "https://www.befaco.org/slew-limiter/",
+   "n_params": 3,
+   "n_inputs": 3,
+   "n_outputs": 1
+  },
+  {
+   "key": "AS:Mixer8ch",
+   "plugin": "AS",
+   "model": "Mixer8ch",
+   "role": "output",
+   "tags": [
+    "Mixer"
+   ],
+   "description": "8 channel Mixer",
+   "instances": 1,
+   "manual_url": "",
+   "n_params": 17,
+   "n_inputs": 27,
+   "n_outputs": 10
+  },
+  {
+   "key": "JW-Modules:NoteSeq",
+   "plugin": "JW-Modules",
+   "model": "NoteSeq",
+   "role": "source",
+   "tags": [
+    "Sequencer",
+    "Poly"
+   ],
+   "description": "",
+   "instances": 1,
+   "manual_url": "https://github.com/jeremywen/JW-Modules#noteSeq",
+   "n_params": 25,
+   "n_inputs": 21,
+   "n_outputs": 11
+  },
+  {
+   "key": "AS:ADSR",
+   "plugin": "AS",
+   "model": "ADSR",
+   "role": "utility",
+   "tags": [
+    "Envelope Generator"
+   ],
+   "description": "Generates an envelope with Attack/Decay/Sustain/Release",
+   "instances": 1,
+   "manual_url": "",
+   "n_params": 4,
+   "n_inputs": 6,
+   "n_outputs": 1
+  }
+ ]
+}

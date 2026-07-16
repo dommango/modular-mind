@@ -1,0 +1,1321 @@
+{
+ "schema_version": 1,
+ "tracks": [
+  {
+   "slug": "01-subtractive-voice",
+   "title": "Subtractive Voice",
+   "archetype": "01-subtractive-voice",
+   "source": "handcrafted",
+   "verdict": {
+    "makes_sound": true,
+    "character": "rhythmic",
+    "flags": []
+   },
+   "fitness": 67,
+   "metrics": {
+    "duration": 10.008,
+    "sample_rate": 44100,
+    "peak": 0.281,
+    "rms": 0.0862,
+    "dc_offset": 0.0385,
+    "silent_ratio": 0.26,
+    "spectral_centroid_hz": 1018.9,
+    "spectral_flatness": 0.0,
+    "spectral_bandwidth_hz": 1503.1,
+    "onset_count": 40,
+    "onset_rate": 4.0,
+    "voiced_ratio": 0.687,
+    "median_f0_hz": 260.9
+   },
+   "duration": 10.008,
+   "parent": null,
+   "repairs": [],
+   "featured": true,
+   "audio": "audio/01-subtractive-voice.mp3",
+   "peaks": "data/peaks/01-subtractive-voice.json"
+  },
+  {
+   "slug": "02-generative-ambient",
+   "title": "Generative Ambient",
+   "archetype": "02-generative-ambient",
+   "source": "handcrafted",
+   "verdict": {
+    "makes_sound": true,
+    "character": "rhythmic",
+    "flags": []
+   },
+   "fitness": 67,
+   "metrics": {
+    "duration": 10.008,
+    "sample_rate": 44100,
+    "peak": 0.1105,
+    "rms": 0.029,
+    "dc_offset": 0.0,
+    "silent_ratio": 0.061,
+    "spectral_centroid_hz": 1082.9,
+    "spectral_flatness": 0.0027,
+    "spectral_bandwidth_hz": 1226.2,
+    "onset_count": 51,
+    "onset_rate": 5.1,
+    "voiced_ratio": 0.593,
+    "median_f0_hz": 2100.0
+   },
+   "duration": 10.008,
+   "parent": null,
+   "repairs": [],
+   "featured": true,
+   "audio": "audio/02-generative-ambient.mp3",
+   "peaks": "data/peaks/02-generative-ambient.json"
+  },
+  {
+   "slug": "03-drone-texture",
+   "title": "Drone Texture",
+   "archetype": "03-drone-texture",
+   "source": "handcrafted",
+   "verdict": {
+    "makes_sound": true,
+    "character": "rhythmic",
+    "flags": [
+     "dc_offset"
+    ]
+   },
+   "fitness": 34,
+   "metrics": {
+    "duration": 10.008,
+    "sample_rate": 44100,
+    "peak": 0.6509,
+    "rms": 0.2098,
+    "dc_offset": 0.1056,
+    "silent_ratio": 0.0,
+    "spectral_centroid_hz": 168.2,
+    "spectral_flatness": 0.0,
+    "spectral_bandwidth_hz": 383.0,
+    "onset_count": 67,
+    "onset_rate": 6.69,
+    "voiced_ratio": 1.0,
+    "median_f0_hz": 2100.0
+   },
+   "duration": 10.008,
+   "parent": null,
+   "repairs": [],
+   "featured": false,
+   "audio": "audio/03-drone-texture.mp3",
+   "peaks": "data/peaks/03-drone-texture.json"
+  },
+  {
+   "slug": "04-sequenced-melody",
+   "title": "Sequenced Melody",
+   "archetype": "04-sequenced-melody",
+   "source": "handcrafted",
+   "verdict": {
+    "makes_sound": true,
+    "character": "rhythmic",
+    "flags": []
+   },
+   "fitness": 30,
+   "metrics": {
+    "duration": 10.008,
+    "sample_rate": 44100,
+    "peak": 0.1731,
+    "rms": 0.0127,
+    "dc_offset": 0.0018,
+    "silent_ratio": 0.689,
+    "spectral_centroid_hz": 256.0,
+    "spectral_flatness": 0.0,
+    "spectral_bandwidth_hz": 609.5,
+    "onset_count": 40,
+    "onset_rate": 4.0,
+    "voiced_ratio": 0.101,
+    "median_f0_hz": 2100.0
+   },
+   "duration": 10.008,
+   "parent": null,
+   "repairs": [],
+   "featured": false,
+   "audio": "audio/04-sequenced-melody.mp3",
+   "peaks": "data/peaks/04-sequenced-melody.json"
+  },
+  {
+   "slug": "batch3-01-omri-seq",
+   "title": "Omri Seq",
+   "archetype": "omri-seq",
+   "source": "batch",
+   "verdict": {
+    "makes_sound": true,
+    "character": "rhythmic",
+    "flags": []
+   },
+   "fitness": 47,
+   "metrics": {
+    "duration": 10.008,
+    "sample_rate": 44100,
+    "peak": 0.6451,
+    "rms": 0.1109,
+    "dc_offset": 0.036,
+    "silent_ratio": 0.461,
+    "spectral_centroid_hz": 1689.4,
+    "spectral_flatness": 0.0008,
+    "spectral_bandwidth_hz": 2658.4,
+    "onset_count": 18,
+    "onset_rate": 1.8,
+    "voiced_ratio": 0.494,
+    "median_f0_hz": 260.9
+   },
+   "duration": 10.008,
+   "parent": null,
+   "repairs": [],
+   "featured": false,
+   "audio": "audio/batch3-01-omri-seq.mp3",
+   "peaks": "data/peaks/batch3-01-omri-seq.json"
+  },
+  {
+   "slug": "batch3-02-drone",
+   "title": "Drone",
+   "archetype": "drone",
+   "source": "batch",
+   "verdict": {
+    "makes_sound": true,
+    "character": "drone",
+    "flags": [
+     "clipping"
+    ]
+   },
+   "fitness": 26,
+   "metrics": {
+    "duration": 10.008,
+    "sample_rate": 44100,
+    "peak": 1.0,
+    "rms": 0.4901,
+    "dc_offset": 0.0002,
+    "silent_ratio": 0.0,
+    "spectral_centroid_hz": 5472.5,
+    "spectral_flatness": 0.0286,
+    "spectral_bandwidth_hz": 6327.8,
+    "onset_count": 3,
+    "onset_rate": 0.3,
+    "voiced_ratio": 0.901,
+    "median_f0_hz": 262.5
+   },
+   "duration": 10.008,
+   "parent": null,
+   "repairs": [
+    "batch3-02-drone-r1"
+   ],
+   "featured": false,
+   "audio": "audio/batch3-02-drone.mp3",
+   "peaks": "data/peaks/batch3-02-drone.json"
+  },
+  {
+   "slug": "batch3-02-drone-r1",
+   "title": "Drone (repair 1)",
+   "archetype": "drone",
+   "source": "repair",
+   "verdict": {
+    "makes_sound": true,
+    "character": "drone",
+    "flags": []
+   },
+   "fitness": 26,
+   "metrics": {
+    "duration": 10.008,
+    "sample_rate": 44100,
+    "peak": 0.9123,
+    "rms": 0.3436,
+    "dc_offset": -0.0005,
+    "silent_ratio": 0.0,
+    "spectral_centroid_hz": 5498.3,
+    "spectral_flatness": 0.0294,
+    "spectral_bandwidth_hz": 6336.9,
+    "onset_count": 3,
+    "onset_rate": 0.3,
+    "voiced_ratio": 0.895,
+    "median_f0_hz": 262.5
+   },
+   "duration": 10.008,
+   "parent": "batch3-02-drone",
+   "repairs": [],
+   "featured": false,
+   "audio": "audio/batch3-02-drone-r1.mp3",
+   "peaks": "data/peaks/batch3-02-drone-r1.json"
+  },
+  {
+   "slug": "batch3-03-generative",
+   "title": "Generative",
+   "archetype": "generative",
+   "source": "batch",
+   "verdict": {
+    "makes_sound": true,
+    "character": "rhythmic",
+    "flags": [
+     "near_silent"
+    ]
+   },
+   "fitness": 28,
+   "metrics": {
+    "duration": 10.008,
+    "sample_rate": 44100,
+    "peak": 0.0116,
+    "rms": 0.0015,
+    "dc_offset": 0.0006,
+    "silent_ratio": 0.023,
+    "spectral_centroid_hz": 4170.7,
+    "spectral_flatness": 0.0099,
+    "spectral_bandwidth_hz": 4749.1,
+    "onset_count": 81,
+    "onset_rate": 8.09,
+    "voiced_ratio": 0.418,
+    "median_f0_hz": 1837.5
+   },
+   "duration": 10.008,
+   "parent": null,
+   "repairs": [
+    "batch3-03-generative-r1"
+   ],
+   "featured": false,
+   "audio": "audio/batch3-03-generative.mp3",
+   "peaks": "data/peaks/batch3-03-generative.json"
+  },
+  {
+   "slug": "batch3-03-generative-r1",
+   "title": "Generative (repair 1)",
+   "archetype": "generative",
+   "source": "repair",
+   "verdict": {
+    "makes_sound": true,
+    "character": "rhythmic",
+    "flags": [
+     "near_silent"
+    ]
+   },
+   "fitness": 40,
+   "metrics": {
+    "duration": 10.008,
+    "sample_rate": 44100,
+    "peak": 0.0327,
+    "rms": 0.0055,
+    "dc_offset": 0.0022,
+    "silent_ratio": 0.023,
+    "spectral_centroid_hz": 3765.3,
+    "spectral_flatness": 0.0098,
+    "spectral_bandwidth_hz": 4572.7,
+    "onset_count": 74,
+    "onset_rate": 7.39,
+    "voiced_ratio": 0.587,
+    "median_f0_hz": 2100.0
+   },
+   "duration": 10.008,
+   "parent": "batch3-03-generative",
+   "repairs": [],
+   "featured": false,
+   "audio": "audio/batch3-03-generative-r1.mp3",
+   "peaks": "data/peaks/batch3-03-generative-r1.json"
+  },
+  {
+   "slug": "batch3-04-subtractive",
+   "title": "Subtractive",
+   "archetype": "subtractive",
+   "source": "batch",
+   "verdict": {
+    "makes_sound": true,
+    "character": "rhythmic",
+    "flags": [
+     "dc_offset"
+    ]
+   },
+   "fitness": 45,
+   "metrics": {
+    "duration": 10.008,
+    "sample_rate": 44100,
+    "peak": 0.6455,
+    "rms": 0.1748,
+    "dc_offset": 0.0753,
+    "silent_ratio": 0.364,
+    "spectral_centroid_hz": 2344.7,
+    "spectral_flatness": 0.0009,
+    "spectral_bandwidth_hz": 3212.8,
+    "onset_count": 40,
+    "onset_rate": 4.0,
+    "voiced_ratio": 0.586,
+    "median_f0_hz": 260.9
+   },
+   "duration": 10.008,
+   "parent": null,
+   "repairs": [
+    "batch3-04-subtractive-r1"
+   ],
+   "featured": false,
+   "audio": "audio/batch3-04-subtractive.mp3",
+   "peaks": "data/peaks/batch3-04-subtractive.json"
+  },
+  {
+   "slug": "batch3-04-subtractive-r1",
+   "title": "Subtractive (repair 1)",
+   "archetype": "subtractive",
+   "source": "repair",
+   "verdict": {
+    "makes_sound": true,
+    "character": "rhythmic",
+    "flags": []
+   },
+   "fitness": 50,
+   "metrics": {
+    "duration": 10.008,
+    "sample_rate": 44100,
+    "peak": 0.4881,
+    "rms": 0.1204,
+    "dc_offset": 0.0099,
+    "silent_ratio": 0.335,
+    "spectral_centroid_hz": 2244.0,
+    "spectral_flatness": 0.001,
+    "spectral_bandwidth_hz": 3142.5,
+    "onset_count": 40,
+    "onset_rate": 4.0,
+    "voiced_ratio": 0.612,
+    "median_f0_hz": 260.9
+   },
+   "duration": 10.008,
+   "parent": "batch3-04-subtractive",
+   "repairs": [],
+   "featured": false,
+   "audio": "audio/batch3-04-subtractive-r1.mp3",
+   "peaks": "data/peaks/batch3-04-subtractive-r1.json"
+  },
+  {
+   "slug": "batch3-05-dual-voice",
+   "title": "Dual Voice",
+   "archetype": "dual-voice",
+   "source": "batch",
+   "verdict": {
+    "makes_sound": true,
+    "character": "rhythmic",
+    "flags": [
+     "clipping",
+     "dc_offset"
+    ]
+   },
+   "fitness": 38,
+   "metrics": {
+    "duration": 10.008,
+    "sample_rate": 44100,
+    "peak": 1.0,
+    "rms": 0.2771,
+    "dc_offset": 0.1537,
+    "silent_ratio": 0.019,
+    "spectral_centroid_hz": 2932.6,
+    "spectral_flatness": 0.0007,
+    "spectral_bandwidth_hz": 4378.1,
+    "onset_count": 20,
+    "onset_rate": 2.0,
+    "voiced_ratio": 0.937,
+    "median_f0_hz": 130.9
+   },
+   "duration": 10.008,
+   "parent": null,
+   "repairs": [
+    "batch3-05-dual-voice-r1"
+   ],
+   "featured": false,
+   "audio": "audio/batch3-05-dual-voice.mp3",
+   "peaks": "data/peaks/batch3-05-dual-voice.json"
+  },
+  {
+   "slug": "batch3-05-dual-voice-r1",
+   "title": "Dual Voice (repair 1)",
+   "archetype": "dual-voice",
+   "source": "repair",
+   "verdict": {
+    "makes_sound": true,
+    "character": "rhythmic",
+    "flags": []
+   },
+   "fitness": 42,
+   "metrics": {
+    "duration": 10.008,
+    "sample_rate": 44100,
+    "peak": 0.4955,
+    "rms": 0.1179,
+    "dc_offset": 0.0103,
+    "silent_ratio": 0.013,
+    "spectral_centroid_hz": 3773.7,
+    "spectral_flatness": 0.0024,
+    "spectral_bandwidth_hz": 5074.3,
+    "onset_count": 20,
+    "onset_rate": 2.0,
+    "voiced_ratio": 0.896,
+    "median_f0_hz": 130.9
+   },
+   "duration": 10.008,
+   "parent": "batch3-05-dual-voice",
+   "repairs": [],
+   "featured": false,
+   "audio": "audio/batch3-05-dual-voice-r1.mp3",
+   "peaks": "data/peaks/batch3-05-dual-voice-r1.json"
+  },
+  {
+   "slug": "batch3-06-omri-seq",
+   "title": "Omri Seq",
+   "archetype": "omri-seq",
+   "source": "batch",
+   "verdict": {
+    "makes_sound": true,
+    "character": "rhythmic",
+    "flags": [
+     "dc_offset"
+    ]
+   },
+   "fitness": 50,
+   "metrics": {
+    "duration": 10.008,
+    "sample_rate": 44100,
+    "peak": 0.6794,
+    "rms": 0.1724,
+    "dc_offset": 0.0726,
+    "silent_ratio": 0.221,
+    "spectral_centroid_hz": 2304.8,
+    "spectral_flatness": 0.0021,
+    "spectral_bandwidth_hz": 3554.1,
+    "onset_count": 70,
+    "onset_rate": 6.99,
+    "voiced_ratio": 0.732,
+    "median_f0_hz": 130.9
+   },
+   "duration": 10.008,
+   "parent": null,
+   "repairs": [
+    "batch3-06-omri-seq-r1"
+   ],
+   "featured": false,
+   "audio": "audio/batch3-06-omri-seq.mp3",
+   "peaks": "data/peaks/batch3-06-omri-seq.json"
+  },
+  {
+   "slug": "batch3-06-omri-seq-r1",
+   "title": "Omri Seq (repair 1)",
+   "archetype": "omri-seq",
+   "source": "repair",
+   "verdict": {
+    "makes_sound": true,
+    "character": "rhythmic",
+    "flags": []
+   },
+   "fitness": 55,
+   "metrics": {
+    "duration": 10.008,
+    "sample_rate": 44100,
+    "peak": 0.4961,
+    "rms": 0.1121,
+    "dc_offset": 0.0098,
+    "silent_ratio": 0.186,
+    "spectral_centroid_hz": 2148.6,
+    "spectral_flatness": 0.0018,
+    "spectral_bandwidth_hz": 3486.3,
+    "onset_count": 73,
+    "onset_rate": 7.29,
+    "voiced_ratio": 0.757,
+    "median_f0_hz": 130.9
+   },
+   "duration": 10.008,
+   "parent": "batch3-06-omri-seq",
+   "repairs": [],
+   "featured": true,
+   "audio": "audio/batch3-06-omri-seq-r1.mp3",
+   "peaks": "data/peaks/batch3-06-omri-seq-r1.json"
+  },
+  {
+   "slug": "batch3-07-drone",
+   "title": "Drone",
+   "archetype": "drone",
+   "source": "batch",
+   "verdict": {
+    "makes_sound": true,
+    "character": "drone",
+    "flags": [
+     "clipping"
+    ]
+   },
+   "fitness": 26,
+   "metrics": {
+    "duration": 10.008,
+    "sample_rate": 44100,
+    "peak": 1.0,
+    "rms": 0.509,
+    "dc_offset": -0.0002,
+    "silent_ratio": 0.0,
+    "spectral_centroid_hz": 5454.6,
+    "spectral_flatness": 0.0247,
+    "spectral_bandwidth_hz": 6337.6,
+    "onset_count": 2,
+    "onset_rate": 0.2,
+    "voiced_ratio": 0.908,
+    "median_f0_hz": 262.5
+   },
+   "duration": 10.008,
+   "parent": null,
+   "repairs": [
+    "batch3-07-drone-r1"
+   ],
+   "featured": false,
+   "audio": "audio/batch3-07-drone.mp3",
+   "peaks": "data/peaks/batch3-07-drone.json"
+  },
+  {
+   "slug": "batch3-07-drone-r1",
+   "title": "Drone (repair 1)",
+   "archetype": "drone",
+   "source": "repair",
+   "verdict": {
+    "makes_sound": true,
+    "character": "drone",
+    "flags": []
+   },
+   "fitness": 26,
+   "metrics": {
+    "duration": 10.008,
+    "sample_rate": 44100,
+    "peak": 0.8815,
+    "rms": 0.3576,
+    "dc_offset": 0.0003,
+    "silent_ratio": 0.0,
+    "spectral_centroid_hz": 5479.2,
+    "spectral_flatness": 0.0252,
+    "spectral_bandwidth_hz": 6346.0,
+    "onset_count": 2,
+    "onset_rate": 0.2,
+    "voiced_ratio": 0.905,
+    "median_f0_hz": 262.5
+   },
+   "duration": 10.008,
+   "parent": "batch3-07-drone",
+   "repairs": [],
+   "featured": false,
+   "audio": "audio/batch3-07-drone-r1.mp3",
+   "peaks": "data/peaks/batch3-07-drone-r1.json"
+  },
+  {
+   "slug": "batch3-08-generative",
+   "title": "Generative",
+   "archetype": "generative",
+   "source": "batch",
+   "verdict": {
+    "makes_sound": true,
+    "character": "rhythmic",
+    "flags": []
+   },
+   "fitness": 54,
+   "metrics": {
+    "duration": 10.008,
+    "sample_rate": 44100,
+    "peak": 0.0652,
+    "rms": 0.0198,
+    "dc_offset": -0.0,
+    "silent_ratio": 0.017,
+    "spectral_centroid_hz": 2778.4,
+    "spectral_flatness": 0.001,
+    "spectral_bandwidth_hz": 3088.7,
+    "onset_count": 56,
+    "onset_rate": 5.6,
+    "voiced_ratio": 0.449,
+    "median_f0_hz": 1917.4
+   },
+   "duration": 10.008,
+   "parent": null,
+   "repairs": [],
+   "featured": true,
+   "audio": "audio/batch3-08-generative.mp3",
+   "peaks": "data/peaks/batch3-08-generative.json"
+  },
+  {
+   "slug": "batch3-09-subtractive",
+   "title": "Subtractive",
+   "archetype": "subtractive",
+   "source": "batch",
+   "verdict": {
+    "makes_sound": true,
+    "character": "rhythmic",
+    "flags": []
+   },
+   "fitness": 43,
+   "metrics": {
+    "duration": 10.008,
+    "sample_rate": 44100,
+    "peak": 0.7033,
+    "rms": 0.2473,
+    "dc_offset": -0.0,
+    "silent_ratio": 0.347,
+    "spectral_centroid_hz": 3103.0,
+    "spectral_flatness": 0.0007,
+    "spectral_bandwidth_hz": 3890.7,
+    "onset_count": 40,
+    "onset_rate": 4.0,
+    "voiced_ratio": 0.639,
+    "median_f0_hz": 525.0
+   },
+   "duration": 10.008,
+   "parent": null,
+   "repairs": [],
+   "featured": false,
+   "audio": "audio/batch3-09-subtractive.mp3",
+   "peaks": "data/peaks/batch3-09-subtractive.json"
+  },
+  {
+   "slug": "batch3-10-dual-voice",
+   "title": "Dual Voice",
+   "archetype": "dual-voice",
+   "source": "batch",
+   "verdict": {
+    "makes_sound": true,
+    "character": "rhythmic",
+    "flags": [
+     "clipping",
+     "dc_offset"
+    ]
+   },
+   "fitness": 42,
+   "metrics": {
+    "duration": 10.008,
+    "sample_rate": 44100,
+    "peak": 0.9953,
+    "rms": 0.238,
+    "dc_offset": 0.0939,
+    "silent_ratio": 0.019,
+    "spectral_centroid_hz": 2859.4,
+    "spectral_flatness": 0.0002,
+    "spectral_bandwidth_hz": 4451.2,
+    "onset_count": 20,
+    "onset_rate": 2.0,
+    "voiced_ratio": 0.945,
+    "median_f0_hz": 260.9
+   },
+   "duration": 10.008,
+   "parent": null,
+   "repairs": [
+    "batch3-10-dual-voice-r1"
+   ],
+   "featured": false,
+   "audio": "audio/batch3-10-dual-voice.mp3",
+   "peaks": "data/peaks/batch3-10-dual-voice.json"
+  },
+  {
+   "slug": "batch3-10-dual-voice-r1",
+   "title": "Dual Voice (repair 1)",
+   "archetype": "dual-voice",
+   "source": "repair",
+   "verdict": {
+    "makes_sound": true,
+    "character": "rhythmic",
+    "flags": []
+   },
+   "fitness": 43,
+   "metrics": {
+    "duration": 10.008,
+    "sample_rate": 44100,
+    "peak": 0.4681,
+    "rms": 0.1286,
+    "dc_offset": 0.0064,
+    "silent_ratio": 0.009,
+    "spectral_centroid_hz": 3767.1,
+    "spectral_flatness": 0.0007,
+    "spectral_bandwidth_hz": 5169.0,
+    "onset_count": 20,
+    "onset_rate": 2.0,
+    "voiced_ratio": 0.915,
+    "median_f0_hz": 260.9
+   },
+   "duration": 10.008,
+   "parent": "batch3-10-dual-voice",
+   "repairs": [],
+   "featured": false,
+   "audio": "audio/batch3-10-dual-voice-r1.mp3",
+   "peaks": "data/peaks/batch3-10-dual-voice-r1.json"
+  },
+  {
+   "slug": "batch3-11-omri-seq",
+   "title": "Omri Seq",
+   "archetype": "omri-seq",
+   "source": "batch",
+   "verdict": {
+    "makes_sound": true,
+    "character": "rhythmic",
+    "flags": []
+   },
+   "fitness": 49,
+   "metrics": {
+    "duration": 10.008,
+    "sample_rate": 44100,
+    "peak": 0.6529,
+    "rms": 0.1324,
+    "dc_offset": 0.0454,
+    "silent_ratio": 0.029,
+    "spectral_centroid_hz": 2511.1,
+    "spectral_flatness": 0.0006,
+    "spectral_bandwidth_hz": 4168.3,
+    "onset_count": 30,
+    "onset_rate": 3.0,
+    "voiced_ratio": 0.873,
+    "median_f0_hz": 260.9
+   },
+   "duration": 10.008,
+   "parent": null,
+   "repairs": [],
+   "featured": false,
+   "audio": "audio/batch3-11-omri-seq.mp3",
+   "peaks": "data/peaks/batch3-11-omri-seq.json"
+  },
+  {
+   "slug": "batch3-12-drone",
+   "title": "Drone",
+   "archetype": "drone",
+   "source": "batch",
+   "verdict": {
+    "makes_sound": true,
+    "character": "drone",
+    "flags": [
+     "clipping"
+    ]
+   },
+   "fitness": 25,
+   "metrics": {
+    "duration": 10.008,
+    "sample_rate": 44100,
+    "peak": 1.0,
+    "rms": 0.5162,
+    "dc_offset": 0.0018,
+    "silent_ratio": 0.0,
+    "spectral_centroid_hz": 5421.1,
+    "spectral_flatness": 0.0239,
+    "spectral_bandwidth_hz": 6382.1,
+    "onset_count": 1,
+    "onset_rate": 0.1,
+    "voiced_ratio": 0.909,
+    "median_f0_hz": 2100.0
+   },
+   "duration": 10.008,
+   "parent": null,
+   "repairs": [
+    "batch3-12-drone-r1"
+   ],
+   "featured": false,
+   "audio": "audio/batch3-12-drone.mp3",
+   "peaks": "data/peaks/batch3-12-drone.json"
+  },
+  {
+   "slug": "batch3-12-drone-r1",
+   "title": "Drone (repair 1)",
+   "archetype": "drone",
+   "source": "repair",
+   "verdict": {
+    "makes_sound": true,
+    "character": "drone",
+    "flags": []
+   },
+   "fitness": 25,
+   "metrics": {
+    "duration": 10.008,
+    "sample_rate": 44100,
+    "peak": 0.9212,
+    "rms": 0.3636,
+    "dc_offset": -0.0002,
+    "silent_ratio": 0.0,
+    "spectral_centroid_hz": 5437.9,
+    "spectral_flatness": 0.0239,
+    "spectral_bandwidth_hz": 6384.2,
+    "onset_count": 1,
+    "onset_rate": 0.1,
+    "voiced_ratio": 0.917,
+    "median_f0_hz": 2100.0
+   },
+   "duration": 10.008,
+   "parent": "batch3-12-drone",
+   "repairs": [],
+   "featured": false,
+   "audio": "audio/batch3-12-drone-r1.mp3",
+   "peaks": "data/peaks/batch3-12-drone-r1.json"
+  },
+  {
+   "slug": "batch3-13-generative",
+   "title": "Generative",
+   "archetype": "generative",
+   "source": "batch",
+   "verdict": {
+    "makes_sound": true,
+    "character": "rhythmic",
+    "flags": [
+     "near_silent"
+    ]
+   },
+   "fitness": 31,
+   "metrics": {
+    "duration": 10.008,
+    "sample_rate": 44100,
+    "peak": 0.0177,
+    "rms": 0.0017,
+    "dc_offset": 0.0007,
+    "silent_ratio": 0.019,
+    "spectral_centroid_hz": 4237.2,
+    "spectral_flatness": 0.0091,
+    "spectral_bandwidth_hz": 5073.2,
+    "onset_count": 45,
+    "onset_rate": 4.5,
+    "voiced_ratio": 0.26,
+    "median_f0_hz": 1837.5
+   },
+   "duration": 10.008,
+   "parent": null,
+   "repairs": [
+    "batch3-13-generative-r1"
+   ],
+   "featured": false,
+   "audio": "audio/batch3-13-generative.mp3",
+   "peaks": "data/peaks/batch3-13-generative.json"
+  },
+  {
+   "slug": "batch3-13-generative-r1",
+   "title": "Generative (repair 1)",
+   "archetype": "generative",
+   "source": "repair",
+   "verdict": {
+    "makes_sound": true,
+    "character": "rhythmic",
+    "flags": [
+     "near_silent"
+    ]
+   },
+   "fitness": 37,
+   "metrics": {
+    "duration": 10.008,
+    "sample_rate": 44100,
+    "peak": 0.0559,
+    "rms": 0.0061,
+    "dc_offset": 0.0022,
+    "silent_ratio": 0.019,
+    "spectral_centroid_hz": 3688.8,
+    "spectral_flatness": 0.0086,
+    "spectral_bandwidth_hz": 4839.2,
+    "onset_count": 44,
+    "onset_rate": 4.4,
+    "voiced_ratio": 0.432,
+    "median_f0_hz": 2100.0
+   },
+   "duration": 10.008,
+   "parent": "batch3-13-generative",
+   "repairs": [],
+   "featured": false,
+   "audio": "audio/batch3-13-generative-r1.mp3",
+   "peaks": "data/peaks/batch3-13-generative-r1.json"
+  },
+  {
+   "slug": "batch3-14-subtractive",
+   "title": "Subtractive",
+   "archetype": "subtractive",
+   "source": "batch",
+   "verdict": {
+    "makes_sound": true,
+    "character": "rhythmic",
+    "flags": []
+   },
+   "fitness": 45,
+   "metrics": {
+    "duration": 10.008,
+    "sample_rate": 44100,
+    "peak": 0.7731,
+    "rms": 0.1986,
+    "dc_offset": -0.0001,
+    "silent_ratio": 0.369,
+    "spectral_centroid_hz": 2256.1,
+    "spectral_flatness": 0.0009,
+    "spectral_bandwidth_hz": 3409.6,
+    "onset_count": 40,
+    "onset_rate": 4.0,
+    "voiced_ratio": 0.617,
+    "median_f0_hz": 130.9
+   },
+   "duration": 10.008,
+   "parent": null,
+   "repairs": [],
+   "featured": false,
+   "audio": "audio/batch3-14-subtractive.mp3",
+   "peaks": "data/peaks/batch3-14-subtractive.json"
+  },
+  {
+   "slug": "batch3-15-dual-voice",
+   "title": "Dual Voice",
+   "archetype": "dual-voice",
+   "source": "batch",
+   "verdict": {
+    "makes_sound": true,
+    "character": "rhythmic",
+    "flags": [
+     "clipping",
+     "dc_offset"
+    ]
+   },
+   "fitness": 42,
+   "metrics": {
+    "duration": 10.008,
+    "sample_rate": 44100,
+    "peak": 1.0,
+    "rms": 0.2375,
+    "dc_offset": 0.0873,
+    "silent_ratio": 0.019,
+    "spectral_centroid_hz": 2561.1,
+    "spectral_flatness": 0.0002,
+    "spectral_bandwidth_hz": 4321.2,
+    "onset_count": 20,
+    "onset_rate": 2.0,
+    "voiced_ratio": 0.959,
+    "median_f0_hz": 130.9
+   },
+   "duration": 10.008,
+   "parent": null,
+   "repairs": [
+    "batch3-15-dual-voice-r1"
+   ],
+   "featured": false,
+   "audio": "audio/batch3-15-dual-voice.mp3",
+   "peaks": "data/peaks/batch3-15-dual-voice.json"
+  },
+  {
+   "slug": "batch3-15-dual-voice-r1",
+   "title": "Dual Voice (repair 1)",
+   "archetype": "dual-voice",
+   "source": "repair",
+   "verdict": {
+    "makes_sound": true,
+    "character": "rhythmic",
+    "flags": []
+   },
+   "fitness": 45,
+   "metrics": {
+    "duration": 10.008,
+    "sample_rate": 44100,
+    "peak": 0.4721,
+    "rms": 0.1263,
+    "dc_offset": 0.0068,
+    "silent_ratio": 0.006,
+    "spectral_centroid_hz": 3169.4,
+    "spectral_flatness": 0.0006,
+    "spectral_bandwidth_hz": 4821.0,
+    "onset_count": 20,
+    "onset_rate": 2.0,
+    "voiced_ratio": 0.927,
+    "median_f0_hz": 130.9
+   },
+   "duration": 10.008,
+   "parent": "batch3-15-dual-voice",
+   "repairs": [],
+   "featured": false,
+   "audio": "audio/batch3-15-dual-voice-r1.mp3",
+   "peaks": "data/peaks/batch3-15-dual-voice-r1.json"
+  },
+  {
+   "slug": "batch3-16-omri-seq",
+   "title": "Omri Seq",
+   "archetype": "omri-seq",
+   "source": "batch",
+   "verdict": {
+    "makes_sound": true,
+    "character": "rhythmic",
+    "flags": []
+   },
+   "fitness": 36,
+   "metrics": {
+    "duration": 10.008,
+    "sample_rate": 44100,
+    "peak": 0.5001,
+    "rms": 0.2087,
+    "dc_offset": -0.0,
+    "silent_ratio": 0.0,
+    "spectral_centroid_hz": 336.3,
+    "spectral_flatness": 0.0,
+    "spectral_bandwidth_hz": 1033.6,
+    "onset_count": 29,
+    "onset_rate": 2.9,
+    "voiced_ratio": 0.971,
+    "median_f0_hz": 2100.0
+   },
+   "duration": 10.008,
+   "parent": null,
+   "repairs": [],
+   "featured": false,
+   "audio": "audio/batch3-16-omri-seq.mp3",
+   "peaks": "data/peaks/batch3-16-omri-seq.json"
+  },
+  {
+   "slug": "batch3-17-drone",
+   "title": "Drone",
+   "archetype": "drone",
+   "source": "batch",
+   "verdict": {
+    "makes_sound": true,
+    "character": "drone",
+    "flags": [
+     "clipping",
+     "dc_offset"
+    ]
+   },
+   "fitness": 15,
+   "metrics": {
+    "duration": 10.008,
+    "sample_rate": 44100,
+    "peak": 1.0,
+    "rms": 0.5094,
+    "dc_offset": 0.1963,
+    "silent_ratio": 0.0,
+    "spectral_centroid_hz": 4964.0,
+    "spectral_flatness": 0.0189,
+    "spectral_bandwidth_hz": 6038.1,
+    "onset_count": 0,
+    "onset_rate": 0.0,
+    "voiced_ratio": 1.0,
+    "median_f0_hz": 130.9
+   },
+   "duration": 10.008,
+   "parent": null,
+   "repairs": [
+    "batch3-17-drone-r1"
+   ],
+   "featured": false,
+   "audio": "audio/batch3-17-drone.mp3",
+   "peaks": "data/peaks/batch3-17-drone.json"
+  },
+  {
+   "slug": "batch3-17-drone-r1",
+   "title": "Drone (repair 1)",
+   "archetype": "drone",
+   "source": "repair",
+   "verdict": {
+    "makes_sound": true,
+    "character": "drone",
+    "flags": []
+   },
+   "fitness": 16,
+   "metrics": {
+    "duration": 10.008,
+    "sample_rate": 44100,
+    "peak": 0.4982,
+    "rms": 0.2483,
+    "dc_offset": 0.0281,
+    "silent_ratio": 0.0,
+    "spectral_centroid_hz": 4966.3,
+    "spectral_flatness": 0.0182,
+    "spectral_bandwidth_hz": 6075.0,
+    "onset_count": 1,
+    "onset_rate": 0.1,
+    "voiced_ratio": 1.0,
+    "median_f0_hz": 130.9
+   },
+   "duration": 10.008,
+   "parent": "batch3-17-drone",
+   "repairs": [],
+   "featured": false,
+   "audio": "audio/batch3-17-drone-r1.mp3",
+   "peaks": "data/peaks/batch3-17-drone-r1.json"
+  },
+  {
+   "slug": "batch3-18-generative",
+   "title": "Generative",
+   "archetype": "generative",
+   "source": "batch",
+   "verdict": {
+    "makes_sound": true,
+    "character": "rhythmic",
+    "flags": []
+   },
+   "fitness": 52,
+   "metrics": {
+    "duration": 10.008,
+    "sample_rate": 44100,
+    "peak": 0.0627,
+    "rms": 0.0109,
+    "dc_offset": 0.0041,
+    "silent_ratio": 0.051,
+    "spectral_centroid_hz": 3099.8,
+    "spectral_flatness": 0.0041,
+    "spectral_bandwidth_hz": 4207.1,
+    "onset_count": 63,
+    "onset_rate": 6.3,
+    "voiced_ratio": 0.74,
+    "median_f0_hz": 1917.4
+   },
+   "duration": 10.008,
+   "parent": null,
+   "repairs": [],
+   "featured": true,
+   "audio": "audio/batch3-18-generative.mp3",
+   "peaks": "data/peaks/batch3-18-generative.json"
+  },
+  {
+   "slug": "batch3-19-subtractive",
+   "title": "Subtractive",
+   "archetype": "subtractive",
+   "source": "batch",
+   "verdict": {
+    "makes_sound": true,
+    "character": "rhythmic",
+    "flags": [
+     "dc_offset"
+    ]
+   },
+   "fitness": 49,
+   "metrics": {
+    "duration": 10.008,
+    "sample_rate": 44100,
+    "peak": 0.5958,
+    "rms": 0.1554,
+    "dc_offset": 0.071,
+    "silent_ratio": 0.347,
+    "spectral_centroid_hz": 2704.1,
+    "spectral_flatness": 0.0003,
+    "spectral_bandwidth_hz": 3391.2,
+    "onset_count": 40,
+    "onset_rate": 4.0,
+    "voiced_ratio": 0.633,
+    "median_f0_hz": 525.0
+   },
+   "duration": 10.008,
+   "parent": null,
+   "repairs": [
+    "batch3-19-subtractive-r1"
+   ],
+   "featured": false,
+   "audio": "audio/batch3-19-subtractive.mp3",
+   "peaks": "data/peaks/batch3-19-subtractive.json"
+  },
+  {
+   "slug": "batch3-19-subtractive-r1",
+   "title": "Subtractive (repair 1)",
+   "archetype": "subtractive",
+   "source": "repair",
+   "verdict": {
+    "makes_sound": true,
+    "character": "rhythmic",
+    "flags": []
+   },
+   "fitness": 51,
+   "metrics": {
+    "duration": 10.008,
+    "sample_rate": 44100,
+    "peak": 0.4809,
+    "rms": 0.1074,
+    "dc_offset": 0.0068,
+    "silent_ratio": 0.334,
+    "spectral_centroid_hz": 2902.6,
+    "spectral_flatness": 0.0008,
+    "spectral_bandwidth_hz": 3549.7,
+    "onset_count": 40,
+    "onset_rate": 4.0,
+    "voiced_ratio": 0.647,
+    "median_f0_hz": 525.0
+   },
+   "duration": 10.008,
+   "parent": "batch3-19-subtractive",
+   "repairs": [],
+   "featured": true,
+   "audio": "audio/batch3-19-subtractive-r1.mp3",
+   "peaks": "data/peaks/batch3-19-subtractive-r1.json"
+  },
+  {
+   "slug": "batch3-20-dual-voice",
+   "title": "Dual Voice",
+   "archetype": "dual-voice",
+   "source": "batch",
+   "verdict": {
+    "makes_sound": true,
+    "character": "rhythmic",
+    "flags": [
+     "clipping"
+    ]
+   },
+   "fitness": 39,
+   "metrics": {
+    "duration": 10.008,
+    "sample_rate": 44100,
+    "peak": 1.0,
+    "rms": 0.2748,
+    "dc_offset": -0.0,
+    "silent_ratio": 0.019,
+    "spectral_centroid_hz": 2473.8,
+    "spectral_flatness": 0.0005,
+    "spectral_bandwidth_hz": 4085.5,
+    "onset_count": 20,
+    "onset_rate": 2.0,
+    "voiced_ratio": 0.964,
+    "median_f0_hz": 260.9
+   },
+   "duration": 10.008,
+   "parent": null,
+   "repairs": [
+    "batch3-20-dual-voice-r1"
+   ],
+   "featured": false,
+   "audio": "audio/batch3-20-dual-voice.mp3",
+   "peaks": "data/peaks/batch3-20-dual-voice.json"
+  },
+  {
+   "slug": "batch3-20-dual-voice-r1",
+   "title": "Dual Voice (repair 1)",
+   "archetype": "dual-voice",
+   "source": "repair",
+   "verdict": {
+    "makes_sound": true,
+    "character": "rhythmic",
+    "flags": []
+   },
+   "fitness": 41,
+   "metrics": {
+    "duration": 10.008,
+    "sample_rate": 44100,
+    "peak": 0.7415,
+    "rms": 0.1923,
+    "dc_offset": -0.0,
+    "silent_ratio": 0.022,
+    "spectral_centroid_hz": 2516.2,
+    "spectral_flatness": 0.0005,
+    "spectral_bandwidth_hz": 4154.7,
+    "onset_count": 20,
+    "onset_rate": 2.0,
+    "voiced_ratio": 0.937,
+    "median_f0_hz": 260.9
+   },
+   "duration": 10.008,
+   "parent": "batch3-20-dual-voice",
+   "repairs": [],
+   "featured": false,
+   "audio": "audio/batch3-20-dual-voice-r1.mp3",
+   "peaks": "data/peaks/batch3-20-dual-voice-r1.json"
+  },
+  {
+   "slug": "llm-drone-20260711-141428-81d5c3",
+   "title": "Llm Drone 20260711 141428 81d5c3",
+   "archetype": "drone",
+   "source": "llm",
+   "verdict": {
+    "makes_sound": true,
+    "character": "rhythmic",
+    "flags": []
+   },
+   "fitness": null,
+   "metrics": {
+    "duration": 10.008,
+    "sample_rate": 44100,
+    "peak": 0.0484,
+    "rms": 0.0127,
+    "dc_offset": 0.0082,
+    "silent_ratio": 0.0,
+    "spectral_centroid_hz": 1364.7,
+    "spectral_flatness": 0.0003,
+    "spectral_bandwidth_hz": 2928.0,
+    "onset_count": 41,
+    "onset_rate": 4.1,
+    "voiced_ratio": 0.647,
+    "median_f0_hz": 252.0
+   },
+   "duration": 10.008,
+   "parent": null,
+   "repairs": [],
+   "featured": false,
+   "audio": "audio/llm-drone-20260711-141428-81d5c3.mp3",
+   "peaks": "data/peaks/llm-drone-20260711-141428-81d5c3.json"
+  }
+ ]
+}

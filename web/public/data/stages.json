@@ -1,0 +1,142 @@
+{
+ "schema_version": 1,
+ "stages": [
+  {
+   "slug": "00",
+   "title": "Build whitelist",
+   "blurb": "Catalog every free VCV Rack plugin so only reproducible patches enter the corpus.",
+   "inputs": "VCV library API",
+   "outputs": "free_plugins.json",
+   "stat": {
+    "key": "free_plugins",
+    "value": 363
+   }
+  },
+  {
+   "slug": "01",
+   "title": "Fetch metadata",
+   "blurb": "Scrape PatchStorage for every VCV Rack patch listing.",
+   "inputs": "PatchStorage API",
+   "outputs": "all_patches.json",
+   "stat": {
+    "key": "patches_listed",
+    "value": 3914
+   }
+  },
+  {
+   "slug": "02",
+   "title": "Download patches",
+   "blurb": "Download each .vcv file, crash-safe and resumable.",
+   "inputs": "all_patches.json",
+   "outputs": "raw/*.vcv",
+   "stat": {
+    "key": "patches_downloaded",
+    "value": 3914
+   }
+  },
+  {
+   "slug": "03",
+   "title": "Parse & filter",
+   "blurb": "Keep only Rack-2, liked, fully-free patches of sane size.",
+   "inputs": "raw/*.vcv",
+   "outputs": "filtered_patches.json",
+   "stat": {
+    "key": "patches_filtered",
+    "value": 2818
+   }
+  },
+  {
+   "slug": "04",
+   "title": "Aggregate",
+   "blurb": "Count module usage and co-occurrence across the corpus.",
+   "inputs": "filtered_patches.json",
+   "outputs": "module_frequency.csv",
+   "stat": {
+    "key": "modules_seen",
+    "value": 2621
+   }
+  },
+  {
+   "slug": "05",
+   "title": "Port registry",
+   "blurb": "Clone plugin source and parse C++ enums into port names.",
+   "inputs": "plugin repos",
+   "outputs": "port_registry.json",
+   "stat": {
+    "key": "ports_mapped",
+    "value": 24
+   }
+  },
+  {
+   "slug": "06",
+   "title": "Deep analysis",
+   "blurb": "Decode every patch into named connections and parameter stats.",
+   "inputs": "filtered_patches.json",
+   "outputs": "decoded_patches.json",
+   "stat": {
+    "key": "patches_decoded",
+    "value": 137
+   }
+  },
+  {
+   "slug": "07",
+   "title": "Module profiles",
+   "blurb": "Merge library metadata and manuals into one profile per module.",
+   "inputs": "port_registry.json",
+   "outputs": "module_profiles.json",
+   "stat": {
+    "key": "modules_profiled",
+    "value": 269
+   }
+  },
+  {
+   "slug": "08",
+   "title": "Reference files",
+   "blurb": "Write human/AI-readable markdown for every module and patch.",
+   "inputs": "module_profiles.json",
+   "outputs": "reference/*.md",
+   "stat": {
+    "key": "reference_docs",
+    "value": 413
+   }
+  },
+  {
+   "slug": "09",
+   "title": "Classify & learn",
+   "blurb": "Distill patch archetypes and connection grammar.",
+   "inputs": "decoded_patches.json",
+   "outputs": "archetypes.md",
+   "stat": null
+  },
+  {
+   "slug": "10",
+   "title": "Knowledge base",
+   "blurb": "Synthesis fundamentals and patch-building guides.",
+   "inputs": "everything above",
+   "outputs": "reference/*.md",
+   "stat": null
+  },
+  {
+   "slug": "gen",
+   "title": "Generate",
+   "blurb": "Compose new .vcv patches from learned archetypes.",
+   "inputs": "knowledge base",
+   "outputs": "generated/*.vcv",
+   "stat": {
+    "key": "patches_generated",
+    "value": 25
+   }
+  },
+  {
+   "slug": "audition",
+   "title": "Render & listen",
+   "blurb": "Render each patch headlessly, analyze the audio, score fitness, auto-repair.",
+   "inputs": "generated/*.vcv",
+   "outputs": "audio + verdicts",
+   "stat": {
+    "key": "tracks_rendered",
+    "value": 38
+   }
+  }
+ ]
+}
