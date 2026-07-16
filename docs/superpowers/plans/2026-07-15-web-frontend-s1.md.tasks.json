@@ -10,7 +10,7 @@
     {
       "id": 1,
       "subject": "Task 1: export_frontend_data.py with pytest coverage",
-      "status": "in_progress",
+      "status": "completed",
       "description": "**Goal:** One tested command that snapshots data/ into web/public/ (UI JSON + mp3 + peaks), hard-failing on missing/invalid sources, never leaving partial JSON output.\n\n**Files:**\n- Create: export_frontend_data.py (repo root)\n- Test: tests/test_export_frontend_data.py\n\n**Acceptance Criteria:**\n- pytest tests/test_export_frontend_data.py all pass\n- Real run writes web/public/data/{tracks,stages,modules,insights}.json + peaks/ + audio mp3s\n- Repair lineage linked both directions (batch3-02-drone-r1 ↔ parent)\n- Missing source → exit 1, no partial data/*.json\n- mp3 transcode skipped when newer than WAV\n\n**Verify:** .venv/bin/python -m pytest tests/test_export_frontend_data.py -v → all PASS\n\n**Steps:** TDD — write tests (fixture mini data tree, sine WAVs), fail, implement (full code in plan doc), pass, commit.\n\n```json:metadata\n{\"files\": [\"export_frontend_data.py\", \"tests/test_export_frontend_data.py\"], \"verifyCommand\": \".venv/bin/python -m pytest tests/test_export_frontend_data.py -v\", \"acceptanceCriteria\": [\"all tests pass\", \"repair lineage linked\", \"hard-fail without partial output\", \"idempotent transcode\"]}\n```"
     },
     {
