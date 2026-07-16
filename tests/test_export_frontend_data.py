@@ -137,3 +137,17 @@ def test_peaks_shape(tmp_path):
     assert len(peaks) == ex.PEAK_BINS
     assert all(lo <= hi for lo, hi in peaks)
     assert all(-1.0 <= lo and hi <= 1.0 for lo, hi in peaks)
+
+
+def test_peaks_too_short_fails(tmp_path):
+    wav = tmp_path / "short.wav"
+    write_wav(wav, frames=ex.PEAK_BINS - 1)
+    with pytest.raises(SystemExit) as e:
+        ex.compute_peaks(wav)
+    assert e.value.code == 1
+
+
+def test_repaired_llm_track_source_is_repair():
+    assert ex.track_source("llm-x-r1") == "repair"
+    assert ex.parent_slug("llm-x-r1") == "llm-x"
+    assert ex.track_source("llm-x") == "llm"
