@@ -14,8 +14,8 @@ const links = [
 export function SiteNav() {
   const pathname = usePathname()
   return (
-    <nav className="flex gap-6 border-b border-zinc-800 px-6 py-4 text-sm">
-      <Link href="/" className="font-semibold tracking-tight">
+    <nav className="flex items-center gap-6 border-b border-[var(--mm-border)] bg-[var(--mm-surface)] px-6 text-sm h-[var(--mm-nav-height)]">
+      <Link href="/" className="font-semibold tracking-tight text-[var(--mm-accent)]">
         Modular Mind
       </Link>
       {links.map((l) => {
@@ -25,7 +25,11 @@ export function SiteNav() {
             key={l.href}
             href={l.href}
             aria-current={isActive ? 'page' : undefined}
-            className="text-zinc-400 hover:text-zinc-100"
+            className={
+              isActive
+                ? 'text-[var(--mm-text)]'
+                : 'text-[var(--mm-text-dim)] hover:text-[var(--mm-text)]'
+            }
           >
             {l.label}
           </Link>

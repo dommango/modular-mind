@@ -1,1 +1,17 @@
 @import "tailwindcss";
+@import "./brand-tokens.css";
+
+/* Brand ground + base type (was: bg-zinc-950 / text-zinc-100 utility classes).
+ * These must live in @layer base: unlayered rules outrank every Tailwind
+ * utility, which would make `a` here override any text-colour class. */
+@layer base {
+  body {
+    background: var(--mm-bg);
+    color: var(--mm-text);
+    font: var(--mm-text-body);
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--mm-link); text-decoration: none; }
+  a:hover { color: var(--mm-link-hover); }
+  ::selection { background: var(--mm-amber-dim); color: var(--mm-amber-bright); }
+}
